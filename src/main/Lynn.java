@@ -14,7 +14,6 @@ public class Lynn {
 
 	public void sendMessage(String msg){
 		 String to="shanjohridev@gmail.com";//change accordingly  
-		  
 		  //Get the session object  
 		  Properties props = new Properties();  
 		  props.put("mail.smtp.host", "smtp.gmail.com");  
@@ -23,14 +22,12 @@ public class Lynn {
 		            "javax.net.ssl.SSLSocketFactory");  
 		  props.put("mail.smtp.auth", "true");  
 		  props.put("mail.smtp.port", "465");  
-		   
 		  Session session = Session.getDefaultInstance(props,  
 		   new javax.mail.Authenticator() {  
 		   protected PasswordAuthentication getPasswordAuthentication() {  
 		   return new PasswordAuthentication("shantanu@internshala.com","hanuor11");//change accordingly  
 		   }  
 		  });  
-		   
 		  //compose message  
 		  try {  
 		   MimeMessage message = new MimeMessage(session);  

@@ -6,7 +6,7 @@ import javax.swing.*;
 public class FaceView {
 		FaceView(){
 			Lynn lynn = new Lynn();
-			JFrame layout = new JFrame();
+			JFrame layout = new JFrame("Lynn - Your template messenger");
 			JTextArea area=new JTextArea("Type here");  
 		      area.setBounds(100, 190, 300, 300);  
 		      

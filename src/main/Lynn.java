@@ -12,8 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class Lynn {
 
-	public static void main(String[] args) {  
-		  
+	public void sendMessage(String msg){
 		 String to="shanjohri@gmail.com";//change accordingly  
 		  
 		  //Get the session object  
@@ -38,7 +37,7 @@ public class Lynn {
 		   message.setFrom(new InternetAddress("shantanu@internshala.com"));//change accordingly  
 		   message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));  
 		   message.setSubject("Hello");  
-		   message.setText("Testing.......");  
+		   message.setText(msg);  
 		     
 		   //send message  
 		   Transport.send(message);  
@@ -47,5 +46,10 @@ public class Lynn {
 		   
 		  } catch (MessagingException e) {throw new RuntimeException(e);}  
 		   
-		 } 
+
+		
+	}
+	public static void main(String[] args) {  
+		  
+				 } 
 }

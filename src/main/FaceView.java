@@ -1,4 +1,5 @@
 package main;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,10 +8,18 @@ public class FaceView {
 		FaceView(){
 			Lynn lynn = new Lynn();
 			JFrame layout = new JFrame("Lynn - Your template messenger");
-			JTextArea area=new JTextArea("Type here");  
-		      area.setBounds(100, 190, 300, 300);  
-		      
-		        
+			JPanel headerPanel = new JPanel();
+			 
+			 JTextField senderEmail = new JTextField("Enter your email-id");
+			 senderEmail.setBounds(0, 0, 100, 50);
+			 
+			JTextArea area=new JTextArea("");  
+			area.setBounds(0, 0, 200, 100);
+			headerPanel.add(senderEmail);
+			headerPanel.add(area);
+			
+			   headerPanel.setLayout(new GridLayout(3,3));
+			   layout.add(headerPanel);
 		        JButton b=new JButton("Click Here");  
 		        b.setBounds(50,100,95,30); 
 		        layout.add(area);  

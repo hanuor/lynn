@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class Lynn {
 
 	public void sendMessage(String msg){
-		 String to="shanjohri@gmail.com";//change accordingly  
+		 String to="shanjohridev@gmail.com";//change accordingly  
 		  
 		  //Get the session object  
 		  Properties props = new Properties();  
@@ -40,7 +40,8 @@ public class Lynn {
 		   message.setText(msg);  
 		     
 		   //send message  
-		   Transport.send(message);  
+		   Transport.send(message); 
+		  
 		  
 		   System.out.println("message sent successfully");  
 		   

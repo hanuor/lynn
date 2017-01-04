@@ -13,13 +13,13 @@ public class FaceView {
 		        
 		        JButton b=new JButton("Click Here");  
 		        b.setBounds(50,100,95,30); 
-		       layout.add(area);  
+		        layout.add(area);  
 		        layout.add(b); 
 		        layout.setSize(500,500);  
 		        layout.setLayout(null);  
 		        layout.setVisible(true); 
 		        b.addActionListener(new ActionListener(){  
-		    public void actionPerformed(ActionEvent e){  
+		        public void actionPerformed(ActionEvent e){  
 		    	System.out.println(area.getText().toString());
 		    	
 		    	StringBuilder strBr = new StringBuilder();

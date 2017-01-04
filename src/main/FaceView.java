@@ -17,7 +17,6 @@ public class FaceView {
 			area.setBounds(0, 0, 200, 100);
 			headerPanel.add(senderEmail);
 			headerPanel.add(area);
-			
 			   headerPanel.setLayout(new GridLayout(3,3));
 			   layout.add(headerPanel);
 		        JButton b=new JButton("Click Here");  

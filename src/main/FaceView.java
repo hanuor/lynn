@@ -19,7 +19,6 @@ public class FaceView {
 	
 	public FaceView(){
 
-Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
 		   EventQueue.invokeLater(new Runnable() {
 	            @Override
 	            public void run() {
@@ -114,34 +113,8 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
             jbt.addActionListener(new ActionListener() { 
             	  public void actionPerformed(ActionEvent e) { 
             		  
-            		  BackendlessUser user = new BackendlessUser();
-            		  user.setProperty( "email", email.getText().toString() );
-            		  user.setPassword( password.getText().toString() );
-            		   
-            		  Backendless.UserService.register( user, new AsyncCallback<BackendlessUser>()
-            		  {
-
-						@Override
-						public void handleFault(BackendlessFault bFault) {
-							// TODO Auto-generated method stub
-							System.out.println("Error " +bFault.getMessage());
-							bFault.getMessage();
-							
-						}
-
-						@Override
-						public void handleResponse(BackendlessUser bUser) {
-							// TODO Auto-generated method stub
-							
-							System.out.print(bUser + "");
-							
-						}
-            		  
-            		     
-            		   
-            		  } );
-            		  } 
-            });
+            	  }
+            	});
         }
 
     }

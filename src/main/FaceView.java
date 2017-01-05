@@ -32,7 +32,7 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
 	                frame.setLayout(new BorderLayout());
 	                frame.setSize(300, 500);
 	                frame.add(new TestPane());
-	                frame.pack();
+	                //frame.pack();
 	                frame.setLocationRelativeTo(null);
 	                frame.setVisible(true);
 	            }
@@ -74,7 +74,7 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
 		    	
 		    	
 		            }  
-		        }); */
+		        }); */	
 		       
 		        
 		     

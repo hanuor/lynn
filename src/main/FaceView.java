@@ -15,6 +15,8 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+
+import core.DatabasePing;
 public class FaceView {
 	
 	public FaceView(){
@@ -112,7 +114,7 @@ public class FaceView {
             add(jbt, gbc);
             jbt.addActionListener(new ActionListener() { 
             	  public void actionPerformed(ActionEvent e) { 
-            		  
+            		  DatabasePing.userRegistration(email.getText(), password.getText());
             	  }
             	});
         }

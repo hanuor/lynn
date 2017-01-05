@@ -1,9 +1,17 @@
 package core;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.sf.json.JSONSerializer;
+
+import org.json.JSONObject;
+
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.files.BackendlessFile;
 
 public class DatabasePing {
 	
@@ -35,6 +43,33 @@ public class DatabasePing {
 		     
 		   
 		  } );
+		  //Upload a separate meta of their profile
+		  String path = email + "/data/user";
+		  String remoteName = "userDetails";
+		  Map<String, String> map = new HashMap<String, String>();
+		  map.put("email", email);
+		  map.put("password", password);
+		  
+		  JSONObject jobj =new JSONObject(map);
+		 Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,new AsyncCallback<String>(){
+
+			@Override
+			public void handleFault(BackendlessFault arg0) {
+				// TODO Auto-generated method stub
+				System.out.println(arg0.getMessage());
+				
+			}
+
+			@Override
+			public void handleResponse(String arg0) {
+				// TODO Auto-generated method stub
+				
+				
+			}
+			 
+		 });
+
+		  
 		  
 	}
 }

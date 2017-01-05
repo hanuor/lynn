@@ -1,5 +1,6 @@
 package main;
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -33,6 +34,7 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
 	                frame.setSize(900, 900);
 	                frame.add(new TestPane(),BorderLayout.NORTH);
 	                frame.add(new MessagePane(), BorderLayout.CENTER);
+	                frame.add(new Button("HEHE"),BorderLayout.SOUTH);
 	                //frame.pack();
 	                frame.setLocationRelativeTo(null);
 	                frame.setVisible(true);

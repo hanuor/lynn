@@ -31,7 +31,7 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
 	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	                frame.setLayout(new BorderLayout());
 	                frame.setSize(300, 500);
-	                frame.add(new TestPane());
+	                frame.add(new TestPane(),BorderLayout.NORTH);
 	                //frame.pack();
 	                frame.setLocationRelativeTo(null);
 	                frame.setVisible(true);
@@ -83,7 +83,7 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
 
         public TestPane() {
             setLayout(new GridBagLayout());
-            setSize(500,500);
+            
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -121,6 +121,8 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
 						@Override
 						public void handleFault(BackendlessFault bFault) {
 							// TODO Auto-generated method stub
+							System.out.println("Error " +bFault.getMessage());
+							bFault.getMessage();
 							
 						}
 

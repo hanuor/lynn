@@ -30,8 +30,9 @@ Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158
 	                JFrame frame = new JFrame("Testing");
 	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	                frame.setLayout(new BorderLayout());
-	                frame.setSize(300, 500);
+	                frame.setSize(900, 900);
 	                frame.add(new TestPane(),BorderLayout.NORTH);
+	                frame.add(new MessagePane(), BorderLayout.CENTER);
 	                //frame.pack();
 	                frame.setLocationRelativeTo(null);
 	                frame.setVisible(true);

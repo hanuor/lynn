@@ -1,6 +1,14 @@
 package core;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONSerializer;
@@ -16,6 +24,7 @@ import com.backendless.files.BackendlessFile;
 public class DatabasePing {
 	
 	public static void userRegistration(String email, String password){
+		
 		Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
 		  BackendlessUser user = new BackendlessUser();
 		  user.setProperty( "email", email.toString() );
@@ -34,17 +43,12 @@ public class DatabasePing {
 
 			@Override
 			public void handleResponse(BackendlessUser bUser) {
-				// TODO Auto-generated method stub
-				
-				System.out.print(bUser + "");
-				
+				GetMac.getMac();
+				System.out.print(bUser + "");		
 			}
-		  
-		     
-		   
-		  } );
+		  });
 		  //Upload a separate meta of their profile
-		  String path = email + "/data/user";
+		  String path = GetMac.getMac() + "/data/user";
 		  String remoteName = "userDetails";
 		  Map<String, String> map = new HashMap<String, String>();
 		  map.put("email", email);
@@ -63,8 +67,7 @@ public class DatabasePing {
 			@Override
 			public void handleResponse(String arg0) {
 				// TODO Auto-generated method stub
-				
-				
+				System.out.println(arg0);
 			}
 			 
 		 });

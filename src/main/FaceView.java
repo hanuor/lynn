@@ -41,7 +41,7 @@ public class FaceView {
 
 	                JFrame frame = new JFrame("Testing");
 	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	                frame.setLayout(new BorderLayout());
+	                frame.setLayout(new GridLayout(3,1));
 	                frame.setSize(900, 900);
 	                frame.add(new TestPane(),BorderLayout.NORTH);
 	                frame.add(new MessagePane(), BorderLayout.CENTER);
@@ -59,15 +59,17 @@ public class FaceView {
         public TestPane() {
         ArrayList<String> _arrStr;
             setLayout(new GridBagLayout());
-            _arrStr = getEmailandPassword(GetMac.getMac());
+            JPanel panel = new JPanel();
+            panel.setLayout(new GridBagLayout());
+            _arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
             gbc.gridy = 0;
             gbc.insets = new Insets(2, 2, 2, 2);
 
-            add(new JLabel("Your email"), gbc);
+            panel.add(new JLabel("Your email"), gbc);
             gbc.gridx++;
-            add(new JLabel("Your password"), gbc);
+            panel.add(new JLabel("Your password"), gbc);
 
             gbc.gridx = 0;
             gbc.gridy++;
@@ -79,7 +81,7 @@ public class FaceView {
             	email.setText("");      
             }
            
-            add(email, gbc);
+            panel.add(email, gbc);
             gbc.gridx++;
             JTextField password = new JTextField(10);
             if(_arrStr!=null){
@@ -87,15 +89,15 @@ public class FaceView {
             }else{
             	password.setText("");      
             }
-            add(password, gbc);
+            panel.add(password, gbc);
             gbc.gridx = 0;
             gbc.gridy++;
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridwidth = 2;
-            JButton jbt = new JButton("Ok");
-            jbt.setVisible(false);
-            add(jbt, gbc);
-            
+            JButton jbt = new JButton("Show templates");
+            jbt.setVisible(true);
+            panel.add(jbt, gbc);
+            add(panel);
             jbt.addActionListener(new ActionListener() { 
             	  public void actionPerformed(ActionEvent e) { 
             		  DatabasePing.userRegistration(email.getText(), password.getText());
@@ -103,48 +105,7 @@ public class FaceView {
             	});
         }
         
-        public ArrayList<String> getEmailandPassword(String MacId){
-        	String jsonString = null;
-        	ArrayList<String> _arrList = new ArrayList<String>();
-        	String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
-        	String apiCall = "https://api.backendless.com/" + appId + "/v1/files/" + GetMac.getMac() + "/data/user" ;
-        	URL obj;
-			try {
-				obj = new URL(apiCall);
-			
-    		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-    		// optional default is GET
-    		con.setRequestMethod("GET");
-
-    		//add request header
-    		//con.setRequestProperty("User-Agent", USER_AGENT);
-
-    		int responseCode = con.getResponseCode();
-    		System.out.println("\nSending 'GET' request to URL : " + apiCall);
-    		System.out.println("Response Code : " + responseCode);
-
-    		BufferedReader in = new BufferedReader(
-    		        new InputStreamReader(con.getInputStream()));
-    		String inputLine;
-    		StringBuffer response = new StringBuffer();
-
-    		while ((inputLine = in.readLine()) != null) {
-    			response.append(inputLine);
-    		}
-    		in.close();
-    		jsonString = response.toString();
-    		JSONObject jObj = new JSONObject(jsonString);
-    		String password = (String) jObj.get("password");
-    		String email = (String) jObj.get("email");
-    		_arrList.add(email);
-    		_arrList.add(password);
-    		} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}        		
-			return _arrList;	
-        }
+       
     }
 	public static void main(String args[]){
 		new FaceView();

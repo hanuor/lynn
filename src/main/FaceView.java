@@ -106,7 +106,11 @@ public class FaceView {
             add(tempSel);
             jbt.addActionListener(new ActionListener() { 
             	  public void actionPerformed(ActionEvent e) { 
-            		  DatabasePing.userRegistration(email.getText(), password.getText());
+            		 
+            		  TemplateDialog tmpD = new TemplateDialog(tempSel);
+            		  tmpD.setVisible(true);
+            		  
+            		  // DatabasePing.userRegistration(email.getText(), password.getText());
             	  }
             	});
         }

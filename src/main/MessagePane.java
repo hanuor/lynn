@@ -27,8 +27,23 @@ public class MessagePane extends JPanel {
 	public MessagePane(){
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JLabel yMsg = new JLabel();
-		yMsg.setText("Email body");
+		yMsg.setText("Email Subject");
 		add(yMsg);
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		
+		JTextField subField = new JTextField();
+		//subField.setPreferredSize(new Dimension(10, getWidth()));
+		  GridBagConstraints c = new GridBagConstraints();
+	        c.gridwidth = GridBagConstraints.REMAINDER;
+	 
+	        c.fill = GridBagConstraints.HORIZONTAL;
+	        panel.add(subField, c);
+	 
+	        c.fill = GridBagConstraints.BOTH;
+	        c.weightx = 1.0;
+	        c.weighty = 1.0;
+		add(panel);
 		JEditorPane email = new JEditorPane();
 		JScrollPane editorScrollPane = new JScrollPane(email);
 		editorScrollPane.setVerticalScrollBarPolicy(

@@ -41,11 +41,13 @@ public class FaceView {
 
 	                JFrame frame = new JFrame("Testing");
 	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	                frame.setLayout(new GridLayout(3,1));
+	                frame.getContentPane().setLayout(
+	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
+	                	);
 	                frame.setSize(900, 900);
-	                frame.add(new TestPane(),BorderLayout.NORTH);
-	                frame.add(new MessagePane(), BorderLayout.CENTER);
-	                frame.add(new SenderPane(),BorderLayout.SOUTH);
+	                frame.add(new TestPane());
+	                frame.add(new MessagePane());
+	                frame.add(new SenderPane());
 	                //frame.pack();
 	                frame.setLocationRelativeTo(null);
 	                frame.setVisible(true);
@@ -99,7 +101,7 @@ public class FaceView {
             gbc.gridy++;
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridwidth = 2;
-            JButton jbt = new JButton("Show templates");
+            JButton jbt = new JButton("Add a template");
             jbt.setVisible(true);
             panel.add(jbt, gbc);
             add(panel);

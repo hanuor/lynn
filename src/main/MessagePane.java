@@ -9,6 +9,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -24,7 +25,7 @@ import com.backendless.exceptions.BackendlessFault;
 
 public class MessagePane extends JPanel {
 	public MessagePane(){
-		setLayout(new GridLayout(3,0));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JLabel yMsg = new JLabel();
 		yMsg.setText("Email body");
 		add(yMsg);

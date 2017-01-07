@@ -96,8 +96,9 @@ public class FaceView {
 	public class TestPane extends JPanel {
 
         public TestPane() {
+        ArrayList<String> _arrStr;
             setLayout(new GridBagLayout());
-            getEmailandPassword(GetMac.getMac());
+            _arrStr = getEmailandPassword(GetMac.getMac());
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -111,11 +112,21 @@ public class FaceView {
             gbc.gridy++;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             JTextField email = new JTextField(10);
+            if(_arrStr!=null){
+            	email.setText(_arrStr.get(0).toString());
+            }else{
+            	email.setText("");      
+            }
+           
             add(email, gbc);
             gbc.gridx++;
             JTextField password = new JTextField(10);
+            if(_arrStr!=null){
+            	password.setText(_arrStr.get(1).toString());
+            }else{
+            	password.setText("");      
+            }
             add(password, gbc);
-
             gbc.gridx = 0;
             gbc.gridy++;
             gbc.fill = GridBagConstraints.NONE;

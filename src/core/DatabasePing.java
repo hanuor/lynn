@@ -99,7 +99,6 @@ public class DatabasePing {
 		  Map<String, String> map = new HashMap<String, String>();
 		  map.put("email", email);
 		  map.put("password", password);
-		  
 		  JSONObject jobj =new JSONObject(map);
 		 Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,new AsyncCallback<String>(){
 
@@ -120,8 +119,30 @@ public class DatabasePing {
 
 	}
 	
-	public void saveTemplateMessage(String subject, String message){
-		
+	public static void saveTemplateMessage(String subject, String message){
+		Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
+		HashMap<String, String> hMap = new HashMap<String, String>();
+		hMap.put("subject", subject);
+		hMap.put("message", message);
+		 JSONObject jobj =new JSONObject(hMap);
+		 String path = GetMac.getMac() + "/data/userData/temp";
+		 Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,new AsyncCallback<String>(){
+
+			@Override
+			public void handleFault(BackendlessFault arg0) {
+				// TODO Auto-generated method stub
+				System.out.println(arg0.getMessage());
+				
+			}
+
+			@Override
+			public void handleResponse(String arg0) {
+				// TODO Auto-generated method stub
+				System.out.println(arg0);
+			}
+			 
+		 });
+
 	}
 	
 	

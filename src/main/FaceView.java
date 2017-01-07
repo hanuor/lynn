@@ -53,45 +53,6 @@ public class FaceView {
 	        });
 	}
 		
-		/*FaceView(){
-			Lynn lynn = new Lynn();
-			JFrame layout = new JFrame("Lynn - Your template messenger");
-			layout.setLayout(new GridLayout(3,1));
-			JPanel headerPanel = new JPanel();
-			headerPanel.setLayout(new GridLayout(3,1));
-			
-			 JTextField senderEmail = new JTextField("Enter your email-id");
-			 
-			 
-			JTextArea area=new JTextArea("");  
-			area.setBounds(0, 0, 200, 100);
-			layout.add(senderEmail);
-			layout.add(area);
-			headerPanel.add(senderEmail);
-			headerPanel.add(area);
-			   headerPanel.setLayout(new GridLayout(3,3));
-			   layout.add(headerPanel);
-		        JButton b=new JButton("Click Here");  
-		        b.setBounds(50,100,95,30); 
-		        layout.add(area);  
-		        layout.add(b); 
-		        layout.setSize(500,500);  
-		        layout.setLayout(null);  
-		        layout.setVisible(true); 
-		        b.addActionListener(new ActionListener(){  
-		        public void actionPerformed(ActionEvent e){  
-		    	System.out.println(area.getText().toString());
-		    	
-		    	StringBuilder strBr = new StringBuilder();
-		    	strBr.append(area.getText().toString());
-		    	lynn.sendMessage(strBr.toString());
-		    	
-		    	
-		            }  
-		        }); */	
-		       
-		        	
-		     
 		
 	public class TestPane extends JPanel {
 
@@ -132,7 +93,9 @@ public class FaceView {
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridwidth = 2;
             JButton jbt = new JButton("Ok");
+            jbt.setVisible(false);
             add(jbt, gbc);
+            
             jbt.addActionListener(new ActionListener() { 
             	  public void actionPerformed(ActionEvent e) { 
             		  DatabasePing.userRegistration(email.getText(), password.getText());

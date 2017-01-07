@@ -120,7 +120,7 @@ public class DatabasePing {
 
 	}
 	
-	public void sendMessage(){
+	public void saveTemplateMessage(String subject, String message){
 		
 	}
 	

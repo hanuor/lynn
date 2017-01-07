@@ -39,7 +39,7 @@ public class FaceView {
 	                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 	                }
 
-	                JFrame frame = new JFrame("Testing");
+	                JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
 	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	                frame.getContentPane().setLayout(
 	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)

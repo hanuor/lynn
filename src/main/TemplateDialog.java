@@ -9,6 +9,8 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -44,12 +46,23 @@ public class TemplateDialog extends JDialog{
 	        Border margin1 = new EmptyBorder(10,10,10,10);
 	       header.setBorder(new CompoundBorder(border1, margin1));
 	        header.setLayout(new BorderLayout());
-	        JLabel topH = new JLabel("Enter a template message below"); 
+	        JLabel topH = new JLabel("Enter the template subject below"); 
 	        header.add(topH, BorderLayout.CENTER);
 	        add(header);
+	        JTextField subField = new JTextField();
+	        add(subField);
+	        
         /* JLabel yMsg = new JLabel();
          Border border = yMsg.getBorder();
 		 Border margin = new EmptyBorder(50,10,50,10);*/
+	        JPanel msgHeader = new JPanel();
+			 Border border2 = header.getBorder();
+		        Border margin2 = new EmptyBorder(10,10,10,10);
+		       msgHeader.setBorder(new CompoundBorder(border2, margin2));
+		        msgHeader.setLayout(new BorderLayout());
+		        JLabel msg = new JLabel("Enter the template message below"); 
+		        msgHeader.add(msg, BorderLayout.CENTER);
+		        add(msgHeader);
          JEditorPane temp = new JEditorPane();
  		JScrollPane editorScrollPane = new JScrollPane(temp);
  		editorScrollPane.setVerticalScrollBarPolicy(
@@ -67,8 +80,16 @@ public class TemplateDialog extends JDialog{
         JButton sButton = new JButton("Save"); 
         
         saveBut.add(sButton, BorderLayout.CENTER);
+        sButton.addActionListener(new ActionListener() { 
+        	  public void actionPerformed(ActionEvent e) { 
+        		 
+        		  
+        		  
+        		  // DatabasePing.userRegistration(email.getText(), password.getText());
+        	  }
+        	});
         add(saveBut);
-         
+        
          
         
          

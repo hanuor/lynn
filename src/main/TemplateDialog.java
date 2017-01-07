@@ -13,7 +13,10 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class TemplateDialog extends JDialog{
@@ -21,15 +24,24 @@ public class TemplateDialog extends JDialog{
 	public TemplateDialog(JPanel parent) {
 		//super();
 		
-		 setLayout(new GridLayout(2,1));
-		 setSize(1000,1000);
-		 JPanel panel = new JPanel();
-         setLayout(new BorderLayout());
-         JTextField temp = new JTextField();
-         temp.setPreferredSize(new Dimension(500, 500));
-         panel.add(temp, BorderLayout.CENTER);
+		 setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		 setSize(800,800);
+		
+         JLabel yMsg = new JLabel();
+ 		yMsg.setText("Email Subject");
+ 		add(yMsg);
+         JEditorPane temp = new JEditorPane();
          
-         add(panel);
+ 		JScrollPane editorScrollPane = new JScrollPane(temp);
+ 		editorScrollPane.setVerticalScrollBarPolicy(
+ 		                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+ 		editorScrollPane.setPreferredSize(new Dimension(750, 750));
+ 		editorScrollPane.setMinimumSize(new Dimension(10, 10));
+       //  temp.setPreferredSize(new Dimension(750, 750));
+        add( editorScrollPane, BorderLayout.CENTER);
+         
+         
+        
          
          addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){

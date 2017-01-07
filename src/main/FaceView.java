@@ -61,14 +61,15 @@ public class FaceView {
         public TestPane() {
         ArrayList<String> _arrStr;
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+           
             JPanel tempSel = new JPanel();
             tempSel.setLayout(new BorderLayout());
             JButton jb= new JButton("Hi");
-            tempSel.add(jb);
-            
+            tempSel.add(jb); 
             JPanel panel = new JPanel();
             panel.setLayout(new GridBagLayout());
             _arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());
+            System.out.println("Heya");
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -82,7 +83,7 @@ public class FaceView {
             gbc.gridy++;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             JTextField email = new JTextField(10);
-            if(_arrStr!=null){
+            if(_arrStr.size()!=0){
             	email.setText(_arrStr.get(0).toString());
             }else{
             	email.setText("");      
@@ -91,7 +92,7 @@ public class FaceView {
             panel.add(email, gbc);
             gbc.gridx++;
             JTextField password = new JTextField(10);
-            if(_arrStr!=null){
+            if(_arrStr.size()!=0){
             	password.setText(_arrStr.get(1).toString());
             }else{
             	password.setText("");      
@@ -99,11 +100,16 @@ public class FaceView {
             panel.add(password, gbc);
             gbc.gridx = 0;
             gbc.gridy++;
-            gbc.fill = GridBagConstraints.NONE;
             gbc.gridwidth = 2;
-            JButton jbt = new JButton("Add a template");
+            JButton jbt = new JButton("Register!");
             jbt.setVisible(true);
             panel.add(jbt, gbc);
+            if(_arrStr.size()==0 && _arrStr.size()==0)
+            {
+            	panel.setVisible(true);
+            }else{
+            	panel.setVisible(false);
+            }
             add(panel);
             add(tempSel);
             jbt.addActionListener(new ActionListener() { 

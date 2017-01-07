@@ -58,7 +58,12 @@ public class FaceView {
 
         public TestPane() {
         ArrayList<String> _arrStr;
-            setLayout(new GridBagLayout());
+            setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            JPanel tempSel = new JPanel();
+            tempSel.setLayout(new BorderLayout());
+            JButton jb= new JButton("Hi");
+            tempSel.add(jb);
+            
             JPanel panel = new JPanel();
             panel.setLayout(new GridBagLayout());
             _arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());
@@ -98,6 +103,7 @@ public class FaceView {
             jbt.setVisible(true);
             panel.add(jbt, gbc);
             add(panel);
+            add(tempSel);
             jbt.addActionListener(new ActionListener() { 
             	  public void actionPerformed(ActionEvent e) { 
             		  DatabasePing.userRegistration(email.getText(), password.getText());

@@ -45,6 +45,11 @@ public class HeaderPanel extends JPanel{
           JButton jbt = new JButton("Add a template");
           jbt.setVisible(true);
           tempSel.add(jbt);
+          JPanel mpanel = new JPanel();
+          JButton ref = new JButton("Refresh Panel");
+          ref.setVisible(true);
+          tempSel.add(ref, BorderLayout.WEST);
+          
           add(tempSel);
           DefaultListModel<String> listModel = new DefaultListModel<>();
           listModel.addElement("USA");

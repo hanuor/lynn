@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -92,15 +93,19 @@ public class TemplateDialog extends JDialog{
         Border margin = new EmptyBorder(10,10,10,10);
        saveBut.setBorder(new CompoundBorder(border, margin));
         saveBut.setLayout(new BorderLayout());
-       
         JButton sButton = new JButton("Save"); 
-        
         saveBut.add(sButton, BorderLayout.CENTER);
         sButton.addActionListener(new ActionListener() { 
         	  public void actionPerformed(ActionEvent e) { 
-        		 
+        		 if(extField.getText().toString().isEmpty() || subField.getText().toString().isEmpty() || temp.getText().toString().isEmpty()){
+        			 JOptionPane.showOptionDialog(null, "Something is missing", "Warning",
+        					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+        					 null, null, null);
+        			// JOptionPane.showMessageDialog(getContentPane(), "Hello World");
+        		 }else{
         		  DatabasePing.saveTemplateMessage(extField.getText().toString(),subField.getText().toString(), temp.getText().toString());
         		  dispose();
+        		 }
         		  // DatabasePing.userRegistration(email.getText(), password.getText());
         	  }
         	});

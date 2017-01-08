@@ -38,19 +38,27 @@ public class FaceView {
 	                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 	                }
-
-	                JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
-	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	                frame.getContentPane().setLayout(
-	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
-	                	);
-	                frame.setSize(900, 900);
-	                frame.add(new TestPane());
-	                frame.add(new MessagePane());
-	                frame.add(new SenderPane());
-	                //frame.pack();
-	                frame.setLocationRelativeTo(null);
-	                frame.setVisible(true);
+	                ArrayList<String> _arrStr;
+	                _arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());
+	                if(_arrStr.size()!=0){
+	                	new AfterSignin();
+	                	//getContentPane().dispose();
+	                }else{
+	                	  JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
+	  	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  	                frame.getContentPane().setLayout(
+	  	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
+	  	                	);
+	  	                frame.setSize(900, 900);
+	  	                frame.add(new TestPane());
+	  	                frame.add(new MessagePane());
+	  	                frame.add(new SenderPane());
+	  	                //frame.pack();
+	  	                frame.setLocationRelativeTo(null);
+	  	                frame.setVisible(true);
+	                }
+	               
+	              
 	            }
 	        });
 	}

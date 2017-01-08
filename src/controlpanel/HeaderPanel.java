@@ -85,5 +85,12 @@ public class HeaderPanel extends JPanel{
           	  }
           	});
           add(new JSeparator(SwingConstants.VERTICAL));
+          ref.addActionListener(new ActionListener() { 
+          	  public void actionPerformed(ActionEvent e) {   
+          		  listModel.addElement("Blah");
+          		  revalidate();
+          		  
+          	  }
+          	});
 	}
 }

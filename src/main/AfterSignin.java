@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import controlpanel.HeaderPanel;
 import main.FaceView.TestPane;
 
 public class AfterSignin {
@@ -25,7 +26,7 @@ public class AfterSignin {
 	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
 	                	);
 	                frame.setSize(900, 900);
-	                frame.add(new HeaderPane());
+	                frame.add(new HeaderPanel());
 	                //frame.add(new MessagePane());
 	                frame.add(new SenderPane());
 	                //frame.pack();

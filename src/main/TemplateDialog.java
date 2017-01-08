@@ -100,7 +100,7 @@ public class TemplateDialog extends JDialog{
         	  public void actionPerformed(ActionEvent e) { 
         		 
         		  DatabasePing.saveTemplateMessage(extField.getText().toString(),subField.getText().toString(), temp.getText().toString());
-        		  
+        		  dispose();
         		  // DatabasePing.userRegistration(email.getText(), password.getText());
         	  }
         	});

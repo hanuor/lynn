@@ -7,6 +7,7 @@ import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -18,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import main.TemplateDialog;
 
@@ -56,7 +59,15 @@ public class HeaderPanel extends JPanel{
           countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
           countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
           countryList.setVisibleRowCount(-1);
-          
+          countryList.addListSelectionListener(new ListSelectionListener() {
+              @Override
+              public void valueChanged(ListSelectionEvent e) {
+                  if (!e.getValueIsAdjusting()) {
+                      final List<String> selectedValuesList = countryList.getSelectedValuesList();
+                      System.out.println(selectedValuesList);
+                  }
+              }
+          });
           JScrollPane listScroller = new JScrollPane(countryList);
           listScroller.setPreferredSize(new Dimension(250, 80));
 

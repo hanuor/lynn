@@ -35,7 +35,7 @@ public class MessagePane extends JPanel {
 		JScrollPane editorScrollPane = new JScrollPane(email);
 		editorScrollPane.setVerticalScrollBarPolicy(
 		                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		editorScrollPane.setPreferredSize(new Dimension(250, 200));
+		editorScrollPane.setPreferredSize(new Dimension(750, 750));
 		editorScrollPane.setMinimumSize(new Dimension(10, 10));
 		add(editorScrollPane);
 		

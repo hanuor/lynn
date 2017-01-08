@@ -13,11 +13,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONSerializer;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.backendless.Backendless;
@@ -126,26 +128,117 @@ public class DatabasePing {
 		hMap.put("subject", subject);
 		hMap.put("message", message);
 		 JSONObject jobj =new JSONObject(hMap);
+		 
+		 HashMap<String, String> cMap; 
+		 
+			
 		 String path = GetMac.getMac() + "/data/userData/temp/" + extension;
+		 String listPath = GetMac.getMac() + "/data/userData/tempList";
+		 cMap = catchMap(listPath);
+		 if(cMap.size()==0){
+			 cMap = new HashMap<String, String>();
+			  
+		 }
+		 cMap.put(extension, extension);	
+		
+		 JSONObject cobj =new JSONObject(cMap);
 		 Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,new AsyncCallback<String>(){
 
 			@Override
 			public void handleFault(BackendlessFault arg0) {
 				// TODO Auto-generated method stub
-				System.out.println(arg0.getMessage());
+				
+				System.out.println(arg0);
+				
 				
 			}
 
 			@Override
 			public void handleResponse(String arg0) {
 				// TODO Auto-generated method stub
-				System.out.println(arg0);
+				 Backendless.Files.saveFile(listPath, cobj.toString().getBytes(), true,new AsyncCallback<String>(){
+
+						@Override
+						public void handleFault(BackendlessFault arg0) {
+							// TODO Auto-generated method stub
+							
+							System.out.println(arg0);
+							
+							
+						}
+
+						@Override
+						public void handleResponse(String arg0) {
+							// TODO Auto-generated method stub
+							
+						}
+						 
+					 });
 			}
 			 
 		 });
 
 	}
-	
+	private static HashMap<String, String> catchMap(String path) {
+		// TODO Auto-generated method stub
+		String jsonString = null;
+		HashMap<String, String> _mapList = new HashMap<String, String>();
+     	String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
+     	String apiCall = "https://api.backendless.com/" + appId + "/v1/files/" + path ;
+     	URL obj;
+			try {
+				obj = new URL(apiCall);
+			
+ 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+ 		// optional default is GET
+ 		con.setRequestMethod("GET");
+
+ 		//add request header
+ 		//con.setRequestProperty("User-Agent", USER_AGENT);
+
+ 		int responseCode = con.getResponseCode();
+ 		System.out.println("\nSending 'GET' request to URL : " + apiCall);
+ 		System.out.println("Response Code : " + responseCode);
+
+ 		BufferedReader in = new BufferedReader(
+ 		        new InputStreamReader(con.getInputStream()));
+ 		String inputLine;
+ 		StringBuffer response = new StringBuffer();
+
+ 		while ((inputLine = in.readLine()) != null) {
+ 			response.append(inputLine);
+ 		}
+ 		in.close();
+ 		jsonString = response.toString();
+ 		
+ 		} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}        		
+			try {
+				return jsonToMap(jsonString);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}	
+	}
+	public static HashMap<String, String> jsonToMap(String t) throws JSONException {
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        JSONObject jObject = new JSONObject(t);
+        Iterator<?> keys = jObject.keys();
+
+        while( keys.hasNext() ){
+            String key = (String)keys.next();
+            String value = jObject.getString(key); 
+            map.put(key, value);
+
+        }
+        	return map;
+    }
 	
 	
 }

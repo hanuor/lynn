@@ -11,6 +11,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 import main.TemplateDialog;
 
@@ -25,12 +27,13 @@ public class HeaderPanel extends JPanel{
           cp.setVerticalAlignment(JLabel.CENTER);
           cp.setHorizontalAlignment(JLabel.CENTER);
           Font font = cp.getFont();
+          cp.add(new JSeparator(SwingConstants.VERTICAL));
           Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
           cp.setFont(boldFont);
           add(cp);
           JPanel tempSel = new JPanel();
           tempSel.setLayout(new BoxLayout(tempSel, BoxLayout.X_AXIS));
-          JButton jb= new JButton("Hi sadasdasd");
+          JButton jb= new JButton("View saved templates");
           tempSel.add(jb); 
           JButton jbt = new JButton("Add a template");
           jbt.setVisible(true);
@@ -44,5 +47,6 @@ public class HeaderPanel extends JPanel{
          		  
           	  }
           	});
+          add(new JSeparator(SwingConstants.VERTICAL));
 	}
 }

@@ -43,14 +43,28 @@ public class TemplateDialog extends JDialog{
 		 this.setLocation(x, y);
 		 this.setVisible(true);
 		 
+		 JPanel head = new JPanel();
+		 Border border0 = head.getBorder();
+	        Border margin0 = new EmptyBorder(10,10,10,10);
+	       head.setBorder(new CompoundBorder(border0, margin0));
+	        head.setLayout(new BorderLayout());
+	        JLabel extension = new JLabel("Preferred template name");
+	        head.add(extension, BorderLayout.NORTH);
+	        add(head);
+	        JTextField extField = new JTextField();
+	        add(extField);
+	        
 		 JPanel header = new JPanel();
 		 Border border1 = header.getBorder();
 	        Border margin1 = new EmptyBorder(10,10,10,10);
 	       header.setBorder(new CompoundBorder(border1, margin1));
 	        header.setLayout(new BorderLayout());
+	      
+	       
 	        JLabel topH = new JLabel("Enter the template subject below"); 
 	        header.add(topH, BorderLayout.CENTER);
 	        add(header);
+	       
 	        JTextField subField = new JTextField();
 	        add(subField);
 	        

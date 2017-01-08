@@ -26,7 +26,7 @@ public class AfterSignin {
 	                	);
 	                frame.setSize(900, 900);
 	                frame.add(new HeaderPane());
-	                frame.add(new MessagePane());
+	                //frame.add(new MessagePane());
 	                frame.add(new SenderPane());
 	                //frame.pack();
 	                frame.setLocationRelativeTo(null);

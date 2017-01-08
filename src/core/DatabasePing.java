@@ -120,13 +120,13 @@ public class DatabasePing {
 
 	}
 	
-	public static void saveTemplateMessage(String subject, String message){
+	public static void saveTemplateMessage(String extension,String subject, String message){
 		Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("subject", subject);
 		hMap.put("message", message);
 		 JSONObject jobj =new JSONObject(hMap);
-		 String path = GetMac.getMac() + "/data/userData/temp";
+		 String path = GetMac.getMac() + "/data/userData/temp/" + extension;
 		 Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,new AsyncCallback<String>(){
 
 			@Override

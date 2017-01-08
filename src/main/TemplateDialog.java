@@ -99,7 +99,7 @@ public class TemplateDialog extends JDialog{
         sButton.addActionListener(new ActionListener() { 
         	  public void actionPerformed(ActionEvent e) { 
         		 
-        		  DatabasePing.saveTemplateMessage(subField.getText().toString(), temp.getText().toString());
+        		  DatabasePing.saveTemplateMessage(extField.getText().toString(),subField.getText().toString(), temp.getText().toString());
         		  
         		  // DatabasePing.userRegistration(email.getText(), password.getText());
         	  }

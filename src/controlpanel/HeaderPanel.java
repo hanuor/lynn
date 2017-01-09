@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import core.ControlPanelMethods;
 import main.TemplateDialog;
 
 public class HeaderPanel extends JPanel{
@@ -51,14 +52,30 @@ public class HeaderPanel extends JPanel{
           tempSel.add(ref, BorderLayout.WEST);
           add(tempSel);
           DefaultListModel<String> listModel = new DefaultListModel<>();
-          listModel.addElement("USA");
+          ArrayList<String> _retArr;
+          _retArr = ControlPanelMethods.getList();
+          if(_retArr == null){
+        	  System.out.println("HEre!!!");
+        	  _retArr = new ArrayList<String>();
+        	  _retArr.add("Nothing here. Click on 'Add a template' to add templates. Or click refresh");
+        	  for(int i = 0; i< _retArr.size(); i++){
+        		  listModel.addElement(_retArr.get(i).toString());
+        	  }
+          }else{
+
+        	  System.out.println("Noit nul");
+        	  for(int i = 0; i< _retArr.size(); i++){
+        		  listModel.addElement(_retArr.get(i).toString());
+        	  }
+          }
+         /* listModel.addElement("USA");
           listModel.addElement("India");
           listModel.addElement("Vietnam");
           listModel.addElement("Canada");
           listModel.addElement("Denmark");
           listModel.addElement("France");
           listModel.addElement("Great Britain");
-          listModel.addElement("Japan");
+          listModel.addElement("Japan");*/
           JList countryList = new JList<>(listModel);
           countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
           countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
@@ -86,7 +103,7 @@ public class HeaderPanel extends JPanel{
           add(new JSeparator(SwingConstants.VERTICAL));
           ref.addActionListener(new ActionListener() { 
           	  public void actionPerformed(ActionEvent e) {   
-          		  listModel.addElement("Blah");
+          		 // listModel.addElement("Blah");
           		  revalidate();
           		  
           	  }

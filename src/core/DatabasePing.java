@@ -160,7 +160,6 @@ public class DatabasePing {
 			}
 			 
 		 });
-		 System.out.println("Doggy");
 		 Backendless.Files.saveFile(listPath, cobj.toString().getBytes(), true,new AsyncCallback<String>(){
 
 				@Override

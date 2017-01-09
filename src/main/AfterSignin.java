@@ -26,7 +26,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controlpanel.HeaderPanel;
 import core.ControlPanelMethods;
 import core.GetSet;
 import main.FaceView.TestPane;
@@ -54,8 +53,8 @@ public class AfterSignin {
 	                frame.setSize(900, 900);
 	                headerView(frame);
 	                System.out.println(gs.getSelectedKey());
-	                
-	                frame.add(new HeaderPanel());
+	                middlePane(frame);
+	            //    frame.add(new HeaderPanel());
 	                //frame.add(new MessagePane());
 	                sendPane(frame);
 	                //frame.add(new SenderPane());
@@ -65,6 +64,7 @@ public class AfterSignin {
 	            }
 	        });
 	}
+	
 	public void headerView(JFrame frame){
 		      
 			  ArrayList<String> _arrStr;
@@ -112,7 +112,8 @@ public class AfterSignin {
 	          JPanel llheader = new JPanel();
 	          llheader.setLayout(new BoxLayout(llheader, BoxLayout.X_AXIS));
 	          
-	          
+	          JSeparator separator = new JSeparator();
+	          parent.add(separator);
 	          JLabel listHeader = new JLabel("Select a template");
 	          Font font0 = listHeader.getFont();
 	          listHeader.add(new JSeparator(SwingConstants.VERTICAL));
@@ -166,7 +167,7 @@ public class AfterSignin {
 	          		*/  
 	          	  }
 	          	});
-	          
+	         
 	          frame.add(parent);
 		//return tempSelected.get(0).toString();
 	}
@@ -187,6 +188,9 @@ public class AfterSignin {
         		//  DatabasePing.userRegistration(email.getText(), password.getText());
         	  }
         	});
-	
+	}
+	protected void middlePane(JFrame frame) {
+		// TODO Auto-generated method stub
+		
 	}
 }

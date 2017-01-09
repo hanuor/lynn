@@ -81,10 +81,12 @@ public class ControlPanelMethods {
 		String jsonString = null;
 		HashMap<String, String> _mapList = new HashMap<String, String>();
      	String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
+     	
 		 String path = GetMac.getMac() + "/data/userData/temp/" + _key;
+			String apiCall = "https://api.backendless.com/" + appId + "/v1/files/" + path ;
      	URL obj;
 			try {
-				obj = new URL(path);
+				obj = new URL(apiCall);
 			
  		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

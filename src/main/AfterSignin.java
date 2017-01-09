@@ -182,6 +182,8 @@ public class AfterSignin {
         bPattern.addActionListener(new ActionListener() { 
         	  public void actionPerformed(ActionEvent e) { 
         		  System.out.println("Dos santos " + gs.getSelectedKey());
+        		 System.out.println( ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString()));
+        		  
         		//  DatabasePing.userRegistration(email.getText(), password.getText());
         	  }
         	});

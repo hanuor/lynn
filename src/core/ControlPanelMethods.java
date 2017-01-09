@@ -141,4 +141,15 @@ public class ControlPanelMethods {
         }
         	return map;
     }
+	public int getCount(String subject){
+		int index = subject.indexOf("#*#");
+		int count = 0;
+		while (index != -1) {
+		    count++;
+		    subject = subject.substring(index + 1);
+		    index = subject.indexOf("#*#");
+		}
+		return count;
+	}
+	
 } 

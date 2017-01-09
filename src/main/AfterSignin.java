@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -136,6 +137,9 @@ public class AfterSignin {
 	                  if (!e.getValueIsAdjusting()) {
 	                	  tempSelected = countryList.getSelectedValuesList();
 	                	  gs.setSelectedKey(tempSelected.get(0).toString());
+	                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
+	                	  
+	                	  
 	                	  
 	                  }
 	              }
@@ -194,7 +198,8 @@ public class AfterSignin {
 		JPanel jpanel = new JPanel();
 		jpanel.setLayout(new BoxLayout(jpanel, BoxLayout.Y_AXIS));
 		 JSeparator separator = new JSeparator();
-         parent.add(separator);
+        jpanel.add(separator);
+        
 		
 	}
 }

@@ -191,6 +191,10 @@ public class AfterSignin {
 	}
 	protected void middlePane(JFrame frame) {
 		// TODO Auto-generated method stub
+		JPanel jpanel = new JPanel();
+		jpanel.setLayout(new BoxLayout(jpanel, BoxLayout.Y_AXIS));
+		 JSeparator separator = new JSeparator();
+         parent.add(separator);
 		
 	}
 }

@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -27,7 +28,10 @@ import main.TemplateDialog;
 
 public class HeaderPanel extends JPanel{
 	List<String> tempSelected = null;
+	ArrayList<String> _retArr;
 	public HeaderPanel(){
+			
+		System.out.println("FFFF");
 		 ArrayList<String> _arrStr;
           setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
           JPanel theme = new JPanel();
@@ -53,7 +57,7 @@ public class HeaderPanel extends JPanel{
           tempSel.add(ref, BorderLayout.WEST);
           add(tempSel);
           DefaultListModel<String> listModel = new DefaultListModel<>();
-          ArrayList<String> _retArr;
+          
           _retArr = ControlPanelMethods.getList();
           if(_retArr == null){
         	  System.out.println("HEre!!!");
@@ -69,6 +73,21 @@ public class HeaderPanel extends JPanel{
         		  listModel.addElement(_retArr.get(i).toString());
         	  }
           }
+          JPanel llheader = new JPanel();
+          llheader.setLayout(new BoxLayout(llheader, BoxLayout.X_AXIS));
+          
+          
+          JLabel listHeader = new JLabel("Select a template");
+          Font font0 = listHeader.getFont();
+          listHeader.add(new JSeparator(SwingConstants.VERTICAL));
+          Font boldFont0 = new Font(font.getFontName(), Font.BOLD, font.getSize());
+          listHeader.setFont(boldFont0);
+          listHeader.setHorizontalAlignment(SwingConstants.CENTER);
+         
+          
+         // listHeader.setText();
+          llheader.add(listHeader);
+          add(llheader);
           JList countryList = new JList<>(listModel);
           countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
           countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
@@ -96,9 +115,17 @@ public class HeaderPanel extends JPanel{
           add(new JSeparator(SwingConstants.VERTICAL));
           ref.addActionListener(new ActionListener() { 
           	  public void actionPerformed(ActionEvent e) {   
-          		 // listModel.addElement("Blah");
-          		  revalidate();
-          		  
+          		 System.out.println("Beeeee");
+          		 _retArr.clear();
+                 _retArr = ControlPanelMethods.getList();
+                 revalidate();
+          		/*SwingUtilities.updateComponentTreeUI(getRootPane());
+          		 validate();
+         		  
+         		  repaint();*/
+          		/* invalidate();
+          		
+          		*/  
           	  }
           	});
 	}

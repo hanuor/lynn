@@ -135,7 +135,7 @@ public class DatabasePing {
 		 String path = GetMac.getMac() + "/data/userData/temp/" + extension;
 		 String listPath = GetMac.getMac() + "/data/userData/tempList";
 		 cMap = catchMap(listPath);
-		 if(cMap.size()==0){
+		 if(cMap == null){
 			 cMap = new HashMap<String, String>();
 			  
 		 }
@@ -156,27 +156,29 @@ public class DatabasePing {
 			@Override
 			public void handleResponse(String arg0) {
 				// TODO Auto-generated method stub
-				 Backendless.Files.saveFile(listPath, cobj.toString().getBytes(), true,new AsyncCallback<String>(){
-
-						@Override
-						public void handleFault(BackendlessFault arg0) {
-							// TODO Auto-generated method stub
-							
-							System.out.println(arg0);
-							
-							
-						}
-
-						@Override
-						public void handleResponse(String arg0) {
-							// TODO Auto-generated method stub
-							
-						}
-						 
-					 });
+				
 			}
 			 
 		 });
+		 System.out.println("Doggy");
+		 Backendless.Files.saveFile(listPath, cobj.toString().getBytes(), true,new AsyncCallback<String>(){
+
+				@Override
+				public void handleFault(BackendlessFault arg0) {
+					// TODO Auto-generated method stub
+					
+					System.out.println(arg0);
+					
+					
+				}
+
+				@Override
+				public void handleResponse(String arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				 
+			 });
 
 	}
 	private static HashMap<String, String> catchMap(String path) {
@@ -214,7 +216,10 @@ public class DatabasePing {
  		
  		} catch (Exception e) {
 				// TODO Auto-generated catch block
+ 		
+ 			System.out.println("Here");
 				e.printStackTrace();
+				return null;
 				
 			}        		
 			try {

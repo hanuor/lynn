@@ -26,6 +26,7 @@ import core.ControlPanelMethods;
 import main.TemplateDialog;
 
 public class HeaderPanel extends JPanel{
+	List<String> tempSelected = null;
 	public HeaderPanel(){
 		 ArrayList<String> _arrStr;
           setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -68,24 +69,16 @@ public class HeaderPanel extends JPanel{
         		  listModel.addElement(_retArr.get(i).toString());
         	  }
           }
-         /* listModel.addElement("USA");
-          listModel.addElement("India");
-          listModel.addElement("Vietnam");
-          listModel.addElement("Canada");
-          listModel.addElement("Denmark");
-          listModel.addElement("France");
-          listModel.addElement("Great Britain");
-          listModel.addElement("Japan");*/
           JList countryList = new JList<>(listModel);
           countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
           countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
           countryList.setVisibleRowCount(-1);
+
           countryList.addListSelectionListener(new ListSelectionListener() {
               @Override
               public void valueChanged(ListSelectionEvent e) {
                   if (!e.getValueIsAdjusting()) {
-                      final List<String> selectedValuesList = countryList.getSelectedValuesList();
-                      System.out.println(selectedValuesList);
+                	  tempSelected = countryList.getSelectedValuesList();
                   }
               }
           });

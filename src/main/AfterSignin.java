@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -133,7 +134,7 @@ public class AfterSignin {
 	          countryList.setVisibleRowCount(-1);
 	          countryList.setSelectedIndex(1);
 	          
-	          JPanel invi = new JPanel();
+	          JPanel invi = new JPanel(); 
 	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
 	          invi.setVisible(false);
 	          countryList.addListSelectionListener(new ListSelectionListener() {
@@ -145,6 +146,15 @@ public class AfterSignin {
 	                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
 	                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("email")));
+	                	  if(ControlPanelMethods.getCount(mmp.get("email")) == 0){
+	                		  JOptionPane.showOptionDialog(null, "No fields to enter in the email message", "Warning",
+	             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+	             					 null, null, null);
+	                	  }else if(ControlPanelMethods.getCount(mmp.get("email")) == 0 && ControlPanelMethods.getCount(mmp.get("subject")) == 0){
+	                		  JOptionPane.showOptionDialog(null, "No fields to enter in the subject & email message", "Warning",
+		             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+		             					 null, null, null);
+	                	  }
 	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	  if(tempSelected.size()==1){
 	        	        	  System.out.println(" "+gs.getSubCount());

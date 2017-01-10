@@ -154,7 +154,9 @@ public class ControlPanelMethods {
 		    index = subject.indexOf("#*#");
 		}
 		}catch(Exception e){
+			//count= -111;
 			e.printStackTrace();
+			
 		}
 		return count;
 	}

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -130,7 +131,11 @@ public class AfterSignin {
 	          countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 	          countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
 	          countryList.setVisibleRowCount(-1);
-
+	          countryList.setSelectedIndex(1);
+	          
+	          JPanel invi = new JPanel();
+	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
+	          invi.setVisible(false);
 	          countryList.addListSelectionListener(new ListSelectionListener() {
 	              @Override
 	              public void valueChanged(ListSelectionEvent e) {
@@ -143,6 +148,9 @@ public class AfterSignin {
 	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	  if(tempSelected.size()==1){
 	        	        	  System.out.println(" "+gs.getSubCount());
+	        	        	  panelControl(true, invi);
+	        	        	  frame.revalidate();
+	        	        	  frame.repaint();
 	        	          }
 	                  }
 	              }
@@ -160,6 +168,7 @@ public class AfterSignin {
 	          	  }
 	          	});
 	          parent.add(new JSeparator(SwingConstants.VERTICAL));
+	          parent.add(invi);
 	          ref.addActionListener(new ActionListener() { 
 	          	  public void actionPerformed(ActionEvent e) {   
 	          		 System.out.println("Beeeee");
@@ -172,7 +181,26 @@ public class AfterSignin {
 	          frame.add(parent);
 		//return tempSelected.get(0).toString();
 	}
-	
+	public void panelControl(boolean check, JPanel frame){
+		if(check){
+			JPanel cpanel = new JPanel();
+			cpanel.setLayout(new BoxLayout(cpanel, BoxLayout.PAGE_AXIS));
+			JLabel head = new JLabel();
+			head.setText("Subject Panel");
+			for(int i = 1; i<= gs.getSubCount(); i++){
+				JPanel fields = new JPanel();
+				fields.setLayout(new BoxLayout(fields, BoxLayout.X_AXIS));
+				JLabel fName = new JLabel();
+				fName.setText("Field #"+i);
+				fields.add(fName);
+				JTextField ftext = new JTextField();
+				fields.add(ftext);
+				cpanel.add(fields);
+			}
+			cpanel.setVisible(true);
+			
+		}
+	}
 	public void sendPane(JFrame frame){
 		JPanel parent = new JPanel();
 		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
@@ -194,9 +222,8 @@ public class AfterSignin {
 		// TODO Auto-generated method stub
 		JPanel jpanel = new JPanel();
 		jpanel.setLayout(new BoxLayout(jpanel, BoxLayout.Y_AXIS));
-		 JSeparator separator = new JSeparator();
+		JSeparator separator = new JSeparator();
         jpanel.add(separator);
         
-		
 	}
 }

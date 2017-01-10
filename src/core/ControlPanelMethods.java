@@ -153,6 +153,8 @@ public class ControlPanelMethods {
 		    subject = subject.substring(index + 1);
 		    index = subject.indexOf("#*#");
 		}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return count;
 	}

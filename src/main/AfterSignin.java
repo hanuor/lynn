@@ -138,13 +138,16 @@ public class AfterSignin {
 	                	  tempSelected = countryList.getSelectedValuesList();
 	                	  gs.setSelectedKey(tempSelected.get(0).toString());
 	                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
+	                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
+	                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("email")));
 	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
-	                	  
-	                	  
-	                	  
+	                	  if(tempSelected.size()==1){
+	        	        	  System.out.println(" "+gs.getSubCount());
+	        	          }
 	                  }
 	              }
 	          });
+	        
 	          JScrollPane listScroller = new JScrollPane(countryList);
 	          listScroller.setPreferredSize(new Dimension(250, 80));
 
@@ -162,14 +165,7 @@ public class AfterSignin {
 	          		 System.out.println("Beeeee");
 	          		 _retArr.clear();
 	                 _retArr = ControlPanelMethods.getList();
-	                 parent.revalidate();
-	          		/*SwingUtilities.updateComponentTreeUI(getRootPane());
-	          		 validate();
-	         		  
-	         		  repaint();*/
-	          		/* invalidate();
-	          		
-	          		*/  
+	               frame.revalidate();
 	          	  }
 	          	});
 	         

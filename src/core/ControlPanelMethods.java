@@ -142,12 +142,17 @@ public class ControlPanelMethods {
         	return map;
     }
 	public static int getCount(String subject){
-		int index = subject.indexOf("#*#");
 		int count = 0;
+		try{
+			
+		
+		int index = subject.indexOf("#*#");
+	
 		while (index != -1) {
 		    count++;
 		    subject = subject.substring(index + 1);
 		    index = subject.indexOf("#*#");
+		}
 		}
 		return count;
 	}

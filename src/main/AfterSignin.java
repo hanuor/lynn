@@ -138,6 +138,7 @@ public class AfterSignin {
 	                	  tempSelected = countryList.getSelectedValuesList();
 	                	  gs.setSelectedKey(tempSelected.get(0).toString());
 	                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
+	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	  
 	                	  
 	                	  

@@ -141,7 +141,7 @@ public class ControlPanelMethods {
         }
         	return map;
     }
-	public int getCount(String subject){
+	public static int getCount(String subject){
 		int index = subject.indexOf("#*#");
 		int count = 0;
 		while (index != -1) {

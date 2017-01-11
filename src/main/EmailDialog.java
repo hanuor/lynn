@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,17 +11,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import core.DatabasePing;
-
-public class FieldsDialog extends JDialog{
-	public FieldsDialog(JPanel parent, int subCount, int emailCount){
+public class EmailDialog extends JDialog{
+	public EmailDialog(Container parent, int emailCount){
 		 setLayout(new BorderLayout());
-		 setTitle("Enter subject fields");
+		 setTitle("Enter email fields");
 		 setSize(500,500);
 		 final Toolkit toolkit = Toolkit.getDefaultToolkit();
 		 final Dimension screenSize = toolkit.getScreenSize();
@@ -34,18 +32,17 @@ public class FieldsDialog extends JDialog{
 		 JPanel cpanel = new JPanel();
 			cpanel.setLayout(new BoxLayout(cpanel, BoxLayout.PAGE_AXIS));
 			JLabel head = new JLabel();
-			head.setText("Subject Panel");
+			head.setText("Email Panel");
 			cpanel.add(head);
 			
 			//getContentPane().add(scroll);
-			for(int i = 1; i<= subCount; i++){
+			for(int i = 1; i<= emailCount; i++){
 				JPanel fields = new JPanel();
 				fields.setLayout(new BoxLayout(fields, BoxLayout.X_AXIS));
 				JLabel fName = new JLabel();
 				fName.setText("Field #"+i);
 				fields.add(fName);
 				JTextField ftext = new JTextField();
-				
 				fields.add(ftext);
 				cpanel.add(fields);
 			}
@@ -62,17 +59,12 @@ public class FieldsDialog extends JDialog{
 			getContentPane().add(extraP, BorderLayout.SOUTH);
 			save.addActionListener(new ActionListener() { 
 	        	  public void actionPerformed(ActionEvent e) { 
-	        		  if(emailCount!=0){
 	        		  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount);
-	        		  eDialog.setVisible(true);
-	        		  dispose();
-	        		  }else{
-	        			  dispose();
-	        		  }
+	        		  
 	        	  }
 	        	});
 			
 			
 	}
-	
+
 }

@@ -134,6 +134,24 @@ public class AfterSignin {
 	          countryList.setVisibleRowCount(-1);
 	          countryList.setSelectedIndex(1);
 	          
+	          JPanel cpanel = new JPanel();
+				cpanel.setLayout(new BoxLayout(cpanel, BoxLayout.Y_AXIS));
+				JLabel head = new JLabel();
+				head.setText("Subject Panel");
+				cpanel.add(head);
+				for(int i = 1; i<= 9; i++){
+					JPanel fields = new JPanel();
+					fields.setLayout(new BoxLayout(fields, BoxLayout.X_AXIS));
+					JLabel fName = new JLabel();
+					fName.setText("Field #"+i);
+					fields.add(fName);
+					JTextField ftext = new JTextField(10);
+					fields.add(ftext);
+					cpanel.add(fields);
+				}
+				cpanel.setVisible(true);
+				parent.add(cpanel);
+	          
 	          JPanel invi = new JPanel(); 
 	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
 	          invi.setVisible(false);
@@ -158,9 +176,11 @@ public class AfterSignin {
 	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	  if(tempSelected.size()==1){
 	        	        	  System.out.println(" "+gs.getSubCount());
-	        	        	  panelControl(true, invi);
-	        	        	  frame.revalidate();
-	        	        	  frame.repaint();
+	        	        	  //add a dialog for entering the fields
+	        	        	  
+	        	        	  //panelControl(true, invi);
+	        	        	  //frame.revalidate();
+	        	        	  //frame.repaint();
 	        	          }
 	                  }
 	              }

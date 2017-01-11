@@ -33,7 +33,7 @@ public class FieldsDialog extends JDialog{
 			cpanel.add(head);
 			
 			//getContentPane().add(scroll);
-			for(int i = 1; i<= 89; i++){
+			for(int i = 1; i<= subCount; i++){
 				JPanel fields = new JPanel();
 				fields.setLayout(new BoxLayout(fields, BoxLayout.X_AXIS));
 				JLabel fName = new JLabel();
@@ -44,15 +44,16 @@ public class FieldsDialog extends JDialog{
 				cpanel.add(fields);
 			}
 			cpanel.setVisible(true);
-			parentFrame.add(cpanel);
-			JScrollPane scroll = new JScrollPane(cpanel);
-			scroll.setPreferredSize(new Dimension(395,500));
-			//getContentPane().add(scroll, BorderLayout.NORTH);
+			parentFrame.add(cpanel, BorderLayout.NORTH );
+			JScrollPane scroll = new JScrollPane(parentFrame);
+			scroll.setPreferredSize(new Dimension(450,400));
+			getContentPane().add(scroll, BorderLayout.NORTH);
+			
 			JPanel extraP = new JPanel();
 			extraP.setLayout(new BorderLayout());
 			JButton jjb = new JButton("Save");
 			extraP.add(jjb, BorderLayout.SOUTH);
-			//getContentPane().add(extraP, BorderLayout.SOUTH);
+			getContentPane().add(extraP, BorderLayout.SOUTH);
 			
 	}
 	

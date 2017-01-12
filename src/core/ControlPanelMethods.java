@@ -7,6 +7,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -161,50 +163,9 @@ public class ControlPanelMethods {
 		return count;
 	}
 	public static void separatorToFields(String _string){
-		int count = 0;
-		String _vamos = _string;
-		String _newstring = _string;
-		//Bug is poccuroing here
-		int lastIndex = 0;
-		int countStep = 0;
-		StringBuilder strB = new StringBuilder();
 		
-		try{
-		
-		
-		while(lastIndex != -1){
-
-		    lastIndex = _string.indexOf("#*",lastIndex);
-		    System.out.println("Whisper");
-		    System.out.println("Lights s " + lastIndex);
-		   
-		    
-		    if(lastIndex != -1){
-		        count ++;
-		        _newstring = _string.replace("#*#", " Field #" + count); 
-		        if((count-1) == 0){
-		        	System.out.println("Smile " + _newstring);
-		        	strB.append(_newstring.substring(0, 4));
-
-		        	System.out.println("Smile@gain " + strB.toString());
-		        }else{
-		        	System.out.println("Smile " + _newstring);
-		        	strB.append(_newstring.substring(countStep, lastIndex+1));
-		        	System.out.println("Smile@gain " + strB.toString());
-		        }
-		        
-		        countStep = lastIndex;
-		        System.out.print("sdad   " + count );
-		        lastIndex += "#*#".length();
-		    }
-		}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		System.out.println(_vamos +"to " + strB.toString());
-		
-		
+	    System.out.println(" "+ _string.replace("#*#", "#Field#")); 
+				
 	
 	}
 	

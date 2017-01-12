@@ -174,7 +174,9 @@ public class ControlPanelMethods {
 		
 		while(lastIndex != -1){
 
-		    lastIndex = _string.indexOf("#*#",lastIndex);
+		    lastIndex = _string.indexOf("#*",lastIndex);
+		    System.out.println("Whisper");
+		    System.out.println("Lights s " + lastIndex);
 		   
 		    
 		    if(lastIndex != -1){

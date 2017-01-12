@@ -162,9 +162,9 @@ public class ControlPanelMethods {
 		}
 		return count;
 	}
-	public static void separatorToFields(String _string){
+	public static String separatorToFields(String _string){
 		
-	    System.out.println(" "+ _string.replace("#*#", "#Field#")); 
+	    return _string.replace("#*#", "#Field#"); 
 				
 	
 	}

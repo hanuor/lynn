@@ -136,12 +136,20 @@ public class AfterSignin {
 	          countryList.setSelectedIndex(1); 
 	          JPanel invi = new JPanel(); 
 	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
-	          invi.setVisible(true);
-	          JLabel subHeading = new JLabel();
-	          subHeading.setText("Subject");
-	          JTextField subtext = new JTextField();
-	          
-	          
+	          if(gs.getSubText() == null){
+	        	  invi.setVisible(true);
+		          
+	          }else{
+	        	  invi.setVisible(false);
+	        	  JLabel subHeading = new JLabel();
+		          subHeading.setText("Subject");
+		          JTextField subtext = new JTextField();
+		          subtext.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
+		          invi.add(subHeading);
+		          invi.add(subtext);
+		          
+		            
+	          }
 	          
 	          JLabel setT = new JLabel();
 	          if(_data.size()!=0){
@@ -155,8 +163,7 @@ public class AfterSignin {
 	              public void valueChanged(ListSelectionEvent e) {
 	                  if (!e.getValueIsAdjusting()) {
 	                	  _data.add("Hey");
-	                	  frame.revalidate();
-	                	  frame.repaint();
+	                	 
 	                	  tempSelected = countryList.getSelectedValuesList();
 	                	  gs.setSelectedKey(tempSelected.get(0).toString());
 	                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
@@ -182,8 +189,11 @@ public class AfterSignin {
 	        	        	 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
 	        	        	 fDialog.setVisible(true);
 	        	        	  //panelControl(true, invi);
-	        	        	  //frame.revalidate();
-	        	        	  //frame.repaint();
+	        	        	 parent.revalidate();
+	        	        	 frame.getContentPane().revalidate();
+	        	        	  frame.revalidate();
+	        	        	  frame.repaint();
+	        	        	 frame.add(invi);
 	        	        	
 	        	          }
 	                  }

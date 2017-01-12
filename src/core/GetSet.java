@@ -28,4 +28,22 @@ public class GetSet {
 
 	private int subCount;
 	private int emailCount;
+	public String getSubText() {
+		return subText;
+	}
+
+	public void setSubText(String subText) {
+		this.subText = subText;
+	}
+
+	public String getEmailText() {
+		return emailText;
+	}
+
+	public void setEmailText(String emailText) {
+		this.emailText = emailText;
+	}
+
+	private String subText;
+	private String emailText;
 }

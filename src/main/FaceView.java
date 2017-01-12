@@ -49,7 +49,7 @@ public class FaceView {
 	  	                frame.getContentPane().setLayout(
 	  	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
 	  	                	);
-	  	                frame.setSize(900, 900);
+	  	                frame.setSize(900, 500);
 	  	                frame.add(new TestPane());
 	  	                frame.add(new MessagePane());
 	  	                frame.add(new SenderPane());

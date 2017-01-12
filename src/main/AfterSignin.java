@@ -36,6 +36,7 @@ import main.FaceView.TestPane;
 public class AfterSignin {
 	List<String> tempSelected = null;
 	ArrayList<String> _retArr;
+	ArrayList<String> _data;
 	GetSet gs;
 	
 	public AfterSignin(){
@@ -47,13 +48,13 @@ public class AfterSignin {
 	                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 	                }
-
+	                _data  = new ArrayList<String>();
 	                JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
 	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	                frame.getContentPane().setLayout(
 	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
 	                	);
-	                frame.setSize(900, 900);
+	                frame.setSize(900, 500);
 	                headerView(frame);
 	                System.out.println(gs.getSelectedKey());
 	                middlePane(frame);
@@ -135,11 +136,27 @@ public class AfterSignin {
 	          countryList.setSelectedIndex(1); 
 	          JPanel invi = new JPanel(); 
 	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
-	          invi.setVisible(false);
+	          invi.setVisible(true);
+	          JLabel subHeading = new JLabel();
+	          subHeading.setText("Subject");
+	          JTextField subtext = new JTextField();
+	          //subtext.setText();
+	          
+	          
+	          JLabel setT = new JLabel();
+	          if(_data.size()!=0){
+	        	  setT.setText(_data.get(0));
+	        	  invi.add(setT);
+	          }else{
+	        	  
+	          }
 	          countryList.addListSelectionListener(new ListSelectionListener() {
 	              @Override
 	              public void valueChanged(ListSelectionEvent e) {
 	                  if (!e.getValueIsAdjusting()) {
+	                	  _data.add("Hey");
+	                	  frame.revalidate();
+	                	  frame.repaint();
 	                	  tempSelected = countryList.getSelectedValuesList();
 	                	  gs.setSelectedKey(tempSelected.get(0).toString());
 	                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
@@ -156,6 +173,8 @@ public class AfterSignin {
 	                	  }
 	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	  if(tempSelected.size()==1){
+	                		  gs.setSubText(mmp.get("subject").toString());
+	                		  gs.setEmailText(mmp.get("email").toString());
 	        	        	  System.out.println(" "+gs.getSubCount());
 	        	        	  //add a dialog for entering the fields
 	        	        	 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
@@ -163,6 +182,7 @@ public class AfterSignin {
 	        	        	  //panelControl(true, invi);
 	        	        	  //frame.revalidate();
 	        	        	  //frame.repaint();
+	        	        	
 	        	          }
 	                  }
 	              }

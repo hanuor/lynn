@@ -162,26 +162,48 @@ public class ControlPanelMethods {
 	}
 	public static void separatorToFields(String _string){
 		int count = 0;
+		String _vamos = _string;
 		String _newstring = _string;
 		//Bug is poccuroing here
-		int index = _newstring.indexOf("#*#");
+		int lastIndex = 0;
+		int countStep = 0;
+		StringBuilder strB = new StringBuilder();
 		
-		System.out.println("Okay " + index);
 		try{
-			while(index != -1){
-				count++;	
-				_newstring = _newstring.substring(index + 1);
-				_string  = _string.substring(0, index)+ " Field #" + count + _string.substring(index);
-				index = _newstring.indexOf("#*#");
+		
+		
+		while(lastIndex != -1){
 
-				System.out.println("Okay " + index);
-			}
-			
-			System.out.println("Vamosss   " + _string);
-			
-		}catch(Exception e){
-			
+		    lastIndex = _string.indexOf("#*#",lastIndex);
+		   
+		    
+		    if(lastIndex != -1){
+		        count ++;
+		        _newstring = _string.replace("#*#", " Field #" + count); 
+		        if((count-1) == 0){
+		        	System.out.println("Smile " + _newstring);
+		        	strB.append(_newstring.substring(0, 4));
+
+		        	System.out.println("Smile@gain " + strB.toString());
+		        }else{
+		        	System.out.println("Smile " + _newstring);
+		        	strB.append(_newstring.substring(countStep, lastIndex+1));
+		        	System.out.println("Smile@gain " + strB.toString());
+		        }
+		        
+		        countStep = lastIndex;
+		        System.out.print("sdad   " + count );
+		        lastIndex += "#*#".length();
+		    }
 		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		System.out.println(_vamos +"to " + strB.toString());
+		
+		
+	
 	}
 	
 } 

@@ -140,7 +140,7 @@ public class AfterSignin {
 	          JLabel subHeading = new JLabel();
 	          subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();
-	          //subtext.setText();
+	          
 	          
 	          
 	          JLabel setT = new JLabel();
@@ -171,11 +171,13 @@ public class AfterSignin {
 		             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 		             					 null, null, null);
 	                	  }
+	                	  gs.setSubText(mmp.get("subject").toString());
+                		 // gs.setEmailText(mmp.get("email").toString());
 	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	  if(tempSelected.size()==1){
-	                		  gs.setSubText(mmp.get("subject").toString());
-	                		  gs.setEmailText(mmp.get("email").toString());
-	        	        	  System.out.println(" "+gs.getSubCount());
+	                		 
+	        	        	  System.out.println(" dsdsdsds"+gs.getSubCount());
+	        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
 	        	        	  //add a dialog for entering the fields
 	        	        	 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
 	        	        	 fDialog.setVisible(true);

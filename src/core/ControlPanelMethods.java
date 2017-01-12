@@ -160,5 +160,27 @@ public class ControlPanelMethods {
 		}
 		return count;
 	}
+	public static void separatorToFields(String _string){
+		int count = 0;
+		String _newstring = _string;
+		int index = _newstring.indexOf("#*#");
+		
+		System.out.println("Okay " + index);
+		try{
+			while(index != -1){
+				count++;	
+				_newstring = _string.substring(index + 1);
+				_string  = _string.substring(0, index)+ " Field #" + count + _string.substring(index);
+				index = _newstring.indexOf("#*#");
+
+				System.out.println("Okay " + index);
+			}
+			
+			System.out.println("Vamosss   " + _string);
+			
+		}catch(Exception e){
+			
+		}
+	}
 	
 } 

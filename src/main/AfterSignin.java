@@ -24,6 +24,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
@@ -70,8 +71,10 @@ public class AfterSignin {
 	}
 	
 	public void headerView(JFrame frame){
-		      
-			  ArrayList<String> _arrStr;
+		      JLabel subHeading = new JLabel();
+	          JTextField subtext = new JTextField();
+	          JPanel invi = new JPanel(); 
+	          ArrayList<String> _arrStr;
 			  JPanel parent = new JPanel();
 	          parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
 	          JPanel theme = new JPanel();
@@ -134,42 +137,18 @@ public class AfterSignin {
 	          countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
 	          countryList.setVisibleRowCount(-1);
 	          countryList.setSelectedIndex(1); 
-	          JPanel invi = new JPanel(); 
+	         
 	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
-	          if(gs.getSubText() == null){
-	        	  invi.setVisible(true);
-		          
-	          }else{
-	        	  invi.setVisible(false);
-	        	  JLabel subHeading = new JLabel();
-		          subHeading.setText("Subject");
-		          JTextField subtext = new JTextField();
-		          subtext.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
-		          invi.add(subHeading);
-		          invi.add(subtext);
-		          
-		            
-	          }
-	          
-	          JLabel setT = new JLabel();
-	          if(_data.size()!=0){
-	        	  setT.setText(_data.get(0));
-	        	  invi.add(setT);
-	          }else{
-	        	  
-	          }
+	          invi.setVisible(true);
+	          invi.add(subHeading);
+	          invi.add(subtext);
 	          countryList.addListSelectionListener(new ListSelectionListener() {
 	              @Override
 	              public void valueChanged(ListSelectionEvent e) {
 	                  if (!e.getValueIsAdjusting()) {
 	                	  _data.add("Hey");
 	                	 
-	                	  tempSelected = countryList.getSelectedValuesList();
-	                	  gs.setSelectedKey(tempSelected.get(0).toString());
-	                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
-	                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
-	                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("email")));
-	                	  if(ControlPanelMethods.getCount(mmp.get("email")) == 0){
+	                	 /* if(ControlPanelMethods.getCount(mmp.get("email")) == 0){
 	                		  JOptionPane.showOptionDialog(null, "No fields to enter in the email message", "Warning",
 	             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 	             					 null, null, null);
@@ -178,13 +157,58 @@ public class AfterSignin {
 		             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 		             					 null, null, null);
 	                	  }
-	                	  gs.setSubText(mmp.get("subject").toString());
+	                	*/  
                 		 // gs.setEmailText(mmp.get("email").toString());
-	                	  System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
-	                	  if(tempSelected.size()==1){
-	                		 
-	        	        	  System.out.println(" dsdsdsds"+gs.getSubCount());
-	        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
+	                	  //System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
+	                	 // if(tempSelected.size()==1){
+	                		 System.out.println("HErerere");
+	                		  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>(){
+
+								@Override
+								protected Boolean doInBackground()
+										throws Exception {
+									// TODO Auto-generated method stub
+									  tempSelected = countryList.getSelectedValuesList();
+				                	  gs.setSelectedKey(tempSelected.get(0).toString());
+				                	  System.out.println("Swing woker thread");
+				                	  
+				                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
+				                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
+				                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("email")));
+				                	  gs.setSubText(mmp.get("subject").toString());
+				                				
+									return true;
+								}
+
+								@Override
+								protected void done() {
+									// TODO Auto-generated method stub
+									super.done();
+									System.out.println("Swing woker thread");
+				                	  
+									System.out.println(" dsdsdsds"+gs.getSubCount());
+			        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
+			        	        	  
+									subHeading.setText("Subject");
+									subtext.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
+									invi.setVisible(true);
+								
+								}
+
+								@Override
+								protected void process(List<Void> arg0) {
+									// TODO Auto-generated method stub
+									super.process(arg0);
+								}
+								
+								
+	                			  
+	                		  };
+	                		  worker.execute();
+ 	                		   
+	                		  
+	                		  
+	                		  
 	        	        	  //add a dialog for entering the fields
 	        	        	 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
 	        	        	 fDialog.setVisible(true);
@@ -196,7 +220,7 @@ public class AfterSignin {
 	        	        	 frame.add(invi);
 	        	        	
 	        	          }
-	                  }
+	                  //}
 	              }
 	          });
 	        

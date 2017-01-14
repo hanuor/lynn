@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -51,7 +52,8 @@ public class AfterSignin {
 	                }
 	                _data  = new ArrayList<String>();
 	                JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
-	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	                frame.getContentPane().setBackground(Color.BLACK);
 	                frame.getContentPane().setLayout(
 	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
 	                	);
@@ -66,6 +68,8 @@ public class AfterSignin {
 	                //frame.pack();
 	                frame.setLocationRelativeTo(null);
 	                frame.setVisible(true);
+	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		               
 	            }
 	        });
 	}
@@ -75,6 +79,7 @@ public class AfterSignin {
 		      subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();
 	          JLabel emailHeading = new JLabel();
+	          JTextField emailText = new JTextField();
 	          emailHeading.setText("Email");
 	          JPanel invi = new JPanel(); 
 	          ArrayList<String> _arrStr;
@@ -146,6 +151,7 @@ public class AfterSignin {
 	          invi.add(subHeading);
 	          invi.add(subtext);
 	          invi.add(emailHeading);
+	          invi.add(emailText);
 	          countryList.addListSelectionListener(new ListSelectionListener() {
 	              @Override
 	              public void valueChanged(ListSelectionEvent e) {
@@ -180,6 +186,7 @@ public class AfterSignin {
 				                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
 				                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("email")));
 				                	  gs.setSubText(mmp.get("subject").toString());
+				                	  gs.setEmailText(mmp.get("message").toString());
 				                				
 									return true;
 								}
@@ -193,9 +200,12 @@ public class AfterSignin {
 									System.out.println(" dsdsdsds"+gs.getSubCount());
 			        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
 			        	        	  
-									subHeading.setText("Subject");
+									//subHeading.setText("Subject");
 									subtext.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
-									invi.setVisible(true);
+									emailText.setText(ControlPanelMethods.separatorToFields(gs.getEmailText()));
+									//invi.setVisible(true);
+									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
+			        	        	 fDialog.setVisible(true);
 								
 								}
 
@@ -214,8 +224,7 @@ public class AfterSignin {
 	                		  
 	                		  
 	        	        	  //add a dialog for entering the fields
-	        	        	 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
-	        	        	 fDialog.setVisible(true);
+	        	        	
 	        	        	  //panelControl(true, invi);
 	        	        	
 	        	          }

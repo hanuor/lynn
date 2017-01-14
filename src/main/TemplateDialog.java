@@ -13,25 +13,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import core.ControlPanelMethods;
 import core.DatabasePing;
 
 public class TemplateDialog extends JDialog{
 
-	public TemplateDialog(JPanel parent) {
+	public TemplateDialog(JFrame frameboy,JPanel parent) {
 		//super();
 		
 		 setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -106,6 +111,34 @@ public class TemplateDialog extends JDialog{
         		  DatabasePing.saveTemplateMessage(extField.getText().toString(),subField.getText().toString(), temp.getText().toString());
         		  dispose();
         		 }
+        		  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>(){
+
+						@Override
+						protected Boolean doInBackground()
+								throws Exception {
+							// TODO Auto-generated method stub
+		                				
+							return true;
+						}
+
+						@Override
+						protected void done() {
+							// TODO Auto-generated method stub
+							super.done();
+							
+						
+						}
+
+						@Override
+						protected void process(List<Void> arg0) {
+							// TODO Auto-generated method stub
+							super.process(arg0);
+						}
+						
+						
+          			  
+          		  };
+          		  worker.execute();
         		  // DatabasePing.userRegistration(email.getText(), password.getText());
         	  }
         	});

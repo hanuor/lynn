@@ -75,8 +75,7 @@ public class AfterSignin {
 	}
 	
 	public void headerView(JFrame frame){
-		      JLabel subHeading = new JLabel();
-		     
+		      JLabel subHeading = new JLabel(); 
 		      subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();
 	          JLabel emailHeading = new JLabel();
@@ -84,10 +83,14 @@ public class AfterSignin {
 	          emailHeading.setText("Email");
 	          JPanel invi = new JPanel(); 
 	          ArrayList<String> _arrStr;
-			  JPanel parent = new JPanel();
+			  
+	          
+	          JPanel parent = new JPanel();
 	          parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
+	          parent.setBackground(Color.decode("#C9A798"));
 	          JPanel theme = new JPanel();
 	          theme.setLayout(new BorderLayout());
+	          theme.setBackground(Color.decode("#C9A798"));
 	          JLabel cp = new JLabel("Panel");
 	          cp.setVerticalAlignment(JLabel.CENTER);
 	          cp.setHorizontalAlignment(JLabel.CENTER);
@@ -98,6 +101,7 @@ public class AfterSignin {
 	          parent.add(cp);
 	          JPanel tempSel = new JPanel();
 	          tempSel.setLayout(new BoxLayout(tempSel, BoxLayout.X_AXIS));
+	          tempSel.setBackground(Color.decode("#C9A798"));
 	          JButton jb= new JButton("View saved templates");
 	          tempSel.add(jb); 
 	          JButton jbt = new JButton("Add a template");
@@ -126,7 +130,7 @@ public class AfterSignin {
 	          }
 	          JPanel llheader = new JPanel();
 	          llheader.setLayout(new BoxLayout(llheader, BoxLayout.X_AXIS));
-	          
+	          llheader.setBackground(Color.decode("#C9A798"));
 	          JSeparator separator = new JSeparator();
 	          parent.add(separator);
 	          JLabel listHeader = new JLabel("Select a template");
@@ -138,6 +142,7 @@ public class AfterSignin {
 	          llheader.add(listHeader);
 	          parent.add(llheader);
 	          JList countryList = new JList<>(listModel);
+	          
 	          countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 	          countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
 	          countryList.setVisibleRowCount(-1);
@@ -160,7 +165,6 @@ public class AfterSignin {
                 		 // gs.setEmailText(mmp.get("email").toString());
 	                	  //System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	 // if(tempSelected.size()==1){
-	                		 System.out.println("HErerere");
 	                		  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>(){
 
 								@Override
@@ -201,29 +205,18 @@ public class AfterSignin {
 					             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					             					 null, null, null);
 				                	  }*/
-									
 									//invi.setVisible(true);
 									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
 			        	        	 fDialog.setVisible(true);
-								
 								}
-
 								@Override
 								protected void process(List<Void> arg0) {
 									// TODO Auto-generated method stub
 									super.process(arg0);
 								}
-								
-								
-	                			  
-	                		  };
+							 };
 	                		  worker.execute();
- 	                		   
-	                		  
-	                		  
-	                		  
-	        	        	  //add a dialog for entering the fields
-	        	        	
+	                		  //add a dialog for entering the fields
 	        	        	  //panelControl(true, invi);
 	        	        	
 	        	          }
@@ -232,12 +225,13 @@ public class AfterSignin {
 	          });
 	        
 	          JScrollPane listScroller = new JScrollPane(countryList);
+	          listScroller.setBackground(Color.decode("#C9A798"));
 	          listScroller.setPreferredSize(new Dimension(250, 80));
 
 	        parent.add(listScroller);
 	          jbt.addActionListener(new ActionListener() { 
 	          	  public void actionPerformed(ActionEvent e) {   
-	       		  TemplateDialog tmpD = new TemplateDialog(tempSel);
+	       		  TemplateDialog tmpD = new TemplateDialog(frame, tempSel);
 	          		  tmpD.setVisible(true);
 	         		  
 	          	  }

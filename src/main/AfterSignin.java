@@ -135,9 +135,6 @@ public class AfterSignin {
 	          Font boldFont0 = new Font(font.getFontName(), Font.BOLD, font.getSize());
 	          listHeader.setFont(boldFont0);
 	          listHeader.setHorizontalAlignment(SwingConstants.CENTER);
-	         
-	          
-	         // listHeader.setText();
 	          llheader.add(listHeader);
 	          parent.add(llheader);
 	          JList countryList = new JList<>(listModel);

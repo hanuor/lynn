@@ -72,7 +72,10 @@ public class AfterSignin {
 	
 	public void headerView(JFrame frame){
 		      JLabel subHeading = new JLabel();
+		      subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();
+	          JLabel emailHeading = new JLabel();
+	          emailHeading.setText("Email");
 	          JPanel invi = new JPanel(); 
 	          ArrayList<String> _arrStr;
 			  JPanel parent = new JPanel();
@@ -142,6 +145,7 @@ public class AfterSignin {
 	          invi.setVisible(true);
 	          invi.add(subHeading);
 	          invi.add(subtext);
+	          invi.add(emailHeading);
 	          countryList.addListSelectionListener(new ListSelectionListener() {
 	              @Override
 	              public void valueChanged(ListSelectionEvent e) {
@@ -213,11 +217,6 @@ public class AfterSignin {
 	        	        	 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
 	        	        	 fDialog.setVisible(true);
 	        	        	  //panelControl(true, invi);
-	        	        	 parent.revalidate();
-	        	        	 frame.getContentPane().revalidate();
-	        	        	  frame.revalidate();
-	        	        	  frame.repaint();
-	        	        	 frame.add(invi);
 	        	        	
 	        	          }
 	                  //}

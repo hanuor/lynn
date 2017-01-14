@@ -53,7 +53,7 @@ public class AfterSignin {
 	                _data  = new ArrayList<String>();
 	                JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
 
-	                frame.getContentPane().setBackground(Color.BLACK);
+	              
 	                frame.getContentPane().setLayout(
 	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
 	                	);
@@ -76,6 +76,7 @@ public class AfterSignin {
 	
 	public void headerView(JFrame frame){
 		      JLabel subHeading = new JLabel();
+		     
 		      subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();
 	          JLabel emailHeading = new JLabel();
@@ -102,7 +103,6 @@ public class AfterSignin {
 	          JButton jbt = new JButton("Add a template");
 	          jbt.setVisible(true);
 	          tempSel.add(jbt);
-	          JPanel mpanel = new JPanel();
 	          JButton ref = new JButton("Refresh Panel");
 	          ref.setVisible(true);
 	          tempSel.add(ref, BorderLayout.WEST);
@@ -147,6 +147,7 @@ public class AfterSignin {
 	          countryList.setSelectedIndex(1); 
 	         
 	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
+	          invi.setBackground(Color.decode("#212121"));
 	          invi.setVisible(true);
 	          invi.add(subHeading);
 	          invi.add(subtext);
@@ -157,17 +158,8 @@ public class AfterSignin {
 	              public void valueChanged(ListSelectionEvent e) {
 	                  if (!e.getValueIsAdjusting()) {
 	                	  _data.add("Hey");
-	                	 
-	                	 /* if(ControlPanelMethods.getCount(mmp.get("email")) == 0){
-	                		  JOptionPane.showOptionDialog(null, "No fields to enter in the email message", "Warning",
-	             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-	             					 null, null, null);
-	                	  }else if(ControlPanelMethods.getCount(mmp.get("email")) == 0 && ControlPanelMethods.getCount(mmp.get("subject")) == 0){
-	                		  JOptionPane.showOptionDialog(null, "No fields to enter in the subject & email message", "Warning",
-		             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-		             					 null, null, null);
-	                	  }
-	                	*/  
+	                	
+	                	
                 		 // gs.setEmailText(mmp.get("email").toString());
 	                	  //System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
 	                	 // if(tempSelected.size()==1){
@@ -203,6 +195,16 @@ public class AfterSignin {
 									//subHeading.setText("Subject");
 									subtext.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
 									emailText.setText(ControlPanelMethods.separatorToFields(gs.getEmailText()));
+									 /* if(ControlPanelMethods.getCount(g == 0){
+				                		  JOptionPane.showOptionDialog(null, "No fields to enter in the email message", "Warning",
+				             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				             					 null, null, null);
+				                	  }else if(ControlPanelMethods.getCount(mmp.get("email")) == 0 && ControlPanelMethods.getCount(mmp.get("subject")) == 0){
+				                		  JOptionPane.showOptionDialog(null, "No fields to enter in the subject & email message", "Warning",
+					             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					             					 null, null, null);
+				                	  }*/
+									
 									//invi.setVisible(true);
 									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
 			        	        	 fDialog.setVisible(true);

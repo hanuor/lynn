@@ -21,7 +21,7 @@ import core.DatabasePing;
 public class FieldsDialog extends JDialog{
 	public FieldsDialog(JPanel parent, int subCount, int emailCount, String subText, String emaiText){
 		
-		System.out.println("Get Sub text" , subText);
+		System.out.println("Get Sub text" +subText);
 		 setLayout(new BorderLayout());
 		 setTitle("Enter subject fields");
 		 setSize(500,500);
@@ -71,10 +71,11 @@ public class FieldsDialog extends JDialog{
 			JButton save = new JButton("Save");
 			extraP.add(save, BorderLayout.SOUTH);
 			getContentPane().add(extraP, BorderLayout.SOUTH);
-			System.out.println("inders "+ subText.indexOf(""));
+			System.out.println("inders "+ subText);
 			save.addActionListener(new ActionListener() { 
 	        	  public void actionPerformed(ActionEvent e) { 
-	        		  System.out.println("inders "+ subText.indexOf(""));
+	        		  
+	        		  System.out.println("inders SSSEEE "+ subText);
 	        		  
 	        		  convertToproper(subText);
 	        		  if(emailCount!=0){

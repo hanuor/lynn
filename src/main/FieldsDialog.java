@@ -78,6 +78,7 @@ public class FieldsDialog extends JDialog{
 	        		  System.out.println("inders SSSEEE "+ subText);
 	        		  ArrayList<String> _arr = new ArrayList<String>();
 	        		  convertToproper(subText, _arr);
+	        		 
 	        		  //System.out.println("Breathing" + .toString());
 	        		  //ArrayList<String> ope = convertToproper(subText, _arr);
 	        		  //for(int i=0; i< ope.size(); i++){
@@ -101,19 +102,28 @@ public class FieldsDialog extends JDialog{
 		//System.out.println("This" + _arr.toString());
 		int beginIndex = _sub.indexOf("#*#");
 		int newIndex = beginIndex+3;
+		int pivotIndex = 0;
+		
 		String newS = null;
+
+		String remS = null;
 		if(newIndex > (_sub.length()-1)){
 			
-			_arr.add(_sub.substring(beginIndex+3));
-
+			_arr.add(_sub.substring(pivotIndex, beginIndex+3));
+			 for(int i=0; i< _arr.size(); i++){
+     			 System.out.println("Item " + _arr.get(i));
+     		  }
 			System.out.println("Heya a " + _arr);
 			
 		}else{
-			newS = _sub.substring(beginIndex+3);
+			newS = _sub.substring(pivotIndex, beginIndex+3);
+			remS = _sub.substring(beginIndex + 3);
+			
+			pivotIndex = beginIndex+3;
 			_arr.add(newS);
 		}
 		
-		convertToproper(newS, _arr);
+		convertToproper(remS, _arr);
 	}
 	
 }

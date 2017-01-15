@@ -149,7 +149,7 @@ public class AfterSignin {
 	          countryList.setSelectedIndex(1); 
 	         
 	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
-	          invi.setBackground(Color.decode("#212121"));
+	          invi.setBackground(Color.decode("#C9A798"));
 	          invi.setVisible(true);
 	          invi.add(subHeading);
 	          invi.add(subtext);

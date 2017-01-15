@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ public class FieldsDialog extends JDialog{
 		 setLayout(new BorderLayout());
 		 setTitle("Enter subject fields");
 		 setSize(500,500);
+		 ArrayList<JTextField> textFields = new ArrayList<JTextField>();
 		 final Toolkit toolkit = Toolkit.getDefaultToolkit();
 		 final Dimension screenSize = toolkit.getScreenSize();
 		 final int x = (screenSize.width - this.getWidth()) / 2;
@@ -36,18 +38,25 @@ public class FieldsDialog extends JDialog{
 			JLabel head = new JLabel();
 			head.setText("Subject Panel");
 			cpanel.add(head);
-			
+			System.out.println("HEERA");
 			//getContentPane().add(scroll);
 			for(int i = 1; i<= subCount; i++){
 				JPanel fields = new JPanel();
 				fields.setLayout(new BoxLayout(fields, BoxLayout.X_AXIS));
 				JLabel fName = new JLabel();
 				fName.setText("Field #"+i);
+				
 				fields.add(fName);
 				JTextField ftext = new JTextField();
+				ftext.setName("Field " + i);
+				textFields.add(ftext);
 				
 				fields.add(ftext);
 				cpanel.add(fields);
+			}
+			System.out.println("TExt fields created " + textFields.size());
+			for(int i=0; i<textFields.size(); i++){
+				System.out.println("TExt fields created " + textFields.get(i).getName());	
 			}
 			cpanel.setVisible(true);
 			parentFrame.add(cpanel, BorderLayout.NORTH );

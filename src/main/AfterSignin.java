@@ -206,7 +206,8 @@ public class AfterSignin {
 					             					 null, null, null);
 				                	  }*/
 									//invi.setVisible(true);
-									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount());
+									System.out.println("After hoie " + gs.getSubText());
+									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount(),gs.getSubText(), gs.getEmailText());
 			        	        	 fDialog.setVisible(true);
 								}
 								@Override

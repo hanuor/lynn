@@ -19,7 +19,9 @@ import javax.swing.JTextField;
 import core.DatabasePing;
 
 public class FieldsDialog extends JDialog{
-	public FieldsDialog(JPanel parent, int subCount, int emailCount){
+	public FieldsDialog(JPanel parent, int subCount, int emailCount, String subText, String emaiText){
+		
+		System.out.println("Get Sub text" , subText);
 		 setLayout(new BorderLayout());
 		 setTitle("Enter subject fields");
 		 setSize(500,500);
@@ -69,9 +71,15 @@ public class FieldsDialog extends JDialog{
 			JButton save = new JButton("Save");
 			extraP.add(save, BorderLayout.SOUTH);
 			getContentPane().add(extraP, BorderLayout.SOUTH);
+			System.out.println("inders "+ subText.indexOf(""));
 			save.addActionListener(new ActionListener() { 
 	        	  public void actionPerformed(ActionEvent e) { 
+	        		  System.out.println("inders "+ subText.indexOf(""));
+	        		  
+	        		  convertToproper(subText);
 	        		  if(emailCount!=0){
+	        			  
+	        			  
 	        		  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount);
 	        		  eDialog.setVisible(true);
 	        		  dispose();
@@ -82,6 +90,20 @@ public class FieldsDialog extends JDialog{
 	        	});
 			
 			
+	}
+	public void convertToproper(String _sub){
+		System.out.println(_sub);
+		int beginIndex = _sub.indexOf("#*#");
+		int newIndex = beginIndex+3;
+		String newS = null;
+		if(newIndex > (_sub.length()-1)){
+			
+		}else{
+			newS = _sub.substring(beginIndex+3);	
+		}
+		
+		System.out.println(" Shadow "+newS);
+		convertToproper(newS);
 	}
 	
 }

@@ -76,8 +76,13 @@ public class FieldsDialog extends JDialog{
 	        	  public void actionPerformed(ActionEvent e) { 
 	        		  
 	        		  System.out.println("inders SSSEEE "+ subText);
-	        		  
-	        		  convertToproper(subText);
+	        		  ArrayList<String> _arr = new ArrayList<String>();
+	        		  convertToproper(subText, _arr);
+	        		  //System.out.println("Breathing" + .toString());
+	        		  //ArrayList<String> ope = convertToproper(subText, _arr);
+	        		  //for(int i=0; i< ope.size(); i++){
+	        			//  System.out.println("Item " + ope.get(i));
+	        		  //}
 	        		  if(emailCount!=0){
 	        			  
 	        			  
@@ -92,19 +97,23 @@ public class FieldsDialog extends JDialog{
 			
 			
 	}
-	public void convertToproper(String _sub){
-		System.out.println(_sub);
+	public void convertToproper(String _sub, ArrayList<String> _arr){
+		//System.out.println("This" + _arr.toString());
 		int beginIndex = _sub.indexOf("#*#");
 		int newIndex = beginIndex+3;
 		String newS = null;
 		if(newIndex > (_sub.length()-1)){
 			
+			_arr.add(_sub.substring(beginIndex+3));
+
+			System.out.println("Heya a " + _arr);
+			
 		}else{
-			newS = _sub.substring(beginIndex+3);	
+			newS = _sub.substring(beginIndex+3);
+			_arr.add(newS);
 		}
 		
-		System.out.println(" Shadow "+newS);
-		convertToproper(newS);
+		convertToproper(newS, _arr);
 	}
 	
 }

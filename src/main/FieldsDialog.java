@@ -24,7 +24,7 @@ public class FieldsDialog extends JDialog{
 	private String _finalSub;
 	public FieldsDialog(JPanel parent, int subCount, int emailCount, String subText, String emailText){
 		
-		System.out.println("Get Sub text" +subText);
+		System.out.println("Get Sub text" +emailCount);
 		 setLayout(new BorderLayout());
 		 setTitle("Enter subject fields");
 		 setSize(500,500);
@@ -87,19 +87,19 @@ public class FieldsDialog extends JDialog{
 	        		  ArrayList<String> _arr = new ArrayList<String>();
 	        		  convertToproper(0,subText, _arr, answers);
 	        		 
-	        		  //System.out.println("Breathing" + .toString());
-	        		  //ArrayList<String> ope = convertToproper(subText, _arr);
-	        		  //for(int i=0; i< ope.size(); i++){
-	        			//  System.out.println("Item " + ope.get(i));
-	        		  //}
+	        		 
 	        		  if(emailCount!=0){
+	        			  System.out.println("Count is not zeo");
 	        			  
-	        			  
-	        		EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
+	        			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
 	        		  _ans = eDialog.showDialog(true);
-	        		  setVisible(false);
-	        		  dispose();
+	        		  if(_ans!=null){
+	        			  setVisible(false);
+		        		  dispose();  
+	        		  }
 	        		  }else{
+
+	        			  System.out.println("Count is zeo");
 	        			  dispose();
 	        		  }
 	        	  }
@@ -148,6 +148,7 @@ public class FieldsDialog extends JDialog{
 						 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
 		     		  }
 					 buildStr.append(_sub);
+					 _finalSub = buildStr.toString();
 					 System.out.println("Queens Bby " + buildStr.toString());
 					System.out.println("Heya a " + _arr);
 					return;

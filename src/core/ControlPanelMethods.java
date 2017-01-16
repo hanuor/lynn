@@ -145,10 +145,12 @@ public class ControlPanelMethods {
     }
 	public static int getCount(String subject){
 		int count = 0;
+		int index = subject.indexOf("#*#");
+		if(index != -1){
 		try{
 			
 		
-		int index = subject.indexOf("#*#");
+		
 	
 		while (index != -1) {
 		    count++;
@@ -161,6 +163,9 @@ public class ControlPanelMethods {
 			
 		}
 		return count;
+		}else{
+			return 0;
+		}
 	}
 	public static String separatorToFields(String _string){
 		System.out.println("String is    " + _string);

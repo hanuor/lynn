@@ -173,11 +173,11 @@ public class AfterSignin {
 									// TODO Auto-generated method stub
 									  tempSelected = countryList.getSelectedValuesList();
 				                	  gs.setSelectedKey(tempSelected.get(0).toString());
-				                	  System.out.println("Swing woker thread");
-				                	  
 				                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
 				                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
 				                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("email")));
+				                	  System.out.println("Swing woker thread  " + ControlPanelMethods.getCount(mmp.get("email")));
+				                	  
 				                	  gs.setSubText(mmp.get("subject").toString());
 				                	  gs.setEmailText(mmp.get("message").toString());
 				                				
@@ -190,7 +190,7 @@ public class AfterSignin {
 									super.done();
 									System.out.println("Swing woker thread");
 				                	  
-									System.out.println(" dsdsdsds"+gs.getSubCount());
+									System.out.println(" dsdsdsds"+gs.getSubText());
 			        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
 			        	        	  
 									//subHeading.setText("Subject");
@@ -206,7 +206,7 @@ public class AfterSignin {
 					             					 null, null, null);
 				                	  }*/
 									//invi.setVisible(true);
-									System.out.println("After hoie " + gs.getSubText());
+									System.out.println("After hoie " + gs.getSubText() + " Count  sadas " + gs.getEmailCount());
 									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount(),gs.getSubText(), gs.getEmailText());
 			        	        	 HashMap<String, String> results = new HashMap<String, String>();
 			        	        	 results = fDialog.showDialog(true);

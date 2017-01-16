@@ -76,8 +76,12 @@ public class FieldsDialog extends JDialog{
 	        	  public void actionPerformed(ActionEvent e) { 
 	        		  
 	        		  System.out.println("inders SSSEEE "+ subText);
+	        		  ArrayList<String> answers = new ArrayList<String>();
+	        		  for(int i = 0; i< textFields.size();i++){
+	        			  System.out.println("Update   " + textFields.get(i).getText());
+	        		  }
 	        		  ArrayList<String> _arr = new ArrayList<String>();
-	        		  convertToproper(subText, _arr);
+	        		  convertToproper(subText, _arr, answers);
 	        		 
 	        		  //System.out.println("Breathing" + .toString());
 	        		  //ArrayList<String> ope = convertToproper(subText, _arr);
@@ -98,7 +102,7 @@ public class FieldsDialog extends JDialog{
 			
 			
 	}
-	public void convertToproper(String _sub, ArrayList<String> _arr){
+	public void convertToproper(String _sub, ArrayList<String> _arr, ArrayList<String> answers){
 		//System.out.println("This" + _arr.toString());
 		int beginIndex = _sub.indexOf("#*#");
 		int newIndex = beginIndex+3;
@@ -123,7 +127,7 @@ public class FieldsDialog extends JDialog{
 			_arr.add(newS);
 		}
 		
-		convertToproper(remS, _arr);
+		convertToproper(remS, _arr, answers);
 	}
 	
 }

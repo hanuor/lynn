@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class EmailDialog extends JDialog{
+	private HashMap<String, String> _getAns = new HashMap<String, String>();
 	public EmailDialog(Container parent, int emailCount){
 		 setLayout(new BorderLayout());
 		 setTitle("Enter email fields");
@@ -59,7 +61,11 @@ public class EmailDialog extends JDialog{
 			getContentPane().add(extraP, BorderLayout.SOUTH);
 			save.addActionListener(new ActionListener() { 
 	        	  public void actionPerformed(ActionEvent e) { 
-	        		  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount);
+	        		  //EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount);'
+	        		  
+	        		  
+	        		  setVisible(false);
+	        		  dispose();
 	        		  
 	        	  }
 	        	});
@@ -67,4 +73,9 @@ public class EmailDialog extends JDialog{
 			
 	}
 
+	public HashMap<String, String> showDialog(boolean _check){
+		setVisible(_check);
+		return _getAns;
+		
+	}
 }

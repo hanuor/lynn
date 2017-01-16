@@ -208,7 +208,9 @@ public class AfterSignin {
 									//invi.setVisible(true);
 									System.out.println("After hoie " + gs.getSubText());
 									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount(),gs.getSubText(), gs.getEmailText());
-			        	        	 fDialog.setVisible(true);
+			        	        	 HashMap<String, String> results = new HashMap<String, String>();
+			        	        	 results = fDialog.showDialog(true);
+									
 								}
 								@Override
 								protected void process(List<Void> arg0) {

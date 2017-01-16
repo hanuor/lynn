@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,6 +20,8 @@ import javax.swing.JTextField;
 import core.DatabasePing;
 
 public class FieldsDialog extends JDialog{
+	private HashMap<String, String> _ans;
+	private String _finalSub;
 	public FieldsDialog(JPanel parent, int subCount, int emailCount, String subText, String emaiText){
 		
 		System.out.println("Get Sub text" +subText);
@@ -74,11 +77,12 @@ public class FieldsDialog extends JDialog{
 			System.out.println("inders "+ subText);
 			save.addActionListener(new ActionListener() { 
 	        	  public void actionPerformed(ActionEvent e) { 
-	        		  
+	        		  _finalSub = null;
 	        		  System.out.println("inders SSSEEE "+ subText);
 	        		  ArrayList<String> answers = new ArrayList<String>();
 	        		  for(int i = 0; i< textFields.size();i++){
-	        			  System.out.println("Update   " + textFields.get(i).getText());
+	        			  answers.add(textFields.get(i).getText());
+	        			  //System.out.println("Update   " + textFields.get(i).getText());
 	        		  }
 	        		  ArrayList<String> _arr = new ArrayList<String>();
 	        		  convertToproper(subText, _arr, answers);
@@ -91,8 +95,9 @@ public class FieldsDialog extends JDialog{
 	        		  if(emailCount!=0){
 	        			  
 	        			  
-	        		  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount);
-	        		  eDialog.setVisible(true);
+	        		//  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount);
+	        		 // _ans = eDialog.showDialog(true);
+	        		  setVisible(false);
 	        		  dispose();
 	        		  }else{
 	        			  dispose();
@@ -112,13 +117,15 @@ public class FieldsDialog extends JDialog{
 
 		String remS = null;
 		if(newIndex > (_sub.length()-1)){
-			
+			StringBuilder buildStr = new StringBuilder();
+		
 			_arr.add(_sub.substring(pivotIndex, beginIndex+3));
 			 for(int i=0; i< _arr.size(); i++){
-     			 System.out.println("Item " + _arr.get(i));
+				 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
      		  }
+			 System.out.println("Queens Bby " + buildStr.toString());
 			System.out.println("Heya a " + _arr);
-			
+			return;
 		}else{
 			newS = _sub.substring(pivotIndex, beginIndex+3);
 			remS = _sub.substring(beginIndex + 3);
@@ -128,6 +135,9 @@ public class FieldsDialog extends JDialog{
 		}
 		
 		convertToproper(remS, _arr, answers);
+	}
+	public HashMap<String, String> showDialog(boolean check){
+		return _ans;
 	}
 	
 }

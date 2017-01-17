@@ -171,12 +171,12 @@ public class AfterSignin {
 								protected Boolean doInBackground()
 										throws Exception {
 									// TODO Auto-generated method stub
-									  tempSelected = countryList.getSelectedValuesList();
+									tempSelected = countryList.getSelectedValuesList();
 				                	  gs.setSelectedKey(tempSelected.get(0).toString());
 				                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
 				                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
 				                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("email")));
-				                	  System.out.println("Swing woker thread  " + ControlPanelMethods.getCount(mmp.get("email")));
+				                	  System.out.println("Swing woker thread  LELE" + gs.getEmailText());
 				                	  
 				                	  gs.setSubText(mmp.get("subject").toString());
 				                	  gs.setEmailText(mmp.get("message").toString());
@@ -188,6 +188,7 @@ public class AfterSignin {
 								protected void done() {
 									// TODO Auto-generated method stub
 									super.done();
+									  
 									System.out.println("Swing woker thread");
 				                	  
 									System.out.println(" dsdsdsds"+gs.getSubText());

@@ -113,6 +113,7 @@ public class ControlPanelMethods {
  		in.close();
  		jsonString = response.toString();
  		
+ 		
  		} catch (Exception e) {
 				// TODO Auto-generated catch block
  		
@@ -122,6 +123,7 @@ public class ControlPanelMethods {
 				
 			}        		
 			try {
+				System.out.println("Hey I know its you : " + jsonString);
 				return jsonToMap(jsonString);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -132,19 +134,25 @@ public class ControlPanelMethods {
 	public static HashMap<String, String> jsonToMap(String t) throws JSONException {
 
         HashMap<String, String> map = new HashMap<String, String>();
+        
         JSONObject jObject = new JSONObject(t);
         Iterator<?> keys = jObject.keys();
 
         while( keys.hasNext() ){
             String key = (String)keys.next();
             String value = jObject.getString(key); 
+
+           
             map.put(key, value);
 
         }
+        System.out.println("We will rock you"+map.toString());
         	return map;
     }
 	public static int getCount(String subject){
 		int count = 0;
+		try{
+			
 		int index = subject.indexOf("#*#");
 		if(index != -1){
 		try{
@@ -166,6 +174,11 @@ public class ControlPanelMethods {
 		}else{
 			return 0;
 		}
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+		
 	}
 	public static String separatorToFields(String _string){
 		System.out.println("String is    " + _string);

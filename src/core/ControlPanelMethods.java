@@ -152,15 +152,11 @@ public class ControlPanelMethods {
 	public static int getCount(String subject){
 		int count = 0;
 		try{
-			
+			System.out.println("Clementine  "+ subject);
 		int index = subject.indexOf("#*#");
 		if(index != -1){
 		try{
-			
-		
-		
-	
-		while (index != -1) {
+			while (index != -1) {
 		    count++;
 		    subject = subject.substring(index + 1);
 		    index = subject.indexOf("#*#");

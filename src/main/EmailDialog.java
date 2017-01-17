@@ -93,9 +93,7 @@ public class EmailDialog extends JDialog{
 		System.out.println("Keynote   " + beginIndex);
 		int newIndex = beginIndex+3;
 		int pivotIndex = 0;
-		
 		String newS = null;
-
 		String remS = null;
 		if(beginIndex!=-1){
 		if(newIndex > (_sub.length()-1)){

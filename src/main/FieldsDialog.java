@@ -24,7 +24,6 @@ public class FieldsDialog extends JDialog{
 	private String _finalSub;
 	public FieldsDialog(JPanel parent, int subCount, int emailCount, String subText, String emailText){
 		
-		System.out.println("Get Sub text" +emailCount);
 		 setLayout(new BorderLayout());
 		 setTitle("Enter subject fields");
 		 setSize(500,500);
@@ -87,16 +86,17 @@ public class FieldsDialog extends JDialog{
 	        		  ArrayList<String> _arr = new ArrayList<String>();
 	        		  convertToproper(0,subText, _arr, answers);
 	        		 
-	        		 
+	        		  
+        			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
+        		  _ans = eDialog.showDialog(true);
+        		  if(_ans!=null){
+        			  setVisible(false);
+	        		  dispose();  
+        		  }
 	        		  if(emailCount!=0){
 	        			  System.out.println("Count is not zeo");
-	        			  
-	        			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
-	        		  _ans = eDialog.showDialog(true);
-	        		  if(_ans!=null){
-	        			  setVisible(false);
-		        		  dispose();  
-	        		  }
+	        			
+	        		
 	        		  }else{
 
 	        			  System.out.println("Count is zeo");

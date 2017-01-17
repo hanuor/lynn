@@ -18,9 +18,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class EmailDialog extends JDialog{
+	String _finalEmail = null;
 	private HashMap<String, String> _getAns = new HashMap<String, String>();
 	private ArrayList<JTextField> _txtFields = new ArrayList<JTextField> ();	
 	public EmailDialog(Container parent, int emailCount, String emailText){
+		System.out.println("  Fashion   " + emailCount);
 		 setLayout(new BorderLayout());
 		 setTitle("Enter email fields");
 		 setSize(500,500);
@@ -73,7 +75,7 @@ public class EmailDialog extends JDialog{
 	        			  //System.out.println("Update   " + textFields.get(i).getText());
 	        		  }
 	        		  ArrayList<String> _arr = new ArrayList<String>();
-	        		  convertToproper(emailText, _arr, answers);
+	        		  convertToproper(0,emailText, _arr, answers);
 	        		 	  
 	        		  setVisible(false);
 	        		  dispose();
@@ -85,18 +87,20 @@ public class EmailDialog extends JDialog{
 	}
 
 	
-	public void convertToproper(String _sub, ArrayList<String> _arr, ArrayList<String> answers){
-		//System.out.println("This" + _arr.toString());
+	public void convertToproper(int pivvot, String _sub, ArrayList<String> _arr, ArrayList<String> answers){
+		System.out.println("This    dsa   " + _sub	);
 		int beginIndex = _sub.indexOf("#*#");
+		System.out.println("Keynote   " + beginIndex);
 		int newIndex = beginIndex+3;
 		int pivotIndex = 0;
 		
 		String newS = null;
 
 		String remS = null;
+		if(beginIndex!=-1){
 		if(newIndex > (_sub.length()-1)){
 			StringBuilder buildStr = new StringBuilder();
-		
+		System.out.println("   JJJJ     " + _arr.toString() + " and  sixe is   " + _arr.size());
 			_arr.add(_sub.substring(pivotIndex, beginIndex+3));
 			 for(int i=0; i< _arr.size(); i++){
 				 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
@@ -105,14 +109,30 @@ public class EmailDialog extends JDialog{
 			System.out.println("Heya a " + _arr);
 			return;
 		}else{
-			newS = _sub.substring(pivotIndex, beginIndex+3);
-			remS = _sub.substring(beginIndex + 3);
 			
-			pivotIndex = beginIndex+3;
+			newS = _sub.substring(pivotIndex, beginIndex+3);
+			
+			System.out.println("   Ye lo " + newS+"   " + pivvot);
+			pivvot = beginIndex+3;
+			System.out.println("   Ye lo  aur  " + newS+"   " + pivvot);
+			remS = _sub.substring(pivvot);
 			_arr.add(newS);
-		}
-		
-		convertToproper(remS, _arr, answers);
+							}
+			}else{
+				StringBuilder buildStr = new StringBuilder();
+				System.out.println("   JJJJ     " + _sub + "  pivvot " );
+					 System.out.println("Queens Bby " + _arr.toString());
+					
+					 for(int i=0; i< _arr.size(); i++){
+						 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
+		     		  }
+					 buildStr.append(_sub);
+					 _finalEmail = buildStr.toString();
+					System.out.println("Queens Bby " + buildStr.toString());
+					System.out.println("Heya a " + _arr);
+					return;
+			}
+		convertToproper(pivvot, remS, _arr, answers);
 	}
 	public HashMap<String, String> showDialog(boolean _check){
 		setVisible(_check);

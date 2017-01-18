@@ -27,6 +27,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -46,10 +47,21 @@ public class AfterSignin {
 		 EventQueue.invokeLater(new Runnable() {
 	            @Override
 	            public void run() {
-	                try {
-	                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-	                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-	                }
+	            	try {
+	            	    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+	            	        if ("Nimbus".equals(info.getName())) {
+	            	            UIManager.setLookAndFeel(info.getClassName());
+	            	            break;
+	            	        }
+	            	    }
+	            	} catch (Exception e) {
+	            	    // If Nimbus is not available, fall back to cross-platform
+	            	    try {
+	            	        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+	            	    } catch (Exception ex) {
+	            	        // not worth my time
+	            	    }
+	            	}
 	                _data  = new ArrayList<String>();
 	                JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
 

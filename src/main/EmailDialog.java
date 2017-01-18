@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class EmailDialog extends JDialog{
+	
 	String _finalEmail = null;
 	private HashMap<String, String> _getAns = new HashMap<String, String>();
 	private ArrayList<JTextField> _txtFields = new ArrayList<JTextField> ();	

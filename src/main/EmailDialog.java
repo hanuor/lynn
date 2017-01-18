@@ -104,6 +104,8 @@ public class EmailDialog extends JDialog{
 			 for(int i=0; i< _arr.size(); i++){
 				 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
      		  }
+			 _getAns.put("email", buildStr.toString());
+				
 			 System.out.println("Queens Bby " + buildStr.toString());
 			System.out.println("Heya a " + _arr);
 			return;
@@ -136,6 +138,7 @@ public class EmailDialog extends JDialog{
 	}
 	public HashMap<String, String> showDialog(boolean _check){
 		setVisible(_check);
+		System.out.println("Albus dumbledore " + _getAns.toString());
 		return _getAns;
 		
 	}

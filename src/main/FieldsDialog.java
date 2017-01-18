@@ -90,6 +90,7 @@ public class FieldsDialog extends JDialog{
         			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
         			  eDialog.setModal(true);
         		  _ans = eDialog.showDialog(true);
+        		  System.out.println("MEMEMEMEMEMEMEMEMEMEMEMEEMEMEMEMEMEMEEM " + _ans.toString());
         		  if(_ans!=null){
         			  _ans.put("subject",_finalSub);
         			  System.out.println("LALALALALALALALALALALALALALAL" + _ans.toString());

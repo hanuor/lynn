@@ -125,6 +125,7 @@ public class EmailDialog extends JDialog{
 						 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
 		     		  }
 					 buildStr.append(_sub);
+					 _getAns.put("email", buildStr.toString());
 					 _finalEmail = buildStr.toString();
 					System.out.println("Queens Bby " + buildStr.toString());
 					System.out.println("Heya a " + _arr);

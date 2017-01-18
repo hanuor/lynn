@@ -88,8 +88,11 @@ public class FieldsDialog extends JDialog{
 	        		 
 	        		  
         			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
+        			  eDialog.setModal(true);
         		  _ans = eDialog.showDialog(true);
         		  if(_ans!=null){
+        			  _ans.put("subject",_finalSub);
+        			  System.out.println("LALALALALALALALALALALALALALAL" + _ans.toString());
         			  setVisible(false);
 	        		  dispose();  
         		  }
@@ -125,6 +128,7 @@ public class FieldsDialog extends JDialog{
 			 for(int i=0; i< _arr.size(); i++){
 				 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
      		  }
+			 _finalSub = buildStr.toString();
 			 System.out.println("Queens Bby " + buildStr.toString());
 			System.out.println("Heya a " + _arr);
 			return;
@@ -148,14 +152,16 @@ public class FieldsDialog extends JDialog{
 						 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
 		     		  }
 					 buildStr.append(_sub);
+					 System.out.println("Insamareeeeeen   " + buildStr);
+					
 					 _finalSub = buildStr.toString();
-					 System.out.println("Queens Bby " + buildStr.toString());
-					System.out.println("Heya a " + _arr);
 					return;
 			}
 		convertToproper(pivvot, remS, _arr, answers);
 	}
 	public HashMap<String, String> showDialog(boolean check){
+		setVisible(check);
+		System.out.println("Vegas baby   " + _ans);
 		return _ans;
 	}
 	

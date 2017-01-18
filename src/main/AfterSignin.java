@@ -177,7 +177,6 @@ public class AfterSignin {
 				                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
 				                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("message")));
 				                	  System.out.println("Swing woker thread  LELE" + gs.getEmailText());
-				                	  
 				                	  gs.setSubText(mmp.get("subject").toString());
 				                	  gs.setEmailText(mmp.get("message").toString());
 				                				
@@ -209,7 +208,8 @@ public class AfterSignin {
 									//invi.setVisible(true);
 									System.out.println("After hoie " + gs.getSubText() + " Count  sadas " + gs.getEmailCount());
 									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount(),gs.getSubText(), gs.getEmailText());
-			        	        	 HashMap<String, String> results = new HashMap<String, String>();
+									 fDialog.setModal(true);
+									 HashMap<String, String> results = new HashMap<String, String>();
 			        	        	 results = fDialog.showDialog(true);
 									
 								}

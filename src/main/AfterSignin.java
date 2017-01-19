@@ -114,7 +114,7 @@ public class AfterSignin {
 	          JPanel tempSel = new JPanel();
 	          tempSel.setLayout(new BoxLayout(tempSel, BoxLayout.X_AXIS));
 	          tempSel.setBackground(Color.decode("#C9A798"));
-	          JButton jb= new JButton("View saved templates");
+	          JButton jb= new JButton("Edit a template");
 	          tempSel.add(jb); 
 	          JButton jbt = new JButton("Add a template");
 	          jbt.setVisible(true);

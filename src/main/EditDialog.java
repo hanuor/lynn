@@ -13,5 +13,8 @@ public class EditDialog extends JDialog{
 		
 		
 	}
-
+	
+	public showDialog(){
+		
+	}
 }

@@ -87,6 +87,8 @@ public class AfterSignin {
 	}
 	
 	public void headerView(JFrame frame){
+		EditDialog ed  = new EditDialog(frame);
+		
 		      JLabel subHeading = new JLabel(); 
 		      subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();

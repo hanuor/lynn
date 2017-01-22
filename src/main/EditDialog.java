@@ -12,7 +12,6 @@ public class EditDialog extends JDialog{
 		JTextField jj = new JTextField();
 		add(jj);
 		
-		
 	}
 	
 	public void showDialog(){

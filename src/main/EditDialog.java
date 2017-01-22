@@ -14,7 +14,8 @@ public class EditDialog extends JDialog{
 		
 	}
 	
-	public void showDialog(){
-		
+	public int  showDialog(){
+		setVisible(true);
+		return 5;
 	}
 }

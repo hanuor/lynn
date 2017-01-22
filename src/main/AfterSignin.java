@@ -87,8 +87,6 @@ public class AfterSignin {
 	}
 	
 	public void headerView(JFrame frame){
-		EditDialog ed  = new EditDialog(frame);
-		
 		      JLabel subHeading = new JLabel(); 
 		      subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();
@@ -247,6 +245,13 @@ public class AfterSignin {
 	          listScroller.setPreferredSize(new Dimension(250, 80));
 
 	        parent.add(listScroller);
+	        jb.addActionListener(new ActionListener() { 
+	          	  public void actionPerformed(ActionEvent e) {   
+	       		 EditDialog edtD = new EditDialog(frame);
+	       		 System.out.println("Fifty  " + edtD.showDialog());
+	         		  
+	          	  }
+	          	});
 	          jbt.addActionListener(new ActionListener() { 
 	          	  public void actionPerformed(ActionEvent e) {   
 	       		  TemplateDialog tmpD = new TemplateDialog(frame, tempSel);

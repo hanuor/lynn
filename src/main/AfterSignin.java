@@ -127,7 +127,7 @@ public class AfterSignin {
 	          
 	          _retArr = ControlPanelMethods.getList();
 	          if(_retArr == null){
-	        	  System.out.println("HEre!!!");
+	        	 // System.out.println("HEre!!!");
 	        	  _retArr = new ArrayList<String>();
 	        	  _retArr.add("Nothing here. Click on 'Add a template' to add templates. Or click refresh");
 	        	  for(int i = 0; i< _retArr.size(); i++){

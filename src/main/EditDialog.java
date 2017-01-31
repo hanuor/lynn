@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -15,6 +17,13 @@ public class EditDialog extends JDialog{
 	ArrayList<String> _retArr;
 	public EditDialog(JFrame parent){
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		 setSize(500,500);
+		 final Toolkit toolkit = Toolkit.getDefaultToolkit();
+		 final Dimension screenSize = toolkit.getScreenSize();
+		 final int x = (screenSize.width - this.getWidth()) / 2;
+		 final int y = (screenSize.height - this.getHeight()) / 2;
+		 this.setLocation(x, y);
+		 this.setVisible(true);
 		JTextField jj = new JTextField();
 		add(jj);
 		

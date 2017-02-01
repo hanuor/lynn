@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -8,8 +9,11 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import core.ControlPanelMethods;
 
@@ -25,7 +29,7 @@ public class EditDialog extends JDialog{
 		 this.setLocation(x, y);
 		 this.setVisible(true);
 		JTextField jj = new JTextField();
-		add(jj);
+		//add(jj);
 		
 		 DefaultListModel<String> listModel = new DefaultListModel<>();
          
@@ -44,6 +48,17 @@ public class EditDialog extends JDialog{
        		  listModel.addElement(_retArr.get(i).toString());
        	  }
          }
+         JList countryList = new JList<>(listModel);
+         
+         countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+         countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
+         countryList.setVisibleRowCount(-1);
+         countryList.setSelectedIndex(1); 
+         JScrollPane listScroller = new JScrollPane(countryList);
+         listScroller.setBackground(Color.decode("#C9A798"));
+         listScroller.setPreferredSize(new Dimension(250, 80));
+         add(listScroller);
+       
 	}
 	
 	public int  showDialog(){

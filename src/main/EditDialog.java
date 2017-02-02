@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -15,15 +17,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import core.ControlPanelMethods;
+import core.GetSet;
 
 public class EditDialog extends JDialog{
 	private JTextField subText;
 	private JTextField emailText;
+	private List<String> tempSelected = null;
 	private ArrayList<String> _retArr;
+	private GetSet gs = new GetSet();
 	public EditDialog(JFrame parent){
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		 setSize(500,500);
@@ -33,8 +39,9 @@ public class EditDialog extends JDialog{
 		 final int y = (screenSize.height - this.getHeight()) / 2;
 		 this.setLocation(x, y);
 		 this.setVisible(true);
-		JTextField jj = new JTextField();
-		//add(jj);
+		JLabel mySelect = new JLabel();
+		mySelect.setText("Select a template to modify");
+		add(mySelect);
 		
 		 DefaultListModel<String> listModel = new DefaultListModel<>();
          
@@ -63,13 +70,7 @@ public class EditDialog extends JDialog{
          listScroller.setBackground(Color.decode("#C9A798"));
          listScroller.setPreferredSize(new Dimension(250, 80));
          add(listScroller);
-         countryList.addListSelectionListener(new ListSelectionListener() {
-             @Override
-             public void valueChanged(ListSelectionEvent e) {
-            	 System.out.println("Vamos hn");
-            	 
-             }
-         });
+         
          JLabel subHeading = new JLabel();
          subHeading.setText("Subject");
          add(subHeading);
@@ -82,6 +83,52 @@ public class EditDialog extends JDialog{
          add(emailText);
          JPanel jPan = new JPanel();
          add(jPan);
+         countryList.addListSelectionListener(new ListSelectionListener() {
+             @Override
+             public void valueChanged(ListSelectionEvent e) {
+            	 System.out.println("Vamos hn");
+            	  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>(){
+
+						@Override
+						protected Boolean doInBackground()
+								throws Exception {
+							// TODO Auto-generated method stub
+							tempSelected = countryList.getSelectedValuesList();
+		                	  gs.setSelectedKey(tempSelected.get(0).toString());
+		                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
+		                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
+		                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("message")));
+		                	  gs.setSubText(mmp.get("subject").toString());
+		                	  gs.setEmailText(mmp.get("message").toString());
+		                				
+							return true;
+						}
+
+						@Override
+						protected void done() {
+							// TODO Auto-generated method stub
+							super.done();
+							  
+							System.out.println("Swing woker thread");
+		                	  
+							System.out.println(" dsdsdsds"+gs.getSubText());
+	        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
+	        	        	  
+							//subHeading.setText("Subject");
+							subText.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
+							emailText.setText(ControlPanelMethods.separatorToFields(gs.getEmailText()));
+							
+						}
+						@Override
+						protected void process(List<Void> arg0) {
+							// TODO Auto-generated method stub
+							super.process(arg0);
+						}
+					 };
+          		  worker.execute();
+            	 
+             }
+         });
 	}
 	
 	public int  showDialog(){

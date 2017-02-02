@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,7 +21,9 @@ import javax.swing.event.ListSelectionListener;
 import core.ControlPanelMethods;
 
 public class EditDialog extends JDialog{
-	ArrayList<String> _retArr;
+	private JTextField subText;
+	private JTextField emailText;
+	private ArrayList<String> _retArr;
 	public EditDialog(JFrame parent){
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		 setSize(500,500);
@@ -55,7 +58,7 @@ public class EditDialog extends JDialog{
          countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
          countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
          countryList.setVisibleRowCount(-1);
-         countryList.setSelectedIndex(1); 
+         countryList.setSelectedIndex(0); 
          JScrollPane listScroller = new JScrollPane(countryList);
          listScroller.setBackground(Color.decode("#C9A798"));
          listScroller.setPreferredSize(new Dimension(250, 80));
@@ -64,8 +67,21 @@ public class EditDialog extends JDialog{
              @Override
              public void valueChanged(ListSelectionEvent e) {
             	 System.out.println("Vamos hn");
+            	 
              }
          });
+         JLabel subHeading = new JLabel();
+         subHeading.setText("Subject");
+         add(subHeading);
+         subText = new JTextField();
+         add(subText);
+         JLabel emailHeading = new JLabel();
+         emailHeading.setText("Body");
+         add(emailHeading);
+         emailText = new JTextField();
+         add(emailText);
+         JPanel jPan = new JPanel();
+         add(jPan);
 	}
 	
 	public int  showDialog(){

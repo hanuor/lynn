@@ -271,7 +271,6 @@ public class AfterSignin {
 	          	});
 	         
 	          frame.add(parent);
-		//return tempSelected.get(0).toString();
 	}
 	public void panelControl(boolean check, JPanel frame){
 		if(check){

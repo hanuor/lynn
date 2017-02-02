@@ -111,34 +111,34 @@ public class TemplateDialog extends JDialog{
         		  DatabasePing.saveTemplateMessage(extField.getText().toString(),subField.getText().toString(), temp.getText().toString());
         		  dispose();
         		 }
-        		  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>(){
-
-						@Override
-						protected Boolean doInBackground()
-								throws Exception {
-							// TODO Auto-generated method stub
-		                				
-							return true;
-						}
-
-						@Override
-						protected void done() {
-							// TODO Auto-generated method stub
-							super.done();
-							
-						
-						}
-
-						@Override
-						protected void process(List<Void> arg0) {
-							// TODO Auto-generated method stub
-							super.process(arg0);
-						}
-						
-						
-          			  
-          		  };
-          		  worker.execute();
+//        		  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>(){
+//
+//						@Override
+//						protected Boolean doInBackground()
+//								throws Exception {
+//							// TODO Auto-generated method stub
+//		                				
+//							return true;
+//						}
+//
+//						@Override
+//						protected void done() {
+//							// TODO Auto-generated method stub
+//							super.done();
+//							
+//						
+//						}
+//
+//						@Override
+//						protected void process(List<Void> arg0) {
+//							// TODO Auto-generated method stub
+//							super.process(arg0);
+//						}
+//						
+//						
+//          			  
+//          		  };
+//          		  worker.execute();
         		  // DatabasePing.userRegistration(email.getText(), password.getText());
         	  }
         	});

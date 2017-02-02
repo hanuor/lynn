@@ -3,6 +3,8 @@ package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +25,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import core.ControlPanelMethods;
+import core.DatabasePing;
 import core.GetSet;
 
 public class EditDialog extends JDialog{
@@ -87,6 +90,14 @@ public class EditDialog extends JDialog{
          jButton.setText("Save");
          jPan.add(jButton);
          add(jPan);
+         jButton.addActionListener(new ActionListener() { 
+       	  public void actionPerformed(ActionEvent e) { 
+       		  System.out.println("   " + gs.getSelectedKey());
+       		  DatabasePing.saveTemplateMessage(gs.getSelectedKey(), subText.getText().toString(), emailText.getText().toString());
+       		  dispose();
+       	  }
+         });
+         
          countryList.addListSelectionListener(new ListSelectionListener() {
              @Override
              public void valueChanged(ListSelectionEvent e) {

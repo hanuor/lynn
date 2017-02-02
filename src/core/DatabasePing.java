@@ -156,6 +156,7 @@ public class DatabasePing {
 			@Override
 			public void handleResponse(String arg0) {
 				// TODO Auto-generated method stub
+				System.out.println("HEHW" + arg0);
 				
 			}
 			 

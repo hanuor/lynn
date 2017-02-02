@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -82,6 +83,9 @@ public class EditDialog extends JDialog{
          emailText = new JTextField();
          add(emailText);
          JPanel jPan = new JPanel();
+         JButton jButton = new JButton();
+         jButton.setText("Save");
+         jPan.add(jButton);
          add(jPan);
          countryList.addListSelectionListener(new ListSelectionListener() {
              @Override
@@ -99,8 +103,7 @@ public class EditDialog extends JDialog{
 		                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
 		                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("message")));
 		                	  gs.setSubText(mmp.get("subject").toString());
-		                	  gs.setEmailText(mmp.get("message").toString());
-		                				
+		                	  gs.setEmailText(mmp.get("message").toString());			
 							return true;
 						}
 
@@ -108,13 +111,7 @@ public class EditDialog extends JDialog{
 						protected void done() {
 							// TODO Auto-generated method stub
 							super.done();
-							  
-							System.out.println("Swing woker thread");
-		                	  
-							System.out.println(" dsdsdsds"+gs.getSubText());
 	        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
-	        	        	  
-							//subHeading.setText("Subject");
 							subText.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
 							emailText.setText(ControlPanelMethods.separatorToFields(gs.getEmailText()));
 							
@@ -131,8 +128,5 @@ public class EditDialog extends JDialog{
          });
 	}
 	
-	public int  showDialog(){
-		setVisible(true);
-		return 5;
-	}
+
 }

@@ -248,7 +248,7 @@ public class AfterSignin {
 	        jb.addActionListener(new ActionListener() { 
 	          	  public void actionPerformed(ActionEvent e) {   
 	       		 EditDialog edtD = new EditDialog(frame);
-	       		 System.out.println("Fifty  " + edtD.showDialog());
+	       		
 	         		  
 	          	  }
 	          	});

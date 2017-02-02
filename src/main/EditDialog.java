@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import core.ControlPanelMethods;
 
@@ -58,7 +60,12 @@ public class EditDialog extends JDialog{
          listScroller.setBackground(Color.decode("#C9A798"));
          listScroller.setPreferredSize(new Dimension(250, 80));
          add(listScroller);
-       
+         countryList.addListSelectionListener(new ListSelectionListener() {
+             @Override
+             public void valueChanged(ListSelectionEvent e) {
+            	 System.out.println("Vamos hn");
+             }
+         });
 	}
 	
 	public int  showDialog(){

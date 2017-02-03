@@ -84,6 +84,7 @@ public class EditDialog extends JDialog{
          emailHeading.setText("Body");
          add(emailHeading);
          emailText = new JTextField();
+         emailText.setLayout(null);
          add(emailText);
          JPanel jPan = new JPanel();
          JButton jButton = new JButton();

@@ -71,8 +71,7 @@ public class AfterSignin {
 	                	);
 	                frame.setSize(900, 500);
 	                headerView(frame);
-	                System.out.println(gs.getSelectedKey());
-	                middlePane(frame);
+	              //  middlePane(frame);
 	            //    frame.add(new HeaderPanel());
 	                //frame.add(new MessagePane());
 	                sendPane(frame);
@@ -295,9 +294,9 @@ public class AfterSignin {
 	public void sendPane(JFrame frame){
 		JPanel parent = new JPanel();
 		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
-		JTextField bSave = new JTextField();
+		
 		JButton bPattern = new JButton("Send!");
-		parent.add(bSave);
+		//parent.add(bSave);
 		parent.add(bPattern);
 		 frame.add(parent);
         bPattern.addActionListener(new ActionListener() { 

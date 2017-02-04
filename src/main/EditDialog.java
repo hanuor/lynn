@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -80,16 +81,19 @@ public class EditDialog extends JDialog{
          JLabel subHeading = new JLabel();
          subHeading.setText("Subject");
          add(subHeading);
+         JPanel subjectPanel = new JPanel();
+         subjectPanel.setLayout(new BorderLayout());
+         
          subText = new JTextField();
-         add(subText);
+         subjectPanel.add(subText, BorderLayout.NORTH);
+         add(subjectPanel);
          JLabel emailHeading = new JLabel();
          emailHeading.setText("Body");
          add(emailHeading);
          emailText = new JTextArea();
-         emailText.setLayout(null);
          JScrollPane emailList = new JScrollPane(emailText);
          emailList.setBackground(Color.decode("#C9A798"));
-         emailList.setPreferredSize(new Dimension(250, 80));
+         emailList.setPreferredSize(new Dimension(250, 300));
          
          add(emailList);
          JPanel jPan = new JPanel();

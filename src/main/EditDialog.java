@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
@@ -30,13 +31,14 @@ import core.GetSet;
 
 public class EditDialog extends JDialog{
 	private JTextField subText;
-	private JTextField emailText;
+	private JTextArea emailText;
 	private List<String> tempSelected = null;
 	private ArrayList<String> _retArr;
 	private GetSet gs = new GetSet();
 	public EditDialog(JFrame parent){
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		 setSize(500,500);
+		 setTitle("Edit a template");
 		 final Toolkit toolkit = Toolkit.getDefaultToolkit();
 		 final Dimension screenSize = toolkit.getScreenSize();
 		 final int x = (screenSize.width - this.getWidth()) / 2;
@@ -83,9 +85,13 @@ public class EditDialog extends JDialog{
          JLabel emailHeading = new JLabel();
          emailHeading.setText("Body");
          add(emailHeading);
-         emailText = new JTextField();
+         emailText = new JTextArea();
          emailText.setLayout(null);
-         add(emailText);
+         JScrollPane emailList = new JScrollPane(emailText);
+         emailList.setBackground(Color.decode("#C9A798"));
+         emailList.setPreferredSize(new Dimension(250, 80));
+         
+         add(emailList);
          JPanel jPan = new JPanel();
          JButton jButton = new JButton();
          jButton.setText("Save");

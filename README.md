@@ -1,5 +1,5 @@
 # Lynn
-
+[![Github Hanuor](https://img.shields.io/badge/Hanuor-Lynn-blue.svg)](https://github.com/hanuor/lynn)       
 [![dynalitic.png](https://s24.postimg.org/5ic4dr1dh/dynalitic.png)](https://www.linkedin.com/?trk=nav_logo)
 
 Lynn is a J2EE based 'template messenger' that works on top of SMTP protocol. 

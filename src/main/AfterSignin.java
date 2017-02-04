@@ -58,8 +58,9 @@ public class AfterSignin {
 	            	    // If Nimbus is not available, fall back to cross-platform
 	            	    try {
 	            	        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-	            	    } catch (Exception ex) {
+	            	    } catch (Exception exception) {
 	            	        // not worth my time
+	            	    	System.out.prinln("Exception occured" + exception);
 	            	    }
 	            	}
 	                _data  = new ArrayList<String>();
@@ -159,13 +160,13 @@ public class AfterSignin {
 	          countryList.setVisibleRowCount(-1);
 	          countryList.setSelectedIndex(1); 
 	         
-	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
+	          invi.setLayout(new BorderLayout());
 	          invi.setBackground(Color.decode("#C9A798"));
 	          invi.setVisible(true);
-	          invi.add(subHeading);
+	          invi.add(subHeading, BorderLayout.NORTH);
 	          invi.add(subtext);
 	          invi.add(emailHeading);
-	          invi.add(emailText);
+	          invi.add(emailText, BorderLayout.SOUTH);
 	          countryList.addListSelectionListener(new ListSelectionListener() {
 	              @Override
 	              public void valueChanged(ListSelectionEvent e) {

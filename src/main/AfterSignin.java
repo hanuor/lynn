@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -91,8 +92,10 @@ public class AfterSignin {
 		      subHeading.setText("Subject");
 	          JTextField subtext = new JTextField();
 	          JLabel emailHeading = new JLabel();
-	          JTextField emailText = new JTextField();
-	          emailHeading.setText("Email");
+	          JTextArea emailText = new JTextArea();
+	          JScrollPane jspane = new JScrollPane(emailText);
+	          jspane.setPreferredSize(new Dimension(900, 800));
+	          emailHeading.setText("Email body");
 	          JPanel invi = new JPanel(); 
 	          ArrayList<String> _arrStr;
 			  
@@ -160,13 +163,16 @@ public class AfterSignin {
 	          countryList.setVisibleRowCount(-1);
 	          countryList.setSelectedIndex(1); 
 	         
-	          invi.setLayout(new BorderLayout());
+	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
 	          invi.setBackground(Color.decode("#C9A798"));
 	          invi.setVisible(true);
-	          invi.add(subHeading, BorderLayout.NORTH);
-	          invi.add(subtext);
+	          invi.add(subHeading);
+	          JPanel subPanel = new JPanel(new BorderLayout());
+	          subPanel.add(subtext, BorderLayout.NORTH);
+	          invi.add(subPanel);
+	          //  invi.add(subtext);
 	          invi.add(emailHeading);
-	          invi.add(emailText, BorderLayout.SOUTH);
+	          invi.add(jspane);
 	          countryList.addListSelectionListener(new ListSelectionListener() {
 	              @Override
 	              public void valueChanged(ListSelectionEvent e) {

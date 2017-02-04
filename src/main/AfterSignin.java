@@ -60,7 +60,7 @@ public class AfterSignin {
 	            	        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 	            	    } catch (Exception exception) {
 	            	        // not worth my time
-	            	    	System.out.prinln("Exception occured" + exception);
+	            	    	System.out.println("Exception occured" + exception);
 	            	    }
 	            	}
 	                _data  = new ArrayList<String>();

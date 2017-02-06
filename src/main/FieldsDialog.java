@@ -108,49 +108,33 @@ public class FieldsDialog extends JDialog{
 			getRootPane().setDefaultButton(save);
 	}
 	public void convertToproper(int pivvot, String _sub, ArrayList<String> _arr, ArrayList<String> answers){
-		System.out.println("This    dsa   " + _sub	);
 		int beginIndex = _sub.indexOf("#*#");
-		System.out.println("Keynote   " + beginIndex);
 		int newIndex = beginIndex+3;
 		int pivotIndex = 0;
-		
 		String newS = null;
-
 		String remS = null;
 		if(beginIndex!=-1){
 		if(newIndex > (_sub.length()-1)){
 			StringBuilder buildStr = new StringBuilder();
-		System.out.println("   JJJJ     " + _arr.toString() + " and  sixe is   " + _arr.size());
 			_arr.add(_sub.substring(pivotIndex, beginIndex+3));
 			 for(int i=0; i< _arr.size(); i++){
 				 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
      		  }
 			 _finalSub = buildStr.toString();
-			 System.out.println("Queens Bby " + buildStr.toString());
-			System.out.println("Heya a " + _arr);
 			return;
 		}else{
 			
 			newS = _sub.substring(pivotIndex, beginIndex+3);
-			
-			System.out.println("   Ye lo " + newS+"   " + pivvot);
 			pivvot = beginIndex+3;
-			
-			System.out.println("   Ye lo  aur  " + newS+"   " + pivvot);
 			remS = _sub.substring(pivvot);
 			_arr.add(newS);
 							}
 			}else{
 				StringBuilder buildStr = new StringBuilder();
-				System.out.println("   JJJJ     " + _sub + "  pivvot " );
-					 System.out.println("Queens Bby " + _arr.toString());
-					
 					 for(int i=0; i< _arr.size(); i++){
 						 buildStr.append(_arr.get(i).replace("#*#", answers.get(i).toString()));
 		     		  }
 					 buildStr.append(_sub);
-					 System.out.println("Insamareeeeeen   " + buildStr);
-					
 					 _finalSub = buildStr.toString();
 					return;
 			}
@@ -158,7 +142,6 @@ public class FieldsDialog extends JDialog{
 	}
 	public HashMap<String, String> showDialog(boolean check){
 		setVisible(check);
-		System.out.println("Vegas baby   " + _ans);
 		return _ans;
 	}
 	

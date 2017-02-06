@@ -84,7 +84,7 @@ public class EmailDialog extends JDialog{
 	        	  }
 	        	});
 			
-			
+			getRootPane().setDefaultButton(save);
 	}
 
 	

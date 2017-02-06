@@ -87,7 +87,7 @@ public class FieldsDialog extends JDialog{
 	        		  convertToproper(0,subText, _arr, answers);
 	        		 
 	        		  
-        			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
+        			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText, _finalSub);
         			  eDialog.setModal(true);
         		  _ans = eDialog.showDialog(true);
         		  if(_ans!=null){

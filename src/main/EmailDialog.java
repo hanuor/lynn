@@ -19,11 +19,12 @@ import javax.swing.JTextField;
 
 public class EmailDialog extends JDialog{
 	
-	String _finalEmail = null;
+	private String _finalEmail = null;
 	private HashMap<String, String> _getAns = new HashMap<String, String>();
 	private ArrayList<JTextField> _txtFields = new ArrayList<JTextField> ();	
-	public EmailDialog(Container parent, int emailCount, String emailText){
-		System.out.println("  Fashion   " + emailCount);
+	
+	public EmailDialog(Container parent, int emailCount, String emailText, String dataFromPrevious){
+		System.out.println("  Fashion HEYY  " + dataFromPrevious);
 		 setLayout(new BorderLayout());
 		 setTitle("Enter email fields");
 		 setSize(500,500);
@@ -69,11 +70,9 @@ public class EmailDialog extends JDialog{
 			getContentPane().add(extraP, BorderLayout.SOUTH);
 			save.addActionListener(new ActionListener() { 
 	        	  public void actionPerformed(ActionEvent e) { 
-	        		  //EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount);'
 	        		  ArrayList<String> answers = new ArrayList<String>();
 	        		  for(int i = 0; i< _txtFields.size();i++){
 	        			  answers.add(_txtFields.get(i).getText());
-	        			  //System.out.println("Update   " + textFields.get(i).getText());
 	        		  }
 	        		  ArrayList<String> _arr = new ArrayList<String>();
 	        		  convertToproper(0,emailText, _arr, answers);

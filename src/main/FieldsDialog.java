@@ -90,26 +90,22 @@ public class FieldsDialog extends JDialog{
         			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText);
         			  eDialog.setModal(true);
         		  _ans = eDialog.showDialog(true);
-        		  System.out.println("MEMEMEMEMEMEMEMEMEMEMEMEEMEMEMEMEMEMEEM " + _ans.toString());
         		  if(_ans!=null){
         			  _ans.put("subject",_finalSub);
-        			  System.out.println("LALALALALALALALALALALALALALAL" + _ans.toString());
         			  setVisible(false);
 	        		  dispose();  
         		  }
 	        		  if(emailCount!=0){
-	        			  System.out.println("Count is not zeo");
 	        			
 	        		
 	        		  }else{
 
-	        			  System.out.println("Count is zeo");
 	        			  dispose();
 	        		  }
 	        	  }
 	        	});
-			
-			
+			//Close the fielddialog on button 'enter'. If done through keyboard
+			getRootPane().setDefaultButton(save);
 	}
 	public void convertToproper(int pivvot, String _sub, ArrayList<String> _arr, ArrayList<String> answers){
 		System.out.println("This    dsa   " + _sub	);

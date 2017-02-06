@@ -194,7 +194,6 @@ public class AfterSignin {
 				                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
 				                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
 				                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("message")));
-				                	  System.out.println("Swing woker thread  LELE" + gs.getEmailText());
 				                	  gs.setSubText(mmp.get("subject").toString());
 				                	  gs.setEmailText(mmp.get("message").toString());
 				                				

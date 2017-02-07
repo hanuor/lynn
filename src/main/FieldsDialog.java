@@ -19,6 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import core.DatabasePing;
+import core.SendPOJO;
 
 public class FieldsDialog extends JDialog {
 	private HashMap<String, String> _ans;
@@ -26,7 +27,7 @@ public class FieldsDialog extends JDialog {
 
 	public FieldsDialog(JPanel parent, int subCount, int emailCount,
 			String subText, String emailText, JTextField subObject,
-			JTextArea emailObject) {
+			JTextArea emailObject, SendPOJO sendpojo) {
 
 		setLayout(new BorderLayout());
 		setTitle("Enter subject fields");
@@ -94,7 +95,7 @@ public class FieldsDialog extends JDialog {
 
 				EmailDialog eDialog = new EmailDialog(getContentPane(),
 						emailCount, emailText, _finalSub, subObject,
-						emailObject);
+						emailObject, sendpojo);
 				eDialog.setModal(true);
 				_ans = eDialog.showDialog(true);
 				if (_ans != null) {

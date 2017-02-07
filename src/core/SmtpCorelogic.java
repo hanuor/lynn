@@ -12,7 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SmtpCorelogic {
-	public void sendMessage(ArrayList<String> data,
+	public static void sendMessage(ArrayList<String> data,
 			ArrayList<String> senderData, String recepientEmail) {
 		// Get the session object
 		Properties props = new Properties();

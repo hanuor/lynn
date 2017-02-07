@@ -35,6 +35,7 @@ import javax.swing.event.ListSelectionListener;
 
 import core.ControlPanelMethods;
 import core.GetSet;
+import core.SendPOJO;
 import main.FaceView.TestPane;
 
 public class AfterSignin {
@@ -42,6 +43,7 @@ public class AfterSignin {
 	ArrayList<String> _retArr;
 	ArrayList<String> _data;
 	GetSet gs;
+	private SendPOJO sendpojo = new SendPOJO();
 
 	public AfterSignin() {
 		gs = new GetSet();
@@ -100,7 +102,6 @@ public class AfterSignin {
 		emailHeading.setText("Email body");
 		JPanel invi = new JPanel();
 		ArrayList<String> _arrStr;
-
 		JPanel parent = new JPanel();
 		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
 		parent.setBackground(Color.decode("#FFFFCC"));
@@ -213,7 +214,7 @@ public class AfterSignin {
 							FieldsDialog fDialog = new FieldsDialog(parent, gs
 									.getSubCount(), gs.getEmailCount(), gs
 									.getSubText(), gs.getEmailText(), subtext,
-									emailText);
+									emailText,sendpojo);
 							fDialog.setModal(true);
 							HashMap<String, String> results = new HashMap<String, String>();
 							results = fDialog.showDialog(true);
@@ -295,7 +296,8 @@ public class AfterSignin {
 		bPattern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Dos santos " + gs.getSelectedKey());
-				AddRecepientsDialog addRecep = new AddRecepientsDialog();
+				
+				AddRecepientsDialog addRecep = new AddRecepientsDialog(sendpojo.getPackageData());
 				addRecep.setVisible(true);
 
 			}

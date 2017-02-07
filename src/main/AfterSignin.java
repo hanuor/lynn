@@ -103,10 +103,10 @@ public class AfterSignin {
 
 		JPanel parent = new JPanel();
 		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
-		parent.setBackground(Color.decode("#C9A798"));
+		parent.setBackground(Color.decode("#FFFFCC"));
 		JPanel theme = new JPanel();
 		theme.setLayout(new BorderLayout());
-		theme.setBackground(Color.decode("#C9A798"));
+		theme.setBackground(Color.decode("#FFFFCC"));
 		JLabel cp = new JLabel("Panel");
 		cp.setVerticalAlignment(JLabel.CENTER);
 		cp.setHorizontalAlignment(JLabel.CENTER);
@@ -117,7 +117,7 @@ public class AfterSignin {
 		parent.add(cp);
 		JPanel tempSel = new JPanel();
 		tempSel.setLayout(new BoxLayout(tempSel, BoxLayout.X_AXIS));
-		tempSel.setBackground(Color.decode("#C9A798"));
+		tempSel.setBackground(Color.decode("#FFFFCC"));
 		JButton jb = new JButton("Edit a template");
 		tempSel.add(jb);
 		JButton jbt = new JButton("Add a template");
@@ -131,7 +131,6 @@ public class AfterSignin {
 
 		_retArr = ControlPanelMethods.getList();
 		if (_retArr == null) {
-			// System.out.println("HEre!!!");
 			_retArr = new ArrayList<String>();
 			_retArr.add("Nothing here. Click on 'Add a template' to add templates. Or click refresh");
 			for (int i = 0; i < _retArr.size(); i++) {
@@ -146,7 +145,7 @@ public class AfterSignin {
 		}
 		JPanel llheader = new JPanel();
 		llheader.setLayout(new BoxLayout(llheader, BoxLayout.X_AXIS));
-		llheader.setBackground(Color.decode("#C9A798"));
+		llheader.setBackground(Color.decode("#FFFFCC"));
 		JSeparator separator = new JSeparator();
 		parent.add(separator);
 		JLabel listHeader = new JLabel("Select a template");
@@ -166,7 +165,7 @@ public class AfterSignin {
 		countryList.setSelectedIndex(1);
 
 		invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
-		invi.setBackground(Color.decode("#C9A798"));
+		invi.setBackground(Color.decode("#FFFFCC"));
 		invi.setVisible(true);
 		invi.add(subHeading);
 		JPanel subPanel = new JPanel(new BorderLayout());
@@ -261,7 +260,7 @@ public class AfterSignin {
 		});
 
 		JScrollPane listScroller = new JScrollPane(countryList);
-		listScroller.setBackground(Color.decode("#C9A798"));
+		listScroller.setBackground(Color.decode("#FFFFCC"));
 		listScroller.setPreferredSize(new Dimension(250, 80));
 
 		parent.add(listScroller);
@@ -317,20 +316,19 @@ public class AfterSignin {
 		JPanel parent = new JPanel();
 		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
 
-		JButton bPattern = new JButton("Send!");
+		JButton bPattern = new JButton("Continue to add recepients");
 		// parent.add(bSave);
 		parent.add(bPattern);
 		frame.add(parent);
 		bPattern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Dos santos " + gs.getSelectedKey());
-				System.out.println(ControlPanelMethods.getSubEmail(gs
-						.getSelectedKey().toString()));
-
-				// DatabasePing.userRegistration(email.getText(),
-				// password.getText());
+				AddRecepientsDialog addRecep = new AddRecepientsDialog();
+				addRecep.setVisible(true);
+				
 			}
 		});
+		frame.getRootPane().setDefaultButton(bPattern);
 	}
 
 	protected void middlePane(JFrame frame) {

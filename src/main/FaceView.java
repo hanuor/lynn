@@ -58,8 +58,7 @@ public class FaceView {
 					frame.setSize(900, 500);
 					frame.add(new TestPane());
 					frame.add(new MessagePane());
-					frame.add(new SenderPane());
-					// frame.pack();
+
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				}

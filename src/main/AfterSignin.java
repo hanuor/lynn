@@ -163,7 +163,6 @@ public class AfterSignin {
 		countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
 		countryList.setVisibleRowCount(-1);
 		countryList.setSelectedIndex(1);
-
 		invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
 		invi.setBackground(Color.decode("#FFFFCC"));
 		invi.setVisible(true);
@@ -171,7 +170,6 @@ public class AfterSignin {
 		JPanel subPanel = new JPanel(new BorderLayout());
 		subPanel.add(subtext, BorderLayout.NORTH);
 		invi.add(subPanel);
-		// invi.add(subtext);
 		invi.add(emailHeading);
 		invi.add(jspane);
 		countryList.addListSelectionListener(new ListSelectionListener() {
@@ -179,10 +177,6 @@ public class AfterSignin {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					_data.add("Hey");
-
-					// gs.setEmailText(mmp.get("email").toString());
-					// System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
-					// if(tempSelected.size()==1){
 					SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
 
 						@Override
@@ -212,28 +206,10 @@ public class AfterSignin {
 							System.out.println(" dsdsdsds" + gs.getSubText());
 							ControlPanelMethods.separatorToFields(gs
 									.getSubText());
-
-							// subHeading.setText("Subject");
 							subtext.setText(ControlPanelMethods
 									.separatorToFields(gs.getSubText()));
 							emailText.setText(ControlPanelMethods
 									.separatorToFields(gs.getEmailText()));
-							/*
-							 * if(ControlPanelMethods.getCount(g == 0){
-							 * JOptionPane.showOptionDialog(null,
-							 * "No fields to enter in the email message",
-							 * "Warning", JOptionPane.DEFAULT_OPTION,
-							 * JOptionPane.WARNING_MESSAGE, null, null, null);
-							 * }else
-							 * if(ControlPanelMethods.getCount(mmp.get("email"))
-							 * == 0 &&
-							 * ControlPanelMethods.getCount(mmp.get("subject"))
-							 * == 0){ JOptionPane.showOptionDialog(null,
-							 * "No fields to enter in the subject & email message"
-							 * , "Warning", JOptionPane.DEFAULT_OPTION,
-							 * JOptionPane.WARNING_MESSAGE, null, null, null); }
-							 */
-							// invi.setVisible(true);
 							FieldsDialog fDialog = new FieldsDialog(parent, gs
 									.getSubCount(), gs.getEmailCount(), gs
 									.getSubText(), gs.getEmailText(), subtext,
@@ -241,7 +217,6 @@ public class AfterSignin {
 							fDialog.setModal(true);
 							HashMap<String, String> results = new HashMap<String, String>();
 							results = fDialog.showDialog(true);
-
 						}
 
 						@Override
@@ -251,11 +226,8 @@ public class AfterSignin {
 						}
 					};
 					worker.execute();
-					// add a dialog for entering the fields
-					// panelControl(true, invi);
 
 				}
-				// }
 			}
 		});
 
@@ -325,7 +297,7 @@ public class AfterSignin {
 				System.out.println("Dos santos " + gs.getSelectedKey());
 				AddRecepientsDialog addRecep = new AddRecepientsDialog();
 				addRecep.setVisible(true);
-				
+
 			}
 		});
 		frame.getRootPane().setDefaultButton(bPattern);

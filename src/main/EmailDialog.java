@@ -30,7 +30,8 @@ public class EmailDialog extends JDialog {
 	private ArrayList<JTextField> _txtFields = new ArrayList<JTextField>();
 
 	public EmailDialog(Container parent, int emailCount, String emailText,
-			String dataFromPrevious, JTextField subObject, JTextArea emailObject, SendPOJO sendpojo) {
+			String dataFromPrevious, JTextField subObject,
+			JTextArea emailObject, SendPOJO sendpojo) {
 		setLayout(new BorderLayout());
 		setTitle("Enter email fields");
 		setSize(500, 500);
@@ -97,11 +98,10 @@ public class EmailDialog extends JDialog {
 						super.done();
 						subObject.setText(dataFromPrevious);
 						emailObject.setText(_finalEmail);
-						ArrayList<String> segregatedData = new ArrayList<String> ();
+						ArrayList<String> segregatedData = new ArrayList<String>();
 						segregatedData.add(dataFromPrevious);
 						segregatedData.add(_finalEmail);
 						sendpojo.setPackageData(segregatedData);
-						
 
 					}
 

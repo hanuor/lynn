@@ -43,10 +43,11 @@ public class AddRecepientsDialog extends JDialog {
 					protected Boolean doInBackground() throws Exception {
 						// TODO Auto-generated method stub
 						String recepData = addRecep.getText();
-						
+
 						ArrayList<String> sendRecep = stringtoArrayList(recepData);
-						for(String recepEmail: sendRecep){
-							SmtpCorelogic.sendMessage(packageData, sender, recepEmail);	
+						for (String recepEmail : sendRecep) {
+							SmtpCorelogic.sendMessage(packageData, sender,
+									recepEmail);
 						}
 						return true;
 					}
@@ -55,8 +56,6 @@ public class AddRecepientsDialog extends JDialog {
 					protected void done() {
 						// TODO Auto-generated method stub
 						super.done();
-						
-						
 
 					}
 
@@ -67,17 +66,16 @@ public class AddRecepientsDialog extends JDialog {
 					}
 				};
 				worker.execute();
-				
-				
- 			}
+
+			}
 		});
 
 	}
-	
-	public ArrayList<String> stringtoArrayList(String recepients){
+
+	public ArrayList<String> stringtoArrayList(String recepients) {
 		ArrayList<String> returnArray = new ArrayList<String>();
-		String[] recep= recepients.split(";");
-		for(int i=0; i< recep.length; i++){
+		String[] recep = recepients.split(";");
+		for (int i = 0; i < recep.length; i++) {
 			returnArray.add(recep[i]);
 		}
 		return returnArray;

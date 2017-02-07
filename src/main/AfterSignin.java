@@ -214,7 +214,7 @@ public class AfterSignin {
 							FieldsDialog fDialog = new FieldsDialog(parent, gs
 									.getSubCount(), gs.getEmailCount(), gs
 									.getSubText(), gs.getEmailText(), subtext,
-									emailText,sendpojo);
+									emailText, sendpojo);
 							fDialog.setModal(true);
 							HashMap<String, String> results = new HashMap<String, String>();
 							results = fDialog.showDialog(true);
@@ -296,8 +296,9 @@ public class AfterSignin {
 		bPattern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Dos santos " + gs.getSelectedKey());
-				
-				AddRecepientsDialog addRecep = new AddRecepientsDialog(sendpojo.getPackageData());
+
+				AddRecepientsDialog addRecep = new AddRecepientsDialog(sendpojo
+						.getPackageData());
 				addRecep.setVisible(true);
 
 			}

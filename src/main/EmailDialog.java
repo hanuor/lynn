@@ -86,7 +86,7 @@ public class EmailDialog extends JDialog{
 							protected Boolean doInBackground()
 									throws Exception {
 								// TODO Auto-generated method stub
-			                				
+			                		
 								return true;
 							}
 
@@ -94,7 +94,10 @@ public class EmailDialog extends JDialog{
 							protected void done() {
 								// TODO Auto-generated method stub
 								super.done();
-								  
+								  System.out.println("Email is - " + _finalEmail);
+								  System.out.println("Subject is  - " + dataFromPrevious);
+								  subObject.setText(dataFromPrevious);
+								  emailObject.setText(_finalEmail);
 								
 							}
 							@Override

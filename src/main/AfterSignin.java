@@ -42,283 +42,303 @@ public class AfterSignin {
 	ArrayList<String> _retArr;
 	ArrayList<String> _data;
 	GetSet gs;
-	
-	public AfterSignin(){
+
+	public AfterSignin() {
 		gs = new GetSet();
-		 EventQueue.invokeLater(new Runnable() {
-	            @Override
-	            public void run() {
-	            	try {
-	            	    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-	            	        if ("Nimbus".equals(info.getName())) {
-	            	            UIManager.setLookAndFeel(info.getClassName());
-	            	            break;
-	            	        }
-	            	    }
-	            	} catch (Exception e) {
-	            	    // If Nimbus is not available, fall back to cross-platform
-	            	    try {
-	            	        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-	            	    } catch (Exception exception) {
-	            	        // not worth my time
-	            	    	System.out.println("Exception occured" + exception);
-	            	    }
-	            	}
-	                _data  = new ArrayList<String>();
-	                JFrame frame = new JFrame("Lynn - A crappy but useful template messenger");
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					for (LookAndFeelInfo info : UIManager
+							.getInstalledLookAndFeels()) {
+						if ("Nimbus".equals(info.getName())) {
+							UIManager.setLookAndFeel(info.getClassName());
+							break;
+						}
+					}
+				} catch (Exception e) {
+					// If Nimbus is not available, fall back to cross-platform
+					try {
+						UIManager.setLookAndFeel(UIManager
+								.getCrossPlatformLookAndFeelClassName());
+					} catch (Exception exception) {
+						// not worth my time
+						System.out.println("Exception occured" + exception);
+					}
+				}
+				_data = new ArrayList<String>();
+				JFrame frame = new JFrame(
+						"Lynn - A crappy but useful template messenger");
 
-	              
-	                frame.getContentPane().setLayout(
-	                	    new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS)
-	                	);
-	                frame.setSize(900, 500);
-	                headerView(frame);
-	              //  middlePane(frame);
-	            //    frame.add(new HeaderPanel());
-	                //frame.add(new MessagePane());
-	                sendPane(frame);
-	                //frame.add(new SenderPane());
-	                //frame.pack();
-	                frame.setLocationRelativeTo(null);
-	                frame.setVisible(true);
-	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		               
-	            }
-	        });
+				frame.getContentPane().setLayout(
+						new BoxLayout(frame.getContentPane(),
+								BoxLayout.PAGE_AXIS));
+				frame.setSize(900, 500);
+				headerView(frame);
+				// middlePane(frame);
+				// frame.add(new HeaderPanel());
+				// frame.add(new MessagePane());
+				sendPane(frame);
+				// frame.add(new SenderPane());
+				// frame.pack();
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			}
+		});
 	}
-	
-	public void headerView(JFrame frame){
-		      JLabel subHeading = new JLabel(); 
-		      subHeading.setText("Subject");
-	          JTextField subtext = new JTextField();
-	          JLabel emailHeading = new JLabel();
-	          JTextArea emailText = new JTextArea();
-	          JScrollPane jspane = new JScrollPane(emailText);
-	          jspane.setPreferredSize(new Dimension(900, 800));
-	          emailHeading.setText("Email body");
-	          JPanel invi = new JPanel(); 
-	          ArrayList<String> _arrStr;
-			  
-	          
-	          JPanel parent = new JPanel();
-	          parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
-	          parent.setBackground(Color.decode("#C9A798"));
-	          JPanel theme = new JPanel();
-	          theme.setLayout(new BorderLayout());
-	          theme.setBackground(Color.decode("#C9A798"));
-	          JLabel cp = new JLabel("Panel");
-	          cp.setVerticalAlignment(JLabel.CENTER);
-	          cp.setHorizontalAlignment(JLabel.CENTER);
-	          Font font = cp.getFont();
-	          cp.add(new JSeparator(SwingConstants.VERTICAL));
-	          Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
-	          cp.setFont(boldFont);
-	          parent.add(cp);
-	          JPanel tempSel = new JPanel();
-	          tempSel.setLayout(new BoxLayout(tempSel, BoxLayout.X_AXIS));
-	          tempSel.setBackground(Color.decode("#C9A798"));
-	          JButton jb= new JButton("Edit a template");
-	          tempSel.add(jb); 
-	          JButton jbt = new JButton("Add a template");
-	          jbt.setVisible(true);
-	          tempSel.add(jbt);
-	          JButton ref = new JButton("Refresh Panel");
-	          ref.setVisible(true);
-	          tempSel.add(ref, BorderLayout.WEST);
-	          parent.add(tempSel);
-	          DefaultListModel<String> listModel = new DefaultListModel<>();
-	          
-	          _retArr = ControlPanelMethods.getList();
-	          if(_retArr == null){
-	        	 // System.out.println("HEre!!!");
-	        	  _retArr = new ArrayList<String>();
-	        	  _retArr.add("Nothing here. Click on 'Add a template' to add templates. Or click refresh");
-	        	  for(int i = 0; i< _retArr.size(); i++){
-	        		  listModel.addElement(_retArr.get(i).toString());
-	        	  }
-	          }else{
 
-	        	  System.out.println("Noit nul");
-	        	  for(int i = 0; i< _retArr.size(); i++){
-	        		  listModel.addElement(_retArr.get(i).toString());
-	        	  }
-	          }
-	          JPanel llheader = new JPanel();
-	          llheader.setLayout(new BoxLayout(llheader, BoxLayout.X_AXIS));
-	          llheader.setBackground(Color.decode("#C9A798"));
-	          JSeparator separator = new JSeparator();
-	          parent.add(separator);
-	          JLabel listHeader = new JLabel("Select a template");
-	          Font font0 = listHeader.getFont();
-	          listHeader.add(new JSeparator(SwingConstants.VERTICAL));
-	          Font boldFont0 = new Font(font.getFontName(), Font.BOLD, font.getSize());
-	          listHeader.setFont(boldFont0);
-	          listHeader.setHorizontalAlignment(SwingConstants.CENTER);
-	          llheader.add(listHeader);
-	          parent.add(llheader);
-	          JList countryList = new JList<>(listModel);
-	          
-	          countryList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-	          countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
-	          countryList.setVisibleRowCount(-1);
-	          countryList.setSelectedIndex(1); 
-	         
-	          invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
-	          invi.setBackground(Color.decode("#C9A798"));
-	          invi.setVisible(true);
-	          invi.add(subHeading);
-	          JPanel subPanel = new JPanel(new BorderLayout());
-	          subPanel.add(subtext, BorderLayout.NORTH);
-	          invi.add(subPanel);
-	          //  invi.add(subtext);
-	          invi.add(emailHeading);
-	          invi.add(jspane);
-	          countryList.addListSelectionListener(new ListSelectionListener() {
-	              @Override
-	              public void valueChanged(ListSelectionEvent e) {
-	                  if (!e.getValueIsAdjusting()) {
-	                	  _data.add("Hey");
-	                	
-	                	
-                		 // gs.setEmailText(mmp.get("email").toString());
-	                	  //System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
-	                	 // if(tempSelected.size()==1){
-	                		  SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>(){
+	public void headerView(JFrame frame) {
+		JLabel subHeading = new JLabel();
+		subHeading.setText("Subject");
+		JTextField subtext = new JTextField();
+		JLabel emailHeading = new JLabel();
+		JTextArea emailText = new JTextArea();
+		JScrollPane jspane = new JScrollPane(emailText);
+		jspane.setPreferredSize(new Dimension(900, 800));
+		emailHeading.setText("Email body");
+		JPanel invi = new JPanel();
+		ArrayList<String> _arrStr;
 
-								@Override
-								protected Boolean doInBackground()
-										throws Exception {
-									// TODO Auto-generated method stub
-									tempSelected = countryList.getSelectedValuesList();
-				                	  gs.setSelectedKey(tempSelected.get(0).toString());
-				                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
-				                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));
-				                	  gs.setEmailCount(ControlPanelMethods.getCount(mmp.get("message")));
-				                	  gs.setSubText(mmp.get("subject").toString());
-				                	  gs.setEmailText(mmp.get("message").toString());
-				                				
-									return true;
-								}
+		JPanel parent = new JPanel();
+		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
+		parent.setBackground(Color.decode("#C9A798"));
+		JPanel theme = new JPanel();
+		theme.setLayout(new BorderLayout());
+		theme.setBackground(Color.decode("#C9A798"));
+		JLabel cp = new JLabel("Panel");
+		cp.setVerticalAlignment(JLabel.CENTER);
+		cp.setHorizontalAlignment(JLabel.CENTER);
+		Font font = cp.getFont();
+		cp.add(new JSeparator(SwingConstants.VERTICAL));
+		Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
+		cp.setFont(boldFont);
+		parent.add(cp);
+		JPanel tempSel = new JPanel();
+		tempSel.setLayout(new BoxLayout(tempSel, BoxLayout.X_AXIS));
+		tempSel.setBackground(Color.decode("#C9A798"));
+		JButton jb = new JButton("Edit a template");
+		tempSel.add(jb);
+		JButton jbt = new JButton("Add a template");
+		jbt.setVisible(true);
+		tempSel.add(jbt);
+		JButton ref = new JButton("Refresh Panel");
+		ref.setVisible(true);
+		tempSel.add(ref, BorderLayout.WEST);
+		parent.add(tempSel);
+		DefaultListModel<String> listModel = new DefaultListModel<>();
 
-								@Override
-								protected void done() {
-									// TODO Auto-generated method stub
-									super.done();
-									  
-									System.out.println("Swing woker thread");
-				                	  
-									System.out.println(" dsdsdsds"+gs.getSubText());
-			        	        	  ControlPanelMethods.separatorToFields(gs.getSubText());
-			        	        	  
-									//subHeading.setText("Subject");
-									subtext.setText(ControlPanelMethods.separatorToFields(gs.getSubText()));
-									emailText.setText(ControlPanelMethods.separatorToFields(gs.getEmailText()));
-									 /* if(ControlPanelMethods.getCount(g == 0){
-				                		  JOptionPane.showOptionDialog(null, "No fields to enter in the email message", "Warning",
-				             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-				             					 null, null, null);
-				                	  }else if(ControlPanelMethods.getCount(mmp.get("email")) == 0 && ControlPanelMethods.getCount(mmp.get("subject")) == 0){
-				                		  JOptionPane.showOptionDialog(null, "No fields to enter in the subject & email message", "Warning",
-					             					 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-					             					 null, null, null);
-				                	  }*/
-									//invi.setVisible(true);
-									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount(),gs.getSubText(), gs.getEmailText(),subtext, emailText);
-									 fDialog.setModal(true);
-									 HashMap<String, String> results = new HashMap<String, String>();
-			        	        	 results = fDialog.showDialog(true);
-									
-								}
-								@Override
-								protected void process(List<Void> arg0) {
-									// TODO Auto-generated method stub
-									super.process(arg0);
-								}
-							 };
-	                		  worker.execute();
-	                		  //add a dialog for entering the fields
-	        	        	  //panelControl(true, invi);
-	        	        	
-	        	          }
-	                  //}
-	              }
-	          });
-	        
-	          JScrollPane listScroller = new JScrollPane(countryList);
-	          listScroller.setBackground(Color.decode("#C9A798"));
-	          listScroller.setPreferredSize(new Dimension(250, 80));
+		_retArr = ControlPanelMethods.getList();
+		if (_retArr == null) {
+			// System.out.println("HEre!!!");
+			_retArr = new ArrayList<String>();
+			_retArr.add("Nothing here. Click on 'Add a template' to add templates. Or click refresh");
+			for (int i = 0; i < _retArr.size(); i++) {
+				listModel.addElement(_retArr.get(i).toString());
+			}
+		} else {
 
-	        parent.add(listScroller);
-	        jb.addActionListener(new ActionListener() { 
-	          	  public void actionPerformed(ActionEvent e) {   
-	       		 EditDialog edtD = new EditDialog(frame);
-	       		
-	         		  
-	          	  }
-	          	});
-	          jbt.addActionListener(new ActionListener() { 
-	          	  public void actionPerformed(ActionEvent e) {   
-	       		  TemplateDialog tmpD = new TemplateDialog(frame, tempSel);
-	          		  tmpD.setVisible(true);
-	         		  
-	          	  }
-	          	});
-	          parent.add(new JSeparator(SwingConstants.VERTICAL));
-	          parent.add(invi);
-	          ref.addActionListener(new ActionListener() { 
-	          	  public void actionPerformed(ActionEvent e) {   
-	          		 System.out.println("Beeeee");
-	          		 _retArr.clear();
-	                 _retArr = ControlPanelMethods.getList();
-	               frame.revalidate();
-	          	  }
-	          	});
-	         
-	          frame.add(parent);
+			System.out.println("Noit nul");
+			for (int i = 0; i < _retArr.size(); i++) {
+				listModel.addElement(_retArr.get(i).toString());
+			}
+		}
+		JPanel llheader = new JPanel();
+		llheader.setLayout(new BoxLayout(llheader, BoxLayout.X_AXIS));
+		llheader.setBackground(Color.decode("#C9A798"));
+		JSeparator separator = new JSeparator();
+		parent.add(separator);
+		JLabel listHeader = new JLabel("Select a template");
+		Font font0 = listHeader.getFont();
+		listHeader.add(new JSeparator(SwingConstants.VERTICAL));
+		Font boldFont0 = new Font(font.getFontName(), Font.BOLD, font.getSize());
+		listHeader.setFont(boldFont0);
+		listHeader.setHorizontalAlignment(SwingConstants.CENTER);
+		llheader.add(listHeader);
+		parent.add(llheader);
+		JList countryList = new JList<>(listModel);
+
+		countryList
+				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
+		countryList.setVisibleRowCount(-1);
+		countryList.setSelectedIndex(1);
+
+		invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
+		invi.setBackground(Color.decode("#C9A798"));
+		invi.setVisible(true);
+		invi.add(subHeading);
+		JPanel subPanel = new JPanel(new BorderLayout());
+		subPanel.add(subtext, BorderLayout.NORTH);
+		invi.add(subPanel);
+		// invi.add(subtext);
+		invi.add(emailHeading);
+		invi.add(jspane);
+		countryList.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					_data.add("Hey");
+
+					// gs.setEmailText(mmp.get("email").toString());
+					// System.out.println(ControlPanelMethods.getCount(mmp.get("subject")));
+					// if(tempSelected.size()==1){
+					SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
+
+						@Override
+						protected Boolean doInBackground() throws Exception {
+							// TODO Auto-generated method stub
+							tempSelected = countryList.getSelectedValuesList();
+							gs.setSelectedKey(tempSelected.get(0).toString());
+							HashMap<String, String> mmp = ControlPanelMethods
+									.getSubEmail(gs.getSelectedKey().toString());
+							gs.setSubCount(ControlPanelMethods.getCount(mmp
+									.get("subject")));
+							gs.setEmailCount(ControlPanelMethods.getCount(mmp
+									.get("message")));
+							gs.setSubText(mmp.get("subject").toString());
+							gs.setEmailText(mmp.get("message").toString());
+
+							return true;
+						}
+
+						@Override
+						protected void done() {
+							// TODO Auto-generated method stub
+							super.done();
+
+							System.out.println("Swing woker thread");
+
+							System.out.println(" dsdsdsds" + gs.getSubText());
+							ControlPanelMethods.separatorToFields(gs
+									.getSubText());
+
+							// subHeading.setText("Subject");
+							subtext.setText(ControlPanelMethods
+									.separatorToFields(gs.getSubText()));
+							emailText.setText(ControlPanelMethods
+									.separatorToFields(gs.getEmailText()));
+							/*
+							 * if(ControlPanelMethods.getCount(g == 0){
+							 * JOptionPane.showOptionDialog(null,
+							 * "No fields to enter in the email message",
+							 * "Warning", JOptionPane.DEFAULT_OPTION,
+							 * JOptionPane.WARNING_MESSAGE, null, null, null);
+							 * }else
+							 * if(ControlPanelMethods.getCount(mmp.get("email"))
+							 * == 0 &&
+							 * ControlPanelMethods.getCount(mmp.get("subject"))
+							 * == 0){ JOptionPane.showOptionDialog(null,
+							 * "No fields to enter in the subject & email message"
+							 * , "Warning", JOptionPane.DEFAULT_OPTION,
+							 * JOptionPane.WARNING_MESSAGE, null, null, null); }
+							 */
+							// invi.setVisible(true);
+							FieldsDialog fDialog = new FieldsDialog(parent, gs
+									.getSubCount(), gs.getEmailCount(), gs
+									.getSubText(), gs.getEmailText(), subtext,
+									emailText);
+							fDialog.setModal(true);
+							HashMap<String, String> results = new HashMap<String, String>();
+							results = fDialog.showDialog(true);
+
+						}
+
+						@Override
+						protected void process(List<Void> arg0) {
+							// TODO Auto-generated method stub
+							super.process(arg0);
+						}
+					};
+					worker.execute();
+					// add a dialog for entering the fields
+					// panelControl(true, invi);
+
+				}
+				// }
+			}
+		});
+
+		JScrollPane listScroller = new JScrollPane(countryList);
+		listScroller.setBackground(Color.decode("#C9A798"));
+		listScroller.setPreferredSize(new Dimension(250, 80));
+
+		parent.add(listScroller);
+		jb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditDialog edtD = new EditDialog(frame);
+
+			}
+		});
+		jbt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TemplateDialog tmpD = new TemplateDialog(frame, tempSel);
+				tmpD.setVisible(true);
+
+			}
+		});
+		parent.add(new JSeparator(SwingConstants.VERTICAL));
+		parent.add(invi);
+		ref.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Beeeee");
+				_retArr.clear();
+				_retArr = ControlPanelMethods.getList();
+				frame.revalidate();
+			}
+		});
+
+		frame.add(parent);
 	}
-	public void panelControl(boolean check, JPanel frame){
-		if(check){
+
+	public void panelControl(boolean check, JPanel frame) {
+		if (check) {
 			JPanel cpanel = new JPanel();
 			cpanel.setLayout(new BoxLayout(cpanel, BoxLayout.PAGE_AXIS));
 			JLabel head = new JLabel();
 			head.setText("Subject Panel");
-			for(int i = 1; i<= gs.getSubCount(); i++){
+			for (int i = 1; i <= gs.getSubCount(); i++) {
 				JPanel fields = new JPanel();
 				fields.setLayout(new BoxLayout(fields, BoxLayout.X_AXIS));
 				JLabel fName = new JLabel();
-				fName.setText("Field #"+i);
+				fName.setText("Field #" + i);
 				fields.add(fName);
 				JTextField ftext = new JTextField();
 				fields.add(ftext);
 				cpanel.add(fields);
 			}
 			cpanel.setVisible(true);
-			
+
 		}
 	}
-	public void sendPane(JFrame frame){
+
+	public void sendPane(JFrame frame) {
 		JPanel parent = new JPanel();
 		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
-		
+
 		JButton bPattern = new JButton("Send!");
-		//parent.add(bSave);
+		// parent.add(bSave);
 		parent.add(bPattern);
-		 frame.add(parent);
-        bPattern.addActionListener(new ActionListener() { 
-        	  public void actionPerformed(ActionEvent e) { 
-        		  System.out.println("Dos santos " + gs.getSelectedKey());
-        		 System.out.println( ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString()));
-        		  
-        		//  DatabasePing.userRegistration(email.getText(), password.getText());
-        	  }
-        	});
+		frame.add(parent);
+		bPattern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Dos santos " + gs.getSelectedKey());
+				System.out.println(ControlPanelMethods.getSubEmail(gs
+						.getSelectedKey().toString()));
+
+				// DatabasePing.userRegistration(email.getText(),
+				// password.getText());
+			}
+		});
 	}
+
 	protected void middlePane(JFrame frame) {
 		// TODO Auto-generated method stub
 		JPanel jpanel = new JPanel();
 		jpanel.setLayout(new BoxLayout(jpanel, BoxLayout.Y_AXIS));
 		JSeparator separator = new JSeparator();
-        jpanel.add(separator);
-        
+		jpanel.add(separator);
+
 	}
 }

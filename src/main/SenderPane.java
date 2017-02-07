@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 import core.DatabasePing;
 
 public class SenderPane extends JPanel {
-	public SenderPane(){
-		
+	public SenderPane() {
+
 	}
-	
+
 }

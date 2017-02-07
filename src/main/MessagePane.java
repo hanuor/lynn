@@ -24,23 +24,21 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
 public class MessagePane extends JPanel {
-	public MessagePane(){
+	public MessagePane() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JLabel yMsg = new JLabel();
 		yMsg.setText("Email Subject");
 		add(yMsg);
-		
-		//subField.setPreferredSize(new Dimension(10, getWidth()));
+
+		// subField.setPreferredSize(new Dimension(10, getWidth()));
 		JEditorPane email = new JEditorPane();
 		JScrollPane editorScrollPane = new JScrollPane(email);
-		editorScrollPane.setVerticalScrollBarPolicy(
-		                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		editorScrollPane
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		editorScrollPane.setPreferredSize(new Dimension(750, 750));
 		editorScrollPane.setMinimumSize(new Dimension(10, 10));
 		add(editorScrollPane);
-		
-		 
-		  
+
 	}
 
 }

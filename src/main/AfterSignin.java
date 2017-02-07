@@ -223,8 +223,7 @@ public class AfterSignin {
 					             					 null, null, null);
 				                	  }*/
 									//invi.setVisible(true);
-									System.out.println("After hoie " + gs.getSubText() + " Count  sadas " + gs.getEmailCount());
-									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount(),gs.getSubText(), gs.getEmailText());
+									 FieldsDialog fDialog = new FieldsDialog(parent,gs.getSubCount(),gs.getEmailCount(),gs.getSubText(), gs.getEmailText(),subtext, emailText);
 									 fDialog.setModal(true);
 									 HashMap<String, String> results = new HashMap<String, String>();
 			        	        	 results = fDialog.showDialog(true);

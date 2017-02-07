@@ -118,7 +118,7 @@ public class EditDialog extends JDialog{
 						protected Boolean doInBackground()
 								throws Exception {
 							// TODO Auto-generated method stub
-							tempSelected = countryList.getSelectedValuesList();
+							  tempSelected = countryList.getSelectedValuesList();
 		                	  gs.setSelectedKey(tempSelected.get(0).toString());
 		                	  HashMap<String, String> mmp = ControlPanelMethods.getSubEmail(gs.getSelectedKey().toString());
 		                	  gs.setSubCount(ControlPanelMethods.getCount(mmp.get("subject")));

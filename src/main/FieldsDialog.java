@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import core.DatabasePing;
@@ -22,7 +23,7 @@ import core.DatabasePing;
 public class FieldsDialog extends JDialog{
 	private HashMap<String, String> _ans;
 	private String _finalSub;
-	public FieldsDialog(JPanel parent, int subCount, int emailCount, String subText, String emailText){
+	public FieldsDialog(JPanel parent, int subCount, int emailCount, String subText, String emailText, JTextField subObject, JTextArea emailObject){
 		
 		 setLayout(new BorderLayout());
 		 setTitle("Enter subject fields");
@@ -87,7 +88,7 @@ public class FieldsDialog extends JDialog{
 	        		  convertToproper(0,subText, _arr, answers);
 	        		 
 	        		  
-        			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText, _finalSub);
+        			  EmailDialog eDialog = new EmailDialog(getContentPane(), emailCount, emailText, _finalSub, subObject, emailObject);
         			  eDialog.setModal(true);
         		  _ans = eDialog.showDialog(true);
         		  if(_ans!=null){

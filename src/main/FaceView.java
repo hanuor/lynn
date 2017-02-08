@@ -28,9 +28,11 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
 import core.DatabasePing;
+import core.EmailandPasswordGetterSetter;
 import core.GetMac;
 
 public class FaceView {
+	private EmailandPasswordGetterSetter getset = new EmailandPasswordGetterSetter();
 
 	public FaceView() {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,9 +60,12 @@ public class FaceView {
 				ArrayList<String> _arrStr;
 				_arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());
 				if (_arrStr.size() != 0) {
-					new AfterSignin();
+					System.out.print("Of monsters and men");
+				//	new AfterSignin();
 					// getContentPane().dispose();
 				} else {
+
+					System.out.print("Of monsters and monsters obnkly");
 					JFrame frame = new JFrame(
 							"Lynn - A crappy but useful template messenger");
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,9 +139,15 @@ public class FaceView {
 			add(tempSel);
 			jbt.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					new AfterSignin();
-					DatabasePing.userRegistration(email.getText(),
-							password.getText());
+					//new AfterSignin();
+					getset.setEmail(email.getText());
+					getset.setPassword(password.getText());
+					if(getset.getEmail().equals("")){
+						JOptionPane.showMessageDialog(null, "You forgot to enter something", "Error", JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+//					DatabasePing.userRegistration(email.getText(),
+//							password.getText());
 
 					/*
 					 * TemplateDialog tmpD = new TemplateDialog(tempSel);

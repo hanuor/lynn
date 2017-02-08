@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,16 +33,27 @@ import core.GetMac;
 public class FaceView {
 
 	public FaceView() {
-
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
+					for (LookAndFeelInfo info : UIManager
+						.getInstalledLookAndFeels()) {
+					if ("Nimbus".equals(info.getName())) {
+						UIManager.setLookAndFeel(info.getClassName());
+						break;
+					}
+				}
 				} catch (ClassNotFoundException | InstantiationException
 						| IllegalAccessException
 						| UnsupportedLookAndFeelException ex) {
+					try {
+						UIManager.setLookAndFeel(UIManager
+								.getCrossPlatformLookAndFeelClassName());
+					} catch (Exception exception) {
+						// not worth my time
+						System.out.println("Exception occured" + exception);
+					}
 				}
 				ArrayList<String> _arrStr;
 				_arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());

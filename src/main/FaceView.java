@@ -38,12 +38,12 @@ public class FaceView {
 			public void run() {
 				try {
 					for (LookAndFeelInfo info : UIManager
-						.getInstalledLookAndFeels()) {
-					if ("Nimbus".equals(info.getName())) {
-						UIManager.setLookAndFeel(info.getClassName());
-						break;
+							.getInstalledLookAndFeels()) {
+						if ("Nimbus".equals(info.getName())) {
+							UIManager.setLookAndFeel(info.getClassName());
+							break;
+						}
 					}
-				}
 				} catch (ClassNotFoundException | InstantiationException
 						| IllegalAccessException
 						| UnsupportedLookAndFeelException ex) {
@@ -69,7 +69,7 @@ public class FaceView {
 									BoxLayout.PAGE_AXIS));
 					frame.setSize(900, 500);
 					frame.add(new TestPane());
-					frame.add(new MessagePane());
+					// frame.add(new MessagePane());
 
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
@@ -87,8 +87,6 @@ public class FaceView {
 
 			JPanel tempSel = new JPanel();
 			tempSel.setLayout(new BorderLayout());
-			JButton jb = new JButton("Hi");
-			tempSel.add(jb);
 			JPanel panel = new JPanel();
 			panel.setLayout(new GridBagLayout());
 			_arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());

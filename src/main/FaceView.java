@@ -149,15 +149,6 @@ public class FaceView {
 						new AfterSignin();
 						frame.dispose();
 					}
-					
-//					DatabasePing.userRegistration(email.getText(),
-//							password.getText());
-
-					/*
-					 * TemplateDialog tmpD = new TemplateDialog(tempSel);
-					 * tmpD.setVisible(true);
-					 */
-					//
 				}
 			});
 		}

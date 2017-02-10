@@ -3,6 +3,7 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -73,7 +74,7 @@ public class FaceView {
 							new BoxLayout(frame.getContentPane(),
 									BoxLayout.PAGE_AXIS));
 					frame.setSize(900, 500);
-					frame.add(new TestPane());
+					frame.add(new TestPane(frame));
 					// frame.add(new MessagePane());
 
 					frame.setLocationRelativeTo(null);
@@ -86,7 +87,7 @@ public class FaceView {
 
 	public class TestPane extends JPanel {
 
-		public TestPane() {
+		public TestPane(Frame frame) {
 			ArrayList<String> _arrStr;
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -146,6 +147,7 @@ public class FaceView {
 						JOptionPane.showMessageDialog(null, "You forgot to enter something", "Error", JOptionPane.INFORMATION_MESSAGE);
 					}else{
 						new AfterSignin();
+						frame.dispose();
 					}
 					
 //					DatabasePing.userRegistration(email.getText(),

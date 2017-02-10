@@ -62,8 +62,8 @@ public class FaceView {
 				_arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());
 				if (_arrStr.size() != 0) {
 					System.out.print("Of monsters and men");
-				//	new AfterSignin();
-					// getContentPane().dispose();
+				new AfterSignin();
+					// frame.getContentPane().dispose();
 				} else {
 
 					System.out.print("Of monsters and monsters obnkly");
@@ -146,6 +146,8 @@ public class FaceView {
 					if(getset.getEmail().equals("") || getset.getPassword().equals("")){
 						JOptionPane.showMessageDialog(null, "You forgot to enter something", "Error", JOptionPane.INFORMATION_MESSAGE);
 					}else{
+						DatabasePing.userRegistration(email.getText(),
+							password.getText());
 						new AfterSignin();
 						frame.dispose();
 					}

@@ -142,8 +142,10 @@ public class FaceView {
 					//new AfterSignin();
 					getset.setEmail(email.getText());
 					getset.setPassword(password.getText());
-					if(getset.getEmail().equals("")){
+					if(getset.getEmail().equals("") || getset.getPassword().equals("")){
 						JOptionPane.showMessageDialog(null, "You forgot to enter something", "Error", JOptionPane.INFORMATION_MESSAGE);
+					}else{
+						new AfterSignin();
 					}
 					
 //					DatabasePing.userRegistration(email.getText(),

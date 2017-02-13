@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
@@ -19,7 +22,7 @@ import core.SmtpCorelogic;
 
 public class AddRecepientsDialog extends JDialog {
 	public AddRecepientsDialog(ArrayList<String> packageData) {
-		setLayout(new BorderLayout());
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setTitle("Enter email fields");
 		setSize(500, 500);
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -29,12 +32,16 @@ public class AddRecepientsDialog extends JDialog {
 		this.setLocation(x, y);
 		this.setVisible(true);
 		HashMap<String, String> sender = DatabasePing.getSenderDetails();
-		
+		JPanel header = new JPanel();
+		header.setLayout(new BorderLayout());
+		JLabel addEmails = new JLabel("Add emails (To add multiple emails separate each email with a ';')");
+		add(addEmails);
 		JTextField addRecep = new JTextField();
-		add(addRecep, BorderLayout.NORTH);
+		header.add(addRecep, BorderLayout.NORTH);
 		JButton sendPackage = new JButton();
 		sendPackage.setText("Deploy");
-		add(sendPackage, BorderLayout.SOUTH);
+		header.add(sendPackage, BorderLayout.SOUTH);
+		add(header);
 		sendPackage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {

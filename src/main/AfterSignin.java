@@ -156,7 +156,7 @@ public class AfterSignin {
 		listHeader.setHorizontalAlignment(SwingConstants.CENTER);
 		llheader.add(listHeader);
 		parent.add(llheader);
-		
+
 		invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
 		invi.setBackground(Color.decode("#FFFFCC"));
 		invi.setVisible(true);
@@ -167,7 +167,7 @@ public class AfterSignin {
 		invi.add(emailHeading);
 		invi.add(jspane);
 		JList countryList = listPanel(listModel);
-		
+
 		countryList.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -275,7 +275,7 @@ public class AfterSignin {
 							}
 						}
 						listPanel(listModel);
-						
+
 						super.done();
 
 					}
@@ -297,7 +297,8 @@ public class AfterSignin {
 
 		frame.add(parent);
 	}
-	public JList listPanel(DefaultListModel<String> listModel){
+
+	public JList listPanel(DefaultListModel<String> listModel) {
 		JList countryList = new JList<>(listModel);
 
 		countryList
@@ -307,6 +308,7 @@ public class AfterSignin {
 		countryList.setSelectedIndex(1);
 		return countryList;
 	}
+
 	public void panelControl(boolean check, JPanel frame) {
 		if (check) {
 			JPanel cpanel = new JPanel();

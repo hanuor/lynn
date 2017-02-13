@@ -123,9 +123,9 @@ public class AfterSignin {
 		JButton jbt = new JButton("Add a template");
 		jbt.setVisible(true);
 		tempSel.add(jbt);
-		JButton ref = new JButton("Refresh Panel");
-		ref.setVisible(true);
-		tempSel.add(ref, BorderLayout.WEST);
+		JButton refresh = new JButton("Refresh Panel");
+		refresh.setVisible(true);
+		tempSel.add(refresh, BorderLayout.WEST);
 		parent.add(tempSel);
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 
@@ -156,13 +156,7 @@ public class AfterSignin {
 		listHeader.setHorizontalAlignment(SwingConstants.CENTER);
 		llheader.add(listHeader);
 		parent.add(llheader);
-		JList countryList = new JList<>(listModel);
-
-		countryList
-				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
-		countryList.setVisibleRowCount(-1);
-		countryList.setSelectedIndex(1);
+		
 		invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
 		invi.setBackground(Color.decode("#FFFFCC"));
 		invi.setVisible(true);
@@ -172,6 +166,8 @@ public class AfterSignin {
 		invi.add(subPanel);
 		invi.add(emailHeading);
 		invi.add(jspane);
+		JList countryList = listPanel(listModel);
+		
 		countryList.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -200,10 +196,6 @@ public class AfterSignin {
 						protected void done() {
 							// TODO Auto-generated method stub
 							super.done();
-
-							System.out.println("Swing woker thread");
-
-							System.out.println(" dsdsdsds" + gs.getSubText());
 							ControlPanelMethods.separatorToFields(gs
 									.getSubText());
 							subtext.setText(ControlPanelMethods
@@ -251,8 +243,48 @@ public class AfterSignin {
 		});
 		parent.add(new JSeparator(SwingConstants.VERTICAL));
 		parent.add(invi);
-		ref.addActionListener(new ActionListener() {
+		refresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
+
+					@Override
+					protected Boolean doInBackground() throws Exception {
+						// TODO Auto-generated method stub
+
+						return true;
+					}
+
+					@Override
+					protected void done() {
+						// TODO Auto-generated method stub
+						_retArr = ControlPanelMethods.getList();
+						if (_retArr == null) {
+							_retArr = new ArrayList<String>();
+							_retArr.add("Nothing here. Click on 'Add a template' to add templates. Or click refresh");
+							for (int i = 0; i < _retArr.size(); i++) {
+								listModel.addElement(_retArr.get(i).toString());
+							}
+						} else {
+
+							System.out.println("Noit nul");
+							for (int i = 0; i < _retArr.size(); i++) {
+								listModel.addElement(_retArr.get(i).toString());
+							}
+						}
+						
+						super.done();
+
+					}
+
+					@Override
+					protected void process(List<Void> arg0) {
+						// TODO Auto-generated method stub
+						super.process(arg0);
+					}
+				};
+				worker.execute();
+
 				System.out.println("Beeeee");
 				_retArr.clear();
 				_retArr = ControlPanelMethods.getList();
@@ -262,7 +294,16 @@ public class AfterSignin {
 
 		frame.add(parent);
 	}
+	public JList listPanel(DefaultListModel<String> listModel){
+		JList countryList = new JList<>(listModel);
 
+		countryList
+				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
+		countryList.setVisibleRowCount(-1);
+		countryList.setSelectedIndex(1);
+		return countryList;
+	}
 	public void panelControl(boolean check, JPanel frame) {
 		if (check) {
 			JPanel cpanel = new JPanel();

@@ -65,8 +65,6 @@ public class FaceView {
 				new AfterSignin();
 					// frame.getContentPane().dispose();
 				} else {
-
-					System.out.print("Of monsters and monsters obnkly");
 					JFrame frame = new JFrame(
 							"Lynn - A crappy but useful template messenger");
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

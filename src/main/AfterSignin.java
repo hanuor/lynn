@@ -292,7 +292,7 @@ public class AfterSignin {
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
 		countryList.setVisibleRowCount(-1);
-		countryList.setSelectedIndex(1);
+		
 		return countryList;
 	}
 

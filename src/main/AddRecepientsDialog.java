@@ -21,6 +21,7 @@ import core.DatabasePing;
 import core.SmtpCorelogic;
 
 public class AddRecepientsDialog extends JDialog {
+	private HashMap<String, String> recepPacket = new HashMap<String, String>();
 	public AddRecepientsDialog(ArrayList<String> packageData) {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setTitle("Enter email fields");
@@ -50,12 +51,12 @@ public class AddRecepientsDialog extends JDialog {
 					protected Boolean doInBackground() throws Exception {
 						// TODO Auto-generated method stub
 						String recepData = addRecep.getText();
-
+						recepPacket.put("recepientEmail",recepData);
 						ArrayList<String> sendRecep = stringtoArrayList(recepData);
 						try {
 							for (String recepEmail : sendRecep) {
 								SmtpCorelogic.sendMessage(packageData, sender,
-										recepEmail);
+										recepPacket);
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block

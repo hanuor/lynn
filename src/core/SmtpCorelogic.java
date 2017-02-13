@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SmtpCorelogic {
 	public static void sendMessage(ArrayList<String> data,
-			HashMap<String, String> senderData, String recepientEmail) {
+			HashMap<String, String> senderData, HashMap<String, String> recepientPacket) {
 		// Get the session object
 
 		System.out.println("SenderDetails    "+ senderData.get("email"));
@@ -41,9 +41,12 @@ public class SmtpCorelogic {
 			message.setFrom(new InternetAddress(senderData.get("email")));// change
 																	// accordingly
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
-					recepientEmail));
-			message.setSubject(data.get(0)); // Get 0 means we are getting the
-												// subject
+					recepientPacket.get("recepientEmail")));
+			message.addRecipient(Message.RecipientType.BCC, new InternetAddress(
+		            "shanjohri@gmail.com"));
+//		message.addRecipient(Message.RecipientType.CC, new InternetAddress(
+//		            "yourOther@email.com"));
+			message.setSubject(data.get(0)); // Get 0 means we are getting the			// subject
 			message.setText(data.get(1)); // Get 1 means we are getting the
 											// email
 			Transport.send(message);

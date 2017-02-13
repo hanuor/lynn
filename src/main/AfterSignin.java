@@ -340,11 +340,19 @@ public class AfterSignin {
 		frame.add(parent);
 		bPattern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Dos santos " + gs.getSelectedKey());
-
-				AddRecepientsDialog addRecep = new AddRecepientsDialog(sendpojo
-						.getPackageData());
-				addRecep.setVisible(true);
+				
+				try {
+					System.out.println("Dos santos " + sendpojo.getPackageData().toString());
+							
+					AddRecepientsDialog addRecep = new AddRecepientsDialog(sendpojo
+							.getPackageData());
+					addRecep.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					
+					JOptionPane.showMessageDialog(null, "Something went wrong", "Error", JOptionPane.INFORMATION_MESSAGE);
+					e1.printStackTrace();
+				}
 
 			}
 		});

@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -27,10 +28,8 @@ public class AddRecepientsDialog extends JDialog {
 		final int y = (screenSize.height - this.getHeight()) / 2;
 		this.setLocation(x, y);
 		this.setVisible(true);
-		System.out.println("Sleep on the floiee" + DatabasePing.getSenderDetails());
-		ArrayList<String> sender = new ArrayList<String>();
-		sender.add("shantanu@internshala.com");
-		sender.add("hanuor11");
+		HashMap<String, String> sender = DatabasePing.getSenderDetails();
+		
 		JTextField addRecep = new JTextField();
 		add(addRecep, BorderLayout.NORTH);
 		JButton sendPackage = new JButton();
@@ -46,9 +45,14 @@ public class AddRecepientsDialog extends JDialog {
 						String recepData = addRecep.getText();
 
 						ArrayList<String> sendRecep = stringtoArrayList(recepData);
-						for (String recepEmail : sendRecep) {
-							SmtpCorelogic.sendMessage(packageData, sender,
-									recepEmail);
+						try {
+							for (String recepEmail : sendRecep) {
+								SmtpCorelogic.sendMessage(packageData, sender,
+										recepEmail);
+							}
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 						return true;
 					}

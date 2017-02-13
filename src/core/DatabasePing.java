@@ -242,6 +242,7 @@ public class DatabasePing {
             map.put(key, value);
 
         }
+        System.out.println("Whats is here  " + map.toString());
         	return map;
     }
 	
@@ -273,8 +274,7 @@ public class DatabasePing {
 			 });
 	}
 	
-	public static ArrayList<String> getSenderDetails(){
-		ArrayList<String> returnArr = new ArrayList<String>();
+	public static HashMap<String, String> getSenderDetails(){
 		String jsonResponse = null;
 		String path = GetMac.getMac() + "/data/userData/senderDetails";
 		String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
@@ -305,7 +305,8 @@ public class DatabasePing {
  		}
  		in.close();
  		jsonResponse = response.toString();
- 		returnArr.add(jsonResponse);
+ 		System.out.println("OOOOOOYEA H    " + jsonResponse );
+ 		
  		
  		} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -315,7 +316,14 @@ public class DatabasePing {
 				return null;
 				
 			}        		
-			return returnArr;
+			try {
+				System.out.print("Ocean is ererer   " + jsonResponse );
+				return jsonToMap(jsonResponse);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		
 	}
 }

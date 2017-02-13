@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -13,8 +14,10 @@ import javax.mail.internet.MimeMessage;
 
 public class SmtpCorelogic {
 	public static void sendMessage(ArrayList<String> data,
-			ArrayList<String> senderData, String recepientEmail) {
+			HashMap<String, String> senderData, String recepientEmail) {
 		// Get the session object
+
+		System.out.println("SenderDetails    "+ senderData.get("email"));
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
@@ -27,15 +30,15 @@ public class SmtpCorelogic {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(
 						// this is the email id
-								senderData.get(0),
+								senderData.get("email"),
 								// this is the password
-								senderData.get(1));
+								senderData.get("password"));
 					}
 				});
 		// compose message
 		try {
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(senderData.get(0)));// change
+			message.setFrom(new InternetAddress(senderData.get("email")));// change
 																	// accordingly
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					recepientEmail));

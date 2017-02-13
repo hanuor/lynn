@@ -76,12 +76,7 @@ public class AfterSignin {
 								BoxLayout.PAGE_AXIS));
 				frame.setSize(900, 500);
 				headerView(frame);
-				// middlePane(frame);
-				// frame.add(new HeaderPanel());
-				// frame.add(new MessagePane());
 				sendPane(frame);
-				// frame.add(new SenderPane());
-				// frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,10 +98,10 @@ public class AfterSignin {
 		ArrayList<String> _arrStr;
 		JPanel parent = new JPanel();
 		parent.setLayout(new BoxLayout(parent, BoxLayout.Y_AXIS));
-		parent.setBackground(Color.decode("#FFFFCC"));
+		parent.setBackground(Color.decode("#E0E0E0"));
 		JPanel theme = new JPanel();
 		theme.setLayout(new BorderLayout());
-		theme.setBackground(Color.decode("#FFFFCC"));
+		theme.setBackground(Color.decode("#E0E0E0"));
 		JLabel cp = new JLabel("Panel");
 		cp.setVerticalAlignment(JLabel.CENTER);
 		cp.setHorizontalAlignment(JLabel.CENTER);
@@ -117,7 +112,7 @@ public class AfterSignin {
 		parent.add(cp);
 		JPanel tempSel = new JPanel();
 		tempSel.setLayout(new BoxLayout(tempSel, BoxLayout.X_AXIS));
-		tempSel.setBackground(Color.decode("#FFFFCC"));
+		tempSel.setBackground(Color.decode("#E0E0E0"));
 		JButton jb = new JButton("Edit a template");
 		tempSel.add(jb);
 		JButton jbt = new JButton("Add a template");
@@ -137,15 +132,13 @@ public class AfterSignin {
 				listModel.addElement(_retArr.get(i).toString());
 			}
 		} else {
-
-			System.out.println("Noit nul");
 			for (int i = 0; i < _retArr.size(); i++) {
 				listModel.addElement(_retArr.get(i).toString());
 			}
 		}
 		JPanel llheader = new JPanel();
 		llheader.setLayout(new BoxLayout(llheader, BoxLayout.X_AXIS));
-		llheader.setBackground(Color.decode("#FFFFCC"));
+		llheader.setBackground(Color.decode("#E0E0E0"));
 		JSeparator separator = new JSeparator();
 		parent.add(separator);
 		JLabel listHeader = new JLabel("Select a template");
@@ -158,7 +151,7 @@ public class AfterSignin {
 		parent.add(llheader);
 
 		invi.setLayout(new BoxLayout(invi, BoxLayout.PAGE_AXIS));
-		invi.setBackground(Color.decode("#FFFFCC"));
+		invi.setBackground(Color.decode("#E0E0E0"));
 		invi.setVisible(true);
 		invi.add(subHeading);
 		JPanel subPanel = new JPanel(new BorderLayout());
@@ -225,9 +218,8 @@ public class AfterSignin {
 		});
 
 		JScrollPane listScroller = new JScrollPane(countryList);
-		listScroller.setBackground(Color.decode("#FFFFCC"));
+		listScroller.setBackground(Color.decode("#E0E0E0"));
 		listScroller.setPreferredSize(new Dimension(250, 80));
-
 		parent.add(listScroller);
 		jb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -268,8 +260,6 @@ public class AfterSignin {
 								listModel.addElement(_retArr.get(i).toString());
 							}
 						} else {
-
-							System.out.println("Noit nul");
 							for (int i = 0; i < _retArr.size(); i++) {
 								listModel.addElement(_retArr.get(i).toString());
 							}
@@ -287,8 +277,6 @@ public class AfterSignin {
 					}
 				};
 				worker.execute();
-
-				System.out.println("Beeeee");
 				_retArr.clear();
 				_retArr = ControlPanelMethods.getList();
 				frame.revalidate();
@@ -300,7 +288,6 @@ public class AfterSignin {
 
 	public JList listPanel(DefaultListModel<String> listModel) {
 		JList countryList = new JList<>(listModel);
-
 		countryList
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
@@ -340,17 +327,16 @@ public class AfterSignin {
 		frame.add(parent);
 		bPattern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					System.out.println("Dos santos " + sendpojo.getPackageData().toString());
-							
-					AddRecepientsDialog addRecep = new AddRecepientsDialog(sendpojo
-							.getPackageData());
+					AddRecepientsDialog addRecep = new AddRecepientsDialog(
+							sendpojo.getPackageData());
 					addRecep.setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					
-					JOptionPane.showMessageDialog(null, "Something went wrong", "Error", JOptionPane.INFORMATION_MESSAGE);
+
+					JOptionPane.showMessageDialog(null, "Something went wrong",
+							"Error", JOptionPane.INFORMATION_MESSAGE);
 					e1.printStackTrace();
 				}
 

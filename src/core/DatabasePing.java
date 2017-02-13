@@ -245,5 +245,32 @@ public class DatabasePing {
         	return map;
     }
 	
+	public static void  addsenderDetails(String email, String password){
+		Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
+		 String path = GetMac.getMac() + "/data/userData/senderDetails"  ;
+		 HashMap<String, String> putMap = new HashMap<String, String>();
+		 putMap.put("email", email);
+		 putMap.put("password", password);
+		 JSONObject toObject =new JSONObject(putMap);
+		 Backendless.Files.saveFile(path, toObject.toString().getBytes(), true,new AsyncCallback<String>(){
+
+				@Override
+				public void handleFault(BackendlessFault arg0) {
+					// TODO Auto-generated method stub
+					
+					System.out.println(arg0);
+					
+					
+				}
+
+				@Override
+				public void handleResponse(String arg0) {
+					// TODO Auto-generated method stub
+					System.out.println("Success" + arg0);
+					
+				}
+				 
+			 });
+	}
 	
 }

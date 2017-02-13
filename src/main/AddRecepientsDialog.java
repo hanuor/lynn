@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
+import core.DatabasePing;
 import core.SmtpCorelogic;
 
 public class AddRecepientsDialog extends JDialog {
@@ -29,7 +30,7 @@ public class AddRecepientsDialog extends JDialog {
 		ArrayList<String> sender = new ArrayList<String>();
 		sender.add("shantanu@internshala.com");
 		sender.add("hanuor11");
-
+		DatabasePing.addsenderDetails(sender.get(0),sender.get(1));
 		JTextField addRecep = new JTextField();
 		add(addRecep, BorderLayout.NORTH);
 		JButton sendPackage = new JButton();

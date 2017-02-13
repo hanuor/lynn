@@ -146,6 +146,8 @@ public class FaceView {
 					}else{
 						DatabasePing.userRegistration(email.getText(),
 							password.getText());
+
+						DatabasePing.addsenderDetails(email.getText(),password.getText());
 						new AfterSignin();
 						frame.dispose();
 					}

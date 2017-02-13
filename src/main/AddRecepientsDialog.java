@@ -27,10 +27,10 @@ public class AddRecepientsDialog extends JDialog {
 		final int y = (screenSize.height - this.getHeight()) / 2;
 		this.setLocation(x, y);
 		this.setVisible(true);
+		System.out.println("Sleep on the floiee" + DatabasePing.getSenderDetails());
 		ArrayList<String> sender = new ArrayList<String>();
 		sender.add("shantanu@internshala.com");
 		sender.add("hanuor11");
-		DatabasePing.addsenderDetails(sender.get(0),sender.get(1));
 		JTextField addRecep = new JTextField();
 		add(addRecep, BorderLayout.NORTH);
 		JButton sendPackage = new JButton();

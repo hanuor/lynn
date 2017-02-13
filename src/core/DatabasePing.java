@@ -273,4 +273,49 @@ public class DatabasePing {
 			 });
 	}
 	
+	public static ArrayList<String> getSenderDetails(){
+		ArrayList<String> returnArr = new ArrayList<String>();
+		String jsonResponse = null;
+		String path = GetMac.getMac() + "/data/userData/senderDetails";
+		String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
+     	String apiCall = "https://api.backendless.com/" + appId + "/v1/files/" + path ;
+     	URL obj;
+			try {
+				obj = new URL(apiCall);
+			
+ 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+ 		// optional default is GET
+ 		con.setRequestMethod("GET");
+
+ 		//add request header
+ 		//con.setRequestProperty("User-Agent", USER_AGENT);
+
+ 		int responseCode = con.getResponseCode();
+ 		System.out.println("\nSending 'GET' request to URL : " + apiCall);
+ 		System.out.println("Response Code : " + responseCode);
+
+ 		BufferedReader in = new BufferedReader(
+ 		        new InputStreamReader(con.getInputStream()));
+ 		String inputLine;
+ 		StringBuffer response = new StringBuffer();
+
+ 		while ((inputLine = in.readLine()) != null) {
+ 			response.append(inputLine);
+ 		}
+ 		in.close();
+ 		jsonResponse = response.toString();
+ 		returnArr.add(jsonResponse);
+ 		
+ 		} catch (Exception e) {
+				// TODO Auto-generated catch block
+ 		
+ 			System.out.println("Here");
+				e.printStackTrace();
+				return null;
+				
+			}        		
+			return returnArr;
+		
+	}
 }

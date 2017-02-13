@@ -329,14 +329,19 @@ public class AfterSignin {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					AddRecepientsDialog addRecep = new AddRecepientsDialog(
-							sendpojo.getPackageData());
-					addRecep.setVisible(true);
+//					System.out.println("Exception causing statement {{DON'T DELETE" + sendpojo.getPackageData());
+					if(sendpojo.getPackageData() != null){
+						AddRecepientsDialog addRecep = new AddRecepientsDialog(
+								sendpojo.getPackageData());
+						addRecep.setVisible(true);
+					}else{
+						JOptionPane.showMessageDialog(null, "Something went wrong",
+								"Error", JOptionPane.INFORMATION_MESSAGE);
+					}
+					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 
-					JOptionPane.showMessageDialog(null, "Something went wrong",
-							"Error", JOptionPane.INFORMATION_MESSAGE);
 					e1.printStackTrace();
 				}
 

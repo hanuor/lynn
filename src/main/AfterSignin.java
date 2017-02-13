@@ -175,6 +175,7 @@ public class AfterSignin {
 					_data.add("Hey");
 					SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
 
+						@SuppressWarnings("unchecked")
 						@Override
 						protected Boolean doInBackground() throws Exception {
 							// TODO Auto-generated method stub
@@ -259,6 +260,7 @@ public class AfterSignin {
 					protected void done() {
 						// TODO Auto-generated method stub
 						_retArr = ControlPanelMethods.getList();
+						listModel.clear();
 						if (_retArr == null) {
 							_retArr = new ArrayList<String>();
 							_retArr.add("Nothing here. Click on 'Add a template' to add templates. Or click refresh");
@@ -272,6 +274,7 @@ public class AfterSignin {
 								listModel.addElement(_retArr.get(i).toString());
 							}
 						}
+						listPanel(listModel);
 						
 						super.done();
 

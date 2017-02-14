@@ -25,7 +25,7 @@ public class AddRecepientsDialog extends JDialog {
 	private HashMap<String, String> recepPacket = new HashMap<String, String>();
 
 	public AddRecepientsDialog(ArrayList<String> packageData) {
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
 		setTitle("Enter email fields");
 		setSize(500, 500);
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -45,9 +45,13 @@ public class AddRecepientsDialog extends JDialog {
 		HashMap<String, String> sender = DatabasePing.getSenderDetails();
 		JPanel header = new JPanel();
 		header.setLayout(new BorderLayout());
-		JTextField CCTextField = new JTextField();
-		header.add(CCTextField, BorderLayout.NORTH);
+		JTextArea CCTextField = new JTextArea();
+		add(CCTextField);
 		
+		JLabel BccText = new JLabel("Bcc:");
+		add(BccText);
+		JTextArea BCCTextField = new JTextArea();
+		add(BCCTextField);
 		JPanel footer = new JPanel();
 		footer.setLayout(new BorderLayout());
 		JButton sendPackage = new JButton();

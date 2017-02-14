@@ -46,13 +46,15 @@ public class AddRecepientsDialog extends JDialog {
 		JPanel header = new JPanel();
 		header.setLayout(new BorderLayout());
 		JTextField CCTextField = new JTextField();
-
 		header.add(CCTextField, BorderLayout.NORTH);
-
+		
+		JPanel footer = new JPanel();
+		footer.setLayout(new BorderLayout());
 		JButton sendPackage = new JButton();
 		sendPackage.setText("Deploy");
-		header.add(sendPackage, BorderLayout.SOUTH);
+		footer.add(sendPackage, BorderLayout.SOUTH);
 		add(header);
+		add(footer);
 		sendPackage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {

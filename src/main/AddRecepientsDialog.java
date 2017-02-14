@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
@@ -22,6 +23,7 @@ import core.SmtpCorelogic;
 
 public class AddRecepientsDialog extends JDialog {
 	private HashMap<String, String> recepPacket = new HashMap<String, String>();
+
 	public AddRecepientsDialog(ArrayList<String> packageData) {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setTitle("Enter email fields");
@@ -32,13 +34,21 @@ public class AddRecepientsDialog extends JDialog {
 		final int y = (screenSize.height - this.getHeight()) / 2;
 		this.setLocation(x, y);
 		this.setVisible(true);
+		JLabel addEmails = new JLabel(
+				"Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
+		add(addEmails);
+		JTextArea addRecep = new JTextArea();
+		add(addRecep);
+		JLabel CcText = new JLabel("Cc: ");
+		add(CcText);
+
 		HashMap<String, String> sender = DatabasePing.getSenderDetails();
 		JPanel header = new JPanel();
 		header.setLayout(new BorderLayout());
-		JLabel addEmails = new JLabel("Add emails (To add multiple emails separate each email with a ';')");
-		add(addEmails);
-		JTextField addRecep = new JTextField();
-		header.add(addRecep, BorderLayout.NORTH);
+		JTextField CCTextField = new JTextField();
+
+		header.add(CCTextField, BorderLayout.NORTH);
+
 		JButton sendPackage = new JButton();
 		sendPackage.setText("Deploy");
 		header.add(sendPackage, BorderLayout.SOUTH);
@@ -51,7 +61,7 @@ public class AddRecepientsDialog extends JDialog {
 					protected Boolean doInBackground() throws Exception {
 						// TODO Auto-generated method stub
 						String recepData = addRecep.getText();
-						recepPacket.put("recepientEmail",recepData);
+						recepPacket.put("recepientEmail", recepData);
 						ArrayList<String> sendRecep = stringtoArrayList(recepData);
 						try {
 							for (String recepEmail : sendRecep) {
@@ -69,6 +79,7 @@ public class AddRecepientsDialog extends JDialog {
 					protected void done() {
 						// TODO Auto-generated method stub
 						super.done();
+						dispose();
 
 					}
 

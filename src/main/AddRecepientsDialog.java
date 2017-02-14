@@ -68,6 +68,9 @@ public class AddRecepientsDialog extends JDialog {
 						// TODO Auto-generated method stub
 						String recepData = addRecep.getText();
 						recepPacket.put("recepientEmail", recepData);
+						recepPacket.put("CcRecepients", CCTextField.getText());
+						recepPacket.put("BccRecepients", BCCTextField.getText());
+						
 						ArrayList<String> sendRecep = stringtoArrayList(recepData);
 						try {
 							for (String recepEmail : sendRecep) {

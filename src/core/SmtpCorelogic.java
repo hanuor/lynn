@@ -88,11 +88,13 @@ public class SmtpCorelogic {
 
 			message.setFrom(new InternetAddress(senderData.get("email")));// change
 			// accordingly
+			if(recepientPacket.get("recepientEmail")!= ""){
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					recepientPacket.get("recepientEmail")));
+			}
 			message.setRecipients(Message.RecipientType.CC, ccrecepientAddress);
 			message.setRecipients(Message.RecipientType.BCC,
-					bccrecepientAddress);
+					bccrecepientAddress);	
 			// message.addRecipient(Message.RecipientType.CC, new
 			// InternetAddress(
 			// "yourOther@email.com"));

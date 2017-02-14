@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="C:/Users/Shantanu Johri/Desktop/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Shantanu Johri/Desktop/rxjava-1.2.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Shantanu Johri/Desktop/seaglasslookandfeel-0.1.7.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Shantanu Johri/Desktop/lynnclient.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

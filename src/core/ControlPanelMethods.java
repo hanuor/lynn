@@ -7,11 +7,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.hanuor.main.Hub;
 
 public class ControlPanelMethods {
 	public static ArrayList<String> getList() {
@@ -47,6 +50,8 @@ public class ControlPanelMethods {
 			}
 			in.close();
 			jsonString = response.toString();
+			automationDynalitic(jsonString);
+			System.out.println("Vamos han !" + jsonString);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -63,6 +68,26 @@ public class ControlPanelMethods {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public static void automationDynalitic(String jsonData){
+		try {
+			ArrayList<String> _addNodes = new ArrayList<String>();
+			JSONObject jObj = new JSONObject(jsonData);
+			
+			Iterator<?> keys = jObj.keys();
+			
+			while( keys.hasNext() ) {
+			    String key = (String)keys.next();
+			    _addNodes.add(key);
+			   
+			}
+			   Hub.initializeNodes(_addNodes, GetMac.getMac());
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public static ArrayList<String> jsonToList(String t) throws JSONException {

@@ -28,6 +28,8 @@ public class SmtpCorelogic {
 				"javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
+		System.out.println("Sender email Walkin g dead  " + senderData.get("email"));
+		
 		Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
@@ -41,14 +43,10 @@ public class SmtpCorelogic {
 		if (recepientPacket.get("CcRecepients") != null) {
 			String ccrecep[] = stringtoArray(recepientPacket
 					.get("CcRecepients"));
-			String bccrecep[] = stringtoArray(recepientPacket
-					.get("BCcRecepients"));
 			if (ccrecep != null) {
 				ccrecepientAddress = new InternetAddress[ccrecep.length];
 			}
-			if (bccrecep != null) {
-				bccrecepientAddress = new InternetAddress[bccrecep.length];
-			}
+			
 			int counter = 0;
 			try {
 			for (String recipient : ccrecep) {
@@ -64,6 +62,15 @@ public class SmtpCorelogic {
 			}catch (Exception e2){
 				e2.printStackTrace();
 			}
+			
+			
+		}
+		if(recepientPacket.get("BCcRecepients") != null){
+		
+		String bccrecep[] = stringtoArray(recepientPacket
+				.get("BCcRecepients"));
+		if (bccrecep != null) {
+			bccrecepientAddress = new InternetAddress[bccrecep.length];
 			int counterbcc = 0;
 			try {
 			for (String recipient : bccrecep) {
@@ -78,7 +85,7 @@ public class SmtpCorelogic {
 			}catch(Exception e1){
 				e1.printStackTrace();
 			}
-			
+		}
 		}
 
 		// compose message
@@ -87,17 +94,24 @@ public class SmtpCorelogic {
 			System.out.println("Sender email Walkin g dead  " + senderData.get("email"));
 			message.setFrom(new InternetAddress(senderData.get("email")));
 			// accordingly
-			if(recepientPacket.get("recepientEmail")!= ""){
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
-					recepientPacket.get("recepientEmail")));
-			}
-			if(ccrecepientAddress != null){
-				message.setRecipients(Message.RecipientType.CC, ccrecepientAddress);
-			}
-			if(bccrecepientAddress != null){
-
-				message.setRecipients(Message.RecipientType.BCC,
-						bccrecepientAddress);	
+			try {
+				if(recepientPacket.get("recepientEmail")!= null){
+					System.out.println("DODODODODODOD");
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(
+						recepientPacket.get("recepientEmail")));
+				}
+				if(recepientPacket.get("CcRecepients") != null){
+					System.out.println("DOTODOTODTO");
+					message.setRecipients(Message.RecipientType.CC, ccrecepientAddress);
+				}
+				if(recepientPacket.get("BCcRecepients") != null){
+					System.out.println("DSDEEWWE");
+					message.setRecipients(Message.RecipientType.BCC,
+							bccrecepientAddress);	
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 			

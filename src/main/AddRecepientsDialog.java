@@ -70,7 +70,8 @@ public class AddRecepientsDialog extends JDialog {
 					protected Boolean doInBackground() throws Exception {
 						// TODO Auto-generated method stub
 						String recepData = addRecep.getText();
-						recepPacket.put("recepientEmail", recepData);
+						System.out.println("Long ghide asd as dawWWEWRFWE" + recepData);
+					//	
 						recepPacket.put("CcRecepients", CCTextField.getText());
 						recepPacket.put("BccRecepients", BCCTextField.getText());
 						
@@ -78,16 +79,19 @@ public class AddRecepientsDialog extends JDialog {
 						ArrayList<String> ccRecep = stringtoArrayList(CCTextField.getText());
 						ArrayList<String> bccRecep = stringtoArrayList(CCTextField.getText());
 						String macId = GetMac.getMac();
-						Hub.initializeNodes(sendRecep, macId,  macId + "/data/sendMail");
-						Hub.initializeNodes(ccRecep, macId,  macId + "/data/ccMail");
-						Hub.initializeNodes(bccRecep, macId,  macId + "/data/bccMail");
+//						Hub.initializeNodes(sendRecep, macId,  macId + "/data/sendMail");
+//						Hub.initializeNodes(ccRecep, macId,  macId + "/data/ccMail");
+//						Hub.initializeNodes(bccRecep, macId,  macId + "/data/bccMail");
 						try {
 							for (String recepEmail : sendRecep) {
+								System.out.println("VVVVVVVVVVVVVVVVV" );
+								recepPacket.put("recepientEmail", recepEmail);
 								SmtpCorelogic.sendMessage(packageData, sender,
 										recepPacket);
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 						return true;

@@ -84,8 +84,8 @@ public class SmtpCorelogic {
 		// compose message
 		try {
 			MimeMessage message = new MimeMessage(session);
-
-			message.setFrom(new InternetAddress(senderData.get("email")));// change
+			System.out.println("Sender email Walkin g dead  " + senderData.get("email"));
+			message.setFrom(new InternetAddress(senderData.get("email")));
 			// accordingly
 			if(recepientPacket.get("recepientEmail")!= ""){
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
@@ -94,9 +94,7 @@ public class SmtpCorelogic {
 			message.setRecipients(Message.RecipientType.CC, ccrecepientAddress);
 			message.setRecipients(Message.RecipientType.BCC,
 					bccrecepientAddress);	
-			// message.addRecipient(Message.RecipientType.CC, new
-			// InternetAddress(
-			// "yourOther@email.com"));
+			
 			message.setSubject(data.get(0)); // Get 0 means we are getting the
 												// // subject
 			message.setText(data.get(1)); // Get 1 means we are getting the

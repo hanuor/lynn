@@ -81,7 +81,8 @@ public class ControlPanelMethods {
 			    _addNodes.add(key);
 			   
 			}
-			   Hub.initializeNodes(_addNodes, GetMac.getMac());
+			String macId = GetMac.getMac();
+			   Hub.initializeNodes(_addNodes, macId, "" +  macId + "/data/nodes");
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

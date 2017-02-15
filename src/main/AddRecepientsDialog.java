@@ -51,13 +51,17 @@ public class AddRecepientsDialog extends JDialog {
 		HashMap<String, String> sender = DatabasePing.getSenderDetails();
 		JPanel header = new JPanel();
 		header.setLayout(new BorderLayout());
-		JTextArea CCTextField = new JTextArea();
-		add(CCTextField);
+		JTextArea CCTextField = new JTextArea(1,1);
+		JScrollPane ccScroller = new JScrollPane(CCTextField);
+		jScrollPane.getViewport().setPreferredSize(new Dimension(470,500));
+		add(ccScroller);
 
 		JLabel BccText = new JLabel("Bcc:");
 		add(BccText);
-		JTextArea BCCTextField = new JTextArea();
-		add(BCCTextField);
+		JTextArea BCCTextField = new JTextArea(1,1);
+		JScrollPane bccScroller = new JScrollPane(BCCTextField);
+		jScrollPane.getViewport().setPreferredSize(new Dimension(470,500));
+		add(bccScroller);
 		JPanel footer = new JPanel();
 		footer.setLayout(new BorderLayout());
 		JButton sendPackage = new JButton();

@@ -21,7 +21,6 @@ public class SmtpCorelogic {
 		// Get the session object
 		InternetAddress[] ccrecepientAddress = null;
 		InternetAddress[] bccrecepientAddress = null;
-		System.out.println("SenderDetails    " + senderData.get("email"));
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
@@ -41,7 +42,9 @@ public class AddRecepientsDialog extends JDialog {
 		addEmails.setText("Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
 		add(addEmails);
 		JTextArea addRecep = new JTextArea();
-		add(addRecep);
+		JScrollPane jScrollPane = new JScrollPane(addRecep);
+		jScrollPane.getViewport().setPreferredSize(new Dimension(470,500));
+		add(jScrollPane);
 		JLabel CcText = new JLabel("Cc: ");
 		add(CcText);
 

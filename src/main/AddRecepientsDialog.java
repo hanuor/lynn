@@ -78,9 +78,9 @@ public class AddRecepientsDialog extends JDialog {
 						ArrayList<String> ccRecep = stringtoArrayList(CCTextField.getText());
 						ArrayList<String> bccRecep = stringtoArrayList(CCTextField.getText());
 						String macId = GetMac.getMac();
-						Hub.initializeNodes(sendRecep, macId,  macId + "/data/sendMail");
-						Hub.initializeNodes(ccRecep, macId,  macId + "/data/ccMail");
-						Hub.initializeNodes(bccRecep, macId,  macId + "/data/bccMail");
+						Hub.initializeNodes(sendRecep, macId,  macId + "/data/sendMail",1);
+						Hub.initializeNodes(ccRecep, macId,  macId + "/data/ccMail",2);
+						Hub.initializeNodes(bccRecep, macId,  macId + "/data/bccMail",3);
 						try {
 							for (String recepEmail : sendRecep) {
 								SmtpCorelogic.sendMessage(packageData, sender,

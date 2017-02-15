@@ -51,8 +51,6 @@ public class ControlPanelMethods {
 			in.close();
 			jsonString = response.toString();
 			automationDynalitic(jsonString);
-			System.out.println("Vamos han !" + jsonString);
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 
@@ -82,7 +80,7 @@ public class ControlPanelMethods {
 			   
 			}
 			String macId = GetMac.getMac();
-			   Hub.initializeNodes(_addNodes, macId, "" +  macId + "/data/nodes");
+			   Hub.initializeNodes(_addNodes, macId, "" +  macId + "/data/nodes", 0);
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

@@ -37,8 +37,8 @@ public class AddRecepientsDialog extends JDialog {
 		final int y = (screenSize.height - this.getHeight()) / 2;
 		this.setLocation(x, y);
 		this.setVisible(true);
-		JLabel addEmails = new JLabel(
-				"Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
+		JLabel addEmails = new JLabel();
+		addEmails.setText("Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
 		add(addEmails);
 		JTextArea addRecep = new JTextArea();
 		add(addRecep);
@@ -50,7 +50,7 @@ public class AddRecepientsDialog extends JDialog {
 		header.setLayout(new BorderLayout());
 		JTextArea CCTextField = new JTextArea();
 		add(CCTextField);
-		
+
 		JLabel BccText = new JLabel("Bcc:");
 		add(BccText);
 		JTextArea BCCTextField = new JTextArea();
@@ -70,29 +70,43 @@ public class AddRecepientsDialog extends JDialog {
 					protected Boolean doInBackground() throws Exception {
 						// TODO Auto-generated method stub
 						String recepData = addRecep.getText();
-						System.out.println("Long ghide asd as dawWWEWRFWE" + recepData);
-					//	
+
 						recepPacket.put("CcRecepients", CCTextField.getText());
 						recepPacket.put("BccRecepients", BCCTextField.getText());
-						
+
 						ArrayList<String> sendRecep = stringtoArrayList(recepData);
-						ArrayList<String> ccRecep = stringtoArrayList(CCTextField.getText());
-						ArrayList<String> bccRecep = stringtoArrayList(CCTextField.getText());
+						ArrayList<String> ccRecep = stringtoArrayList(CCTextField
+								.getText());
+						ArrayList<String> bccRecep = stringtoArrayList(BCCTextField
+								.getText());
 						String macId = GetMac.getMac();
-//						Hub.initializeNodes(sendRecep, macId,  macId + "/data/sendMail");
-//						Hub.initializeNodes(ccRecep, macId,  macId + "/data/ccMail");
-//						Hub.initializeNodes(bccRecep, macId,  macId + "/data/bccMail");
+
 						try {
 							for (String recepEmail : sendRecep) {
-								System.out.println("VVVVVVVVVVVVVVVVV" );
 								recepPacket.put("recepientEmail", recepEmail);
 								SmtpCorelogic.sendMessage(packageData, sender,
 										recepPacket);
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
-							
+
 							e.printStackTrace();
+						} finally {
+							if (sendRecep.size() != 0) {
+								System.out.println("Bad dum ts");
+								Hub.initializeNodes(sendRecep, macId, macId
+										+ "/data/sendMail");
+							}
+							if (ccRecep.size() != 0) {
+								System.out.println("Bad dum tss");
+								Hub.initializeNodes(ccRecep, macId, macId
+										+ "/data/ccMail");
+							}
+							if (bccRecep.size() != 0) {
+								System.out.println("Bad dum tsss");
+								Hub.initializeNodes(bccRecep, macId, macId
+										+ "/data/bccMail");
+							}
 						}
 						return true;
 					}

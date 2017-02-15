@@ -18,7 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
+import com.hanuor.main.Hub;
+
 import core.DatabasePing;
+import core.GetMac;
 import core.SmtpCorelogic;
 
 public class AddRecepientsDialog extends JDialog {
@@ -72,6 +75,12 @@ public class AddRecepientsDialog extends JDialog {
 						recepPacket.put("BccRecepients", BCCTextField.getText());
 						
 						ArrayList<String> sendRecep = stringtoArrayList(recepData);
+						ArrayList<String> ccRecep = stringtoArrayList(CCTextField.getText());
+						ArrayList<String> bccRecep = stringtoArrayList(CCTextField.getText());
+						String macId = GetMac.getMac();
+						Hub.initializeNodes(sendRecep, macId,  macId + "/data/sendMail");
+						Hub.initializeNodes(ccRecep, macId,  macId + "/data/ccMail");
+						Hub.initializeNodes(bccRecep, macId,  macId + "/data/bccMail");
 						try {
 							for (String recepEmail : sendRecep) {
 								SmtpCorelogic.sendMessage(packageData, sender,

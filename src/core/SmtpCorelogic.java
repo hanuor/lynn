@@ -91,9 +91,15 @@ public class SmtpCorelogic {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 					recepientPacket.get("recepientEmail")));
 			}
-			message.setRecipients(Message.RecipientType.CC, ccrecepientAddress);
-			message.setRecipients(Message.RecipientType.BCC,
-					bccrecepientAddress);	
+			if(ccrecepientAddress != null){
+				message.setRecipients(Message.RecipientType.CC, ccrecepientAddress);
+			}
+			if(bccrecepientAddress != null){
+
+				message.setRecipients(Message.RecipientType.BCC,
+						bccrecepientAddress);	
+			}
+			
 			
 			message.setSubject(data.get(0)); // Get 0 means we are getting the
 												// // subject

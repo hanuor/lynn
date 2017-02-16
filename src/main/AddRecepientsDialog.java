@@ -48,22 +48,30 @@ public class AddRecepientsDialog extends JDialog {
 				.setText("Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
 		add(addEmails);
 		StringBuilder sbuilder = new StringBuilder();
-		for (String s : hints)
-		{
-		    sbuilder.append(s);
-		    sbuilder.append("\t");
-		    sbuilder.append(", ");
-		}
+
 		JTextArea addRecep = new JTextArea();
 
 		JScrollPane jScrollPane = new JScrollPane(addRecep);
 		jScrollPane.getViewport().setPreferredSize(new Dimension(470, 500));
 		if (hints != null) {
+			int counter = 0;
+			int upto = 0;
+			if (hints.size() >= 3) {
+				upto = 2;
+			} else {
+				upto = hints.size();
+			}
+			for (int i = 0; i <= upto; i++) {
+				sbuilder.append(hints.get(i));
+				sbuilder.append("\t");
+				if (counter < upto) {
+					sbuilder.append(", ");
+				}
+				counter++;
+			}
 			System.out.println("See you tomorrow  " + hints);
-			BalloonTip balloon = new BalloonTip(jScrollPane, "Suggestions for you: " + sbuilder.toString());
-			//Popup p = PopupFactory.getSharedInstance().getPopup(addRecep, new JLabel(hints.toString() ), 5, 5);
-			//p.show();
-			//GhostText ghostText = new GhostText(addRecep, hints.toString());
+			BalloonTip balloon = new BalloonTip(jScrollPane, ""
+					+ sbuilder.toString());
 
 		}
 		add(jScrollPane);

@@ -33,7 +33,10 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import com.hanuor.main.Hub;
+
 import core.ControlPanelMethods;
+import core.GetMac;
 import core.GetSet;
 import core.SendPOJO;
 
@@ -332,6 +335,7 @@ public class AfterSignin {
 				try {
 //					System.out.println("Exception causing statement {{DON'T DELETE" + sendpojo.getPackageData());
 					if(sendpojo.getPackageData() != null){
+						Hub.getRecepientsFromDb(GetMac.getMac() + "/data/sendMail");
 						AddRecepientsDialog addRecep = new AddRecepientsDialog(
 								sendpojo.getPackageData());
 						addRecep.setVisible(true);

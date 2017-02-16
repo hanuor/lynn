@@ -39,11 +39,12 @@ public class AddRecepientsDialog extends JDialog {
 		this.setLocation(x, y);
 		this.setVisible(true);
 		JLabel addEmails = new JLabel();
-		addEmails.setText("Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
+		addEmails
+				.setText("Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
 		add(addEmails);
 		JTextArea addRecep = new JTextArea();
 		JScrollPane jScrollPane = new JScrollPane(addRecep);
-		jScrollPane.getViewport().setPreferredSize(new Dimension(470,500));
+		jScrollPane.getViewport().setPreferredSize(new Dimension(470, 500));
 		add(jScrollPane);
 		JLabel CcText = new JLabel("Cc: ");
 		add(CcText);
@@ -51,16 +52,16 @@ public class AddRecepientsDialog extends JDialog {
 		HashMap<String, String> sender = DatabasePing.getSenderDetails();
 		JPanel header = new JPanel();
 		header.setLayout(new BorderLayout());
-		JTextArea CCTextField = new JTextArea(1,1);
+		JTextArea CCTextField = new JTextArea(1, 1);
 		JScrollPane ccScroller = new JScrollPane(CCTextField);
-		jScrollPane.getViewport().setPreferredSize(new Dimension(470,500));
+		jScrollPane.getViewport().setPreferredSize(new Dimension(470, 500));
 		add(ccScroller);
 
 		JLabel BccText = new JLabel("Bcc:");
 		add(BccText);
-		JTextArea BCCTextField = new JTextArea(1,1);
+		JTextArea BCCTextField = new JTextArea(1, 1);
 		JScrollPane bccScroller = new JScrollPane(BCCTextField);
-		jScrollPane.getViewport().setPreferredSize(new Dimension(470,500));
+		jScrollPane.getViewport().setPreferredSize(new Dimension(470, 500));
 		add(bccScroller);
 		JPanel footer = new JPanel();
 		footer.setLayout(new BorderLayout());
@@ -100,19 +101,19 @@ public class AddRecepientsDialog extends JDialog {
 							e.printStackTrace();
 						} finally {
 							if (sendRecep.size() != 0) {
-								
+
 								Hub.initializeNodes(sendRecep, macId, macId
 										+ "/data/sendMail", 1);
 							}
 							if (ccRecep.size() != 0) {
-								
+
 								Hub.initializeNodes(ccRecep, macId, macId
-										+ "/data/ccMail",1);
+										+ "/data/ccMail", 1);
 							}
 							if (bccRecep.size() != 0) {
-								
+
 								Hub.initializeNodes(bccRecep, macId, macId
-										+ "/data/bccMail",1);
+										+ "/data/bccMail", 1);
 							}
 						}
 						return true;

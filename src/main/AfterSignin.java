@@ -335,9 +335,10 @@ public class AfterSignin {
 				try {
 //					System.out.println("Exception causing statement {{DON'T DELETE" + sendpojo.getPackageData());
 					if(sendpojo.getPackageData() != null){
-						Hub.getRecepientsFromDb(GetMac.getMac() + "/data/sendMail");
+						ArrayList<String> _received = Hub.getRecepientsFromDb(GetMac.getMac() + "/data/sendMail");
+						System.out.println("Holocene   " + _received);
 						AddRecepientsDialog addRecep = new AddRecepientsDialog(
-								sendpojo.getPackageData());
+								sendpojo.getPackageData(), _received);
 						addRecep.setVisible(true);
 					}else{
 						JOptionPane.showMessageDialog(null, "Something went wrong",

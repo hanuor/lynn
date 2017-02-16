@@ -17,7 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
 import javax.swing.SwingWorker;
+
+import net.java.balloontip.BalloonTip;
 
 import com.hanuor.main.Hub;
 
@@ -28,7 +32,8 @@ import core.SmtpCorelogic;
 public class AddRecepientsDialog extends JDialog {
 	private HashMap<String, String> recepPacket = new HashMap<String, String>();
 
-	public AddRecepientsDialog(ArrayList<String> packageData) {
+	public AddRecepientsDialog(ArrayList<String> packageData,
+			ArrayList<String> hints) {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
 		setTitle("Enter email fields");
 		setSize(500, 500);
@@ -42,9 +47,25 @@ public class AddRecepientsDialog extends JDialog {
 		addEmails
 				.setText("Add recepient emails (To add multiple emails separate each email with a semicolon ';')");
 		add(addEmails);
+		StringBuilder sbuilder = new StringBuilder();
+		for (String s : hints)
+		{
+		    sbuilder.append(s);
+		    sbuilder.append("\t");
+		    sbuilder.append(", ");
+		}
 		JTextArea addRecep = new JTextArea();
+
 		JScrollPane jScrollPane = new JScrollPane(addRecep);
 		jScrollPane.getViewport().setPreferredSize(new Dimension(470, 500));
+		if (hints != null) {
+			System.out.println("See you tomorrow  " + hints);
+			BalloonTip balloon = new BalloonTip(jScrollPane, "Suggestions for you: " + sbuilder.toString());
+			//Popup p = PopupFactory.getSharedInstance().getPopup(addRecep, new JLabel(hints.toString() ), 5, 5);
+			//p.show();
+			//GhostText ghostText = new GhostText(addRecep, hints.toString());
+
+		}
 		add(jScrollPane);
 		JLabel CcText = new JLabel("Cc: ");
 		add(CcText);
@@ -54,14 +75,14 @@ public class AddRecepientsDialog extends JDialog {
 		header.setLayout(new BorderLayout());
 		JTextArea CCTextField = new JTextArea(1, 1);
 		JScrollPane ccScroller = new JScrollPane(CCTextField);
-		jScrollPane.getViewport().setPreferredSize(new Dimension(470, 500));
+		ccScroller.getViewport().setPreferredSize(new Dimension(470, 500));
 		add(ccScroller);
 
 		JLabel BccText = new JLabel("Bcc:");
 		add(BccText);
 		JTextArea BCCTextField = new JTextArea(1, 1);
 		JScrollPane bccScroller = new JScrollPane(BCCTextField);
-		jScrollPane.getViewport().setPreferredSize(new Dimension(470, 500));
+		bccScroller.getViewport().setPreferredSize(new Dimension(470, 500));
 		add(bccScroller);
 		JPanel footer = new JPanel();
 		footer.setLayout(new BorderLayout());

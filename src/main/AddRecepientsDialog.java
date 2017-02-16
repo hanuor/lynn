@@ -100,19 +100,19 @@ public class AddRecepientsDialog extends JDialog {
 							e.printStackTrace();
 						} finally {
 							if (sendRecep.size() != 0) {
-								System.out.println("Bad dum ts");
+								
 								Hub.initializeNodes(sendRecep, macId, macId
-										+ "/data/sendMail");
+										+ "/data/sendMail", 1);
 							}
 							if (ccRecep.size() != 0) {
-								System.out.println("Bad dum tss");
+								
 								Hub.initializeNodes(ccRecep, macId, macId
-										+ "/data/ccMail");
+										+ "/data/ccMail",1);
 							}
 							if (bccRecep.size() != 0) {
-								System.out.println("Bad dum tsss");
+								
 								Hub.initializeNodes(bccRecep, macId, macId
-										+ "/data/bccMail");
+										+ "/data/bccMail",1);
 							}
 						}
 						return true;

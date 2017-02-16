@@ -25,7 +25,8 @@ Research shows that this saves upto around 13 mins of your time per hour. That a
 You need to grant a permission first so that Gmail allows you to send an email from a 'less secure app' (third party).
 https://www.google.com/settings/security/lesssecureapps
 
-### Beta is released and ready for use! Download the software by surfing through the 'release' tab.
+### Beta is released and ready for use! Download the software by surfing through the 'release' tab or 
+### [Download](https://github.com/hanuor/lynn/releases)
 
 
 ### Screens        

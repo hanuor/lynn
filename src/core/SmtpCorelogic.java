@@ -99,13 +99,22 @@ public class SmtpCorelogic {
 							new InternetAddress(recepientPacket
 									.get("recepientEmail")));
 				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
 				if (recepientPacket.get("CcRecepients") != null) {
 
 					message.setRecipients(Message.RecipientType.CC,
 							ccrecepientAddress);
 				}
-				if (recepientPacket.get("BCcRecepients") != null) {
-System.out.println("Wherever " );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				if (recepientPacket.get("BccRecepients") != null) {
 					message.setRecipients(Message.RecipientType.BCC,
 							bccrecepientAddress);
 				}

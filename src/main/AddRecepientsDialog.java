@@ -106,7 +106,7 @@ public class AddRecepientsDialog extends JDialog {
 					protected Boolean doInBackground() throws Exception {
 						// TODO Auto-generated method stub
 						String recepData = addRecep.getText();
-
+						System.out.println(BCCTextField.getText());
 						recepPacket.put("CcRecepients", CCTextField.getText());
 						recepPacket.put("BccRecepients", BCCTextField.getText());
 

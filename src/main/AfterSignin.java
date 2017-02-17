@@ -183,8 +183,14 @@ public class AfterSignin {
 									.get("subject")));
 							gs.setEmailCount(ControlPanelMethods.getCount(mmp
 									.get("message")));
-							gs.setSubText(mmp.get("subject").toString());
-							gs.setEmailText(mmp.get("message").toString());
+							StringBuilder strBuilderSub = new StringBuilder();
+							strBuilderSub.append(mmp.get("subject"));
+							strBuilderSub.append(" ");
+							StringBuilder strBuilderEmail = new StringBuilder();
+							strBuilderEmail.append(mmp.get("message"));
+							strBuilderEmail.append(" ");
+							gs.setSubText(strBuilderSub.toString());
+							gs.setEmailText(strBuilderEmail.toString());
 
 							return true;
 						}

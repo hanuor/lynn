@@ -105,7 +105,7 @@ public class SmtpCorelogic {
 							ccrecepientAddress);
 				}
 				if (recepientPacket.get("BCcRecepients") != null) {
-
+System.out.println("Wherever " );
 					message.setRecipients(Message.RecipientType.BCC,
 							bccrecepientAddress);
 				}

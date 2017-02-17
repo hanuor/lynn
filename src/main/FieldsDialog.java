@@ -47,8 +47,6 @@ public class FieldsDialog extends JDialog {
 		JLabel head = new JLabel();
 		head.setText("Subject Panel");
 		cpanel.add(head);
-		System.out.println("HEERA");
-		// getContentPane().add(scroll);
 		for (int i = 1; i <= subCount; i++) {
 			JPanel fields = new JPanel();
 			fields.setLayout(new BoxLayout(fields, BoxLayout.X_AXIS));

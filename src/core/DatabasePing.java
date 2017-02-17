@@ -29,301 +29,295 @@ import com.backendless.exceptions.BackendlessFault;
 import com.backendless.files.BackendlessFile;
 
 public class DatabasePing {
-	 public static ArrayList<String> getEmailandPassword(String MacId){
-     	String jsonString = null;
-     	ArrayList<String> _arrList = new ArrayList<String>();
-     	String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
-     	String apiCall = "https://api.backendless.com/" + appId + "/v1/files/" + GetMac.getMac() + "/data/user" ;
-     	URL obj;
-			try {
-				obj = new URL(apiCall);
-			
- 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+	public static ArrayList<String> getEmailandPassword(String MacId) {
+		String jsonString = null;
+		ArrayList<String> _arrList = new ArrayList<String>();
+		String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
+		String apiCall = "https://api.backendless.com/" + appId + "/v1/files/"
+				+ GetMac.getMac() + "/data/user";
+		URL obj;
+		try {
+			obj = new URL(apiCall);
 
- 		// optional default is GET
- 		con.setRequestMethod("GET");
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
- 		//add request header
- 		//con.setRequestProperty("User-Agent", USER_AGENT);
+			// optional default is GET
+			con.setRequestMethod("GET");
 
- 		int responseCode = con.getResponseCode();
- 		System.out.println("\nSending 'GET' request to URL : " + apiCall);
- 		System.out.println("Response Code : " + responseCode);
+			// add request header
+			// con.setRequestProperty("User-Agent", USER_AGENT);
 
- 		BufferedReader in = new BufferedReader(
- 		        new InputStreamReader(con.getInputStream()));
- 		String inputLine;
- 		StringBuffer response = new StringBuffer();
+			int responseCode = con.getResponseCode();
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
 
- 		while ((inputLine = in.readLine()) != null) {
- 			response.append(inputLine);
- 		}
- 		in.close();
- 		jsonString = response.toString();
- 		JSONObject jObj = new JSONObject(jsonString);
- 		String password = (String) jObj.get("password");
- 		String email = (String) jObj.get("email");
- 		_arrList.add(email);
- 		_arrList.add(password);
- 		} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				
-			}        		
-			return _arrList;	
-     }
-	public static void userRegistration(String email, String password){
-		
-		Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
-		  BackendlessUser user = new BackendlessUser();
-		  user.setProperty( "email", email.toString() );
-		  user.setPassword( password.toString() );
-		   
-		  Backendless.UserService.register( user, new AsyncCallback<BackendlessUser>()
-		  {
-
-			@Override
-			public void handleFault(BackendlessFault bFault) {
-				// TODO Auto-generated method stub
-				System.out.println("Error " +bFault.getMessage());
-				bFault.getMessage();
-				
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
 			}
+			in.close();
+			jsonString = response.toString();
+			JSONObject jObj = new JSONObject(jsonString);
+			String password = (String) jObj.get("password");
+			String email = (String) jObj.get("email");
+			_arrList.add(email);
+			_arrList.add(password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 
-			@Override
-			public void handleResponse(BackendlessUser bUser) {
-				GetMac.getMac();
-				System.out.print(bUser + "");		
-			}
-		  });
-		  //Upload a separate meta of their profile
-		  String path = GetMac.getMac() + "/data/user";
-		  String remoteName = "userDetails";
-		  Map<String, String> map = new HashMap<String, String>();
-		  map.put("email", email);
-		  map.put("password", password);
-		  JSONObject jobj =new JSONObject(map);
-		 Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,new AsyncCallback<String>(){
+		}
+		return _arrList;
+	}
 
-			@Override
-			public void handleFault(BackendlessFault arg0) {
-				// TODO Auto-generated method stub
-				System.out.println(arg0.getMessage());
-				
-			}
+	public static void userRegistration(String email, String password) {
 
-			@Override
-			public void handleResponse(String arg0) {
-				// TODO Auto-generated method stub
-				System.out.println(arg0);
-			}
-			 
-		 });
+		Backendless.initApp("8662F7F0-FA42-2800-FFDB-8A331467EF00",
+				"21B58D09-56A2-3158-FF75-EB1B1237E500", "v1");
+		BackendlessUser user = new BackendlessUser();
+		user.setProperty("email", email.toString());
+		user.setPassword(password.toString());
+
+		Backendless.UserService.register(user,
+				new AsyncCallback<BackendlessUser>() {
+
+					@Override
+					public void handleFault(BackendlessFault bFault) {
+						// TODO Auto-generated method stub
+						System.out.println("Error " + bFault.getMessage());
+						bFault.getMessage();
+
+					}
+
+					@Override
+					public void handleResponse(BackendlessUser bUser) {
+						GetMac.getMac();
+						System.out.print(bUser + "");
+					}
+				});
+		// Upload a separate meta of their profile
+		String path = GetMac.getMac() + "/data/user";
+		String remoteName = "userDetails";
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("password", password);
+		JSONObject jobj = new JSONObject(map);
+		Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,
+				new AsyncCallback<String>() {
+
+					@Override
+					public void handleFault(BackendlessFault arg0) {
+						// TODO Auto-generated method stub
+						System.out.println(arg0.getMessage());
+
+					}
+
+					@Override
+					public void handleResponse(String arg0) {
+						// TODO Auto-generated method stub
+						System.out.println(arg0);
+					}
+
+				});
 
 	}
-	
-	public static void saveTemplateMessage(String extension,String subject, String message){
-		Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
+
+	public static void saveTemplateMessage(String extension, String subject,
+			String message) {
+		Backendless.initApp("8662F7F0-FA42-2800-FFDB-8A331467EF00",
+				"21B58D09-56A2-3158-FF75-EB1B1237E500", "v1");
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("subject", subject);
 		hMap.put("message", message);
-		 JSONObject jobj =new JSONObject(hMap);
-		 
-		 HashMap<String, String> cMap; 
-		 
-			
-		 String path = GetMac.getMac() + "/data/userData/temp/" + extension;
-		 String listPath = GetMac.getMac() + "/data/userData/tempList";
-		 cMap = catchMap(listPath);
-		 if(cMap == null){
-			 cMap = new HashMap<String, String>();
-			  
-		 }
-		 cMap.put(extension, extension);	
-		
-		 JSONObject cobj =new JSONObject(cMap);
-		 Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,new AsyncCallback<String>(){
+		JSONObject jobj = new JSONObject(hMap);
 
-			@Override
-			public void handleFault(BackendlessFault arg0) {
-				// TODO Auto-generated method stub
-				
-				System.out.println(arg0);
-				
-				
-			}
+		HashMap<String, String> cMap;
 
-			@Override
-			public void handleResponse(String arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("HEHW" + arg0);
-				
-			}
-			 
-		 });
-		 Backendless.Files.saveFile(listPath, cobj.toString().getBytes(), true,new AsyncCallback<String>(){
+		String path = GetMac.getMac() + "/data/userData/temp/" + extension;
+		String listPath = GetMac.getMac() + "/data/userData/tempList";
+		cMap = catchMap(listPath);
+		if (cMap == null) {
+			cMap = new HashMap<String, String>();
 
-				@Override
-				public void handleFault(BackendlessFault arg0) {
-					// TODO Auto-generated method stub
-					
-					System.out.println(arg0);
-					
-					
-				}
+		}
+		cMap.put(extension, extension);
 
-				@Override
-				public void handleResponse(String arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-				 
-			 });
+		JSONObject cobj = new JSONObject(cMap);
+		Backendless.Files.saveFile(path, jobj.toString().getBytes(), true,
+				new AsyncCallback<String>() {
+
+					@Override
+					public void handleFault(BackendlessFault arg0) {
+						// TODO Auto-generated method stub
+
+						System.out.println(arg0);
+
+					}
+
+					@Override
+					public void handleResponse(String arg0) {
+						// TODO Auto-generated method stub
+						System.out.println("HEHW" + arg0);
+
+					}
+
+				});
+		Backendless.Files.saveFile(listPath, cobj.toString().getBytes(), true,
+				new AsyncCallback<String>() {
+
+					@Override
+					public void handleFault(BackendlessFault arg0) {
+						// TODO Auto-generated method stub
+
+						System.out.println(arg0);
+
+					}
+
+					@Override
+					public void handleResponse(String arg0) {
+						// TODO Auto-generated method stub
+
+					}
+
+				});
 
 	}
+
 	private static HashMap<String, String> catchMap(String path) {
 		// TODO Auto-generated method stub
 		String jsonString = null;
 		HashMap<String, String> _mapList = new HashMap<String, String>();
-     	String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
-     	String apiCall = "https://api.backendless.com/" + appId + "/v1/files/" + path ;
-     	URL obj;
-			try {
-				obj = new URL(apiCall);
-			
- 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
+		String apiCall = "https://api.backendless.com/" + appId + "/v1/files/"
+				+ path;
+		URL obj;
+		try {
+			obj = new URL(apiCall);
 
- 		// optional default is GET
- 		con.setRequestMethod("GET");
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
- 		//add request header
- 		//con.setRequestProperty("User-Agent", USER_AGENT);
+			// optional default is GET
+			con.setRequestMethod("GET");
 
- 		int responseCode = con.getResponseCode();
- 		System.out.println("\nSending 'GET' request to URL : " + apiCall);
- 		System.out.println("Response Code : " + responseCode);
+			// add request header
+			// con.setRequestProperty("User-Agent", USER_AGENT);
 
- 		BufferedReader in = new BufferedReader(
- 		        new InputStreamReader(con.getInputStream()));
- 		String inputLine;
- 		StringBuffer response = new StringBuffer();
+			int responseCode = con.getResponseCode();
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
 
- 		while ((inputLine = in.readLine()) != null) {
- 			response.append(inputLine);
- 		}
- 		in.close();
- 		jsonString = response.toString();
- 		
- 		} catch (Exception e) {
-				// TODO Auto-generated catch block
- 		
- 			System.out.println("Here");
-				e.printStackTrace();
-				return null;
-				
-			}        		
-			try {
-				return jsonToMap(jsonString);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}	
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+			jsonString = response.toString();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+			return null;
+
+		}
+		try {
+			return jsonToMap(jsonString);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
-	public static HashMap<String, String> jsonToMap(String t) throws JSONException {
 
-        HashMap<String, String> map = new HashMap<String, String>();
-        JSONObject jObject = new JSONObject(t);
-        Iterator<?> keys = jObject.keys();
+	public static HashMap<String, String> jsonToMap(String t)
+			throws JSONException {
 
-        while( keys.hasNext() ){
-            String key = (String)keys.next();
-            String value = jObject.getString(key); 
-            map.put(key, value);
+		HashMap<String, String> map = new HashMap<String, String>();
+		JSONObject jObject = new JSONObject(t);
+		Iterator<?> keys = jObject.keys();
 
-        }
-        System.out.println("Whats is here  " + map.toString());
-        	return map;
-    }
-	
-	public static void  addsenderDetails(String email, String password){
-		Backendless.initApp( "8662F7F0-FA42-2800-FFDB-8A331467EF00", "21B58D09-56A2-3158-FF75-EB1B1237E500", "v1" );
-		 String path = GetMac.getMac() + "/data/userData/senderDetails"  ;
-		 HashMap<String, String> putMap = new HashMap<String, String>();
-		 putMap.put("email", email);
-		 putMap.put("password", password);
-		 JSONObject toObject =new JSONObject(putMap);
-		 Backendless.Files.saveFile(path, toObject.toString().getBytes(), true,new AsyncCallback<String>(){
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			String value = jObject.getString(key);
+			map.put(key, value);
 
-				@Override
-				public void handleFault(BackendlessFault arg0) {
-					// TODO Auto-generated method stub
-					
-					System.out.println(arg0);
-					
-					
-				}
-
-				@Override
-				public void handleResponse(String arg0) {
-					// TODO Auto-generated method stub
-					System.out.println("Success" + arg0);
-					
-				}
-				 
-			 });
+		}
+		return map;
 	}
-	
-	public static HashMap<String, String> getSenderDetails(){
+
+	public static void addsenderDetails(String email, String password) {
+		Backendless.initApp("8662F7F0-FA42-2800-FFDB-8A331467EF00",
+				"21B58D09-56A2-3158-FF75-EB1B1237E500", "v1");
+		String path = GetMac.getMac() + "/data/userData/senderDetails";
+		HashMap<String, String> putMap = new HashMap<String, String>();
+		putMap.put("email", email);
+		putMap.put("password", password);
+		JSONObject toObject = new JSONObject(putMap);
+		Backendless.Files.saveFile(path, toObject.toString().getBytes(), true,
+				new AsyncCallback<String>() {
+
+					@Override
+					public void handleFault(BackendlessFault arg0) {
+						// TODO Auto-generated method stub
+
+						System.out.println(arg0);
+
+					}
+
+					@Override
+					public void handleResponse(String arg0) {
+						// TODO Auto-generated method stub
+						System.out.println("Success" + arg0);
+
+					}
+
+				});
+	}
+
+	public static HashMap<String, String> getSenderDetails() {
 		String jsonResponse = null;
 		String path = GetMac.getMac() + "/data/userData/senderDetails";
 		String appId = "8662F7F0-FA42-2800-FFDB-8A331467EF00";
-     	String apiCall = "https://api.backendless.com/" + appId + "/v1/files/" + path ;
-     	URL obj;
-			try {
-				obj = new URL(apiCall);
-			
- 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		String apiCall = "https://api.backendless.com/" + appId + "/v1/files/"
+				+ path;
+		URL obj;
+		try {
+			obj = new URL(apiCall);
 
- 		// optional default is GET
- 		con.setRequestMethod("GET");
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
- 		//add request header
- 		//con.setRequestProperty("User-Agent", USER_AGENT);
+			// optional default is GET
+			con.setRequestMethod("GET");
 
- 		int responseCode = con.getResponseCode();
- 		System.out.println("\nSending 'GET' request to URL : " + apiCall);
- 		System.out.println("Response Code : " + responseCode);
+			// add request header
+			// con.setRequestProperty("User-Agent", USER_AGENT);
 
- 		BufferedReader in = new BufferedReader(
- 		        new InputStreamReader(con.getInputStream()));
- 		String inputLine;
- 		StringBuffer response = new StringBuffer();
+			int responseCode = con.getResponseCode();
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
 
- 		while ((inputLine = in.readLine()) != null) {
- 			response.append(inputLine);
- 		}
- 		in.close();
- 		jsonResponse = response.toString();
- 		System.out.println("OOOOOOYEA H    " + jsonResponse );
- 		
- 		
- 		} catch (Exception e) {
-				// TODO Auto-generated catch block
- 		
- 			System.out.println("Here");
-				e.printStackTrace();
-				return null;
-				
-			}        		
-			try {
-				System.out.print("Ocean is ererer   " + jsonResponse );
-				return jsonToMap(jsonResponse);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
 			}
-		
+			in.close();
+			jsonResponse = response.toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+
+		}
+		try {
+			return jsonToMap(jsonResponse);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 }

@@ -55,7 +55,6 @@ public class AfterSignin {
 				try {
 					for (LookAndFeelInfo info : UIManager
 							.getInstalledLookAndFeels()) {
-						System.out.print("Drum Sticks!!! " + info.getName());
 						if ("Nimbus".equals(info.getName())) {
 							UIManager.setLookAndFeel(info.getClassName());
 							break;
@@ -296,7 +295,7 @@ public class AfterSignin {
 				.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		countryList.setLayoutOrientation(JList.VERTICAL_WRAP);
 		countryList.setVisibleRowCount(-1);
-		
+
 		return countryList;
 	}
 
@@ -333,18 +332,22 @@ public class AfterSignin {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-//					System.out.println("Exception causing statement {{DON'T DELETE" + sendpojo.getPackageData());
-					if(sendpojo.getPackageData() != null){
-						ArrayList<String> _received = Hub.getRecepientsFromDb(GetMac.getMac() + "/data/sendMail");
+					// System.out.println("Exception causing statement {{DON'T DELETE"
+					// + sendpojo.getPackageData());
+					if (sendpojo.getPackageData() != null) {
+						ArrayList<String> _received = Hub
+								.getRecepientsFromDb(GetMac.getMac()
+										+ "/data/sendMail");
 						System.out.println("Holocene   " + _received);
 						AddRecepientsDialog addRecep = new AddRecepientsDialog(
 								sendpojo.getPackageData(), _received);
 						addRecep.setVisible(true);
-					}else{
-						JOptionPane.showMessageDialog(null, "Something went wrong",
-								"Error", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Something went wrong", "Error",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
-					
+
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 

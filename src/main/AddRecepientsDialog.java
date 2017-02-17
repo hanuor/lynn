@@ -69,7 +69,6 @@ public class AddRecepientsDialog extends JDialog {
 				}
 				counter++;
 			}
-			System.out.println("See you tomorrow  " + hints);
 			BalloonTip balloon = new BalloonTip(jScrollPane, ""
 					+ sbuilder.toString());
 

@@ -28,8 +28,7 @@ public class SmtpCorelogic {
 				"javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
-		System.out.println("Sender email Walkin g dead  " + senderData.get("email"));
-		
+
 		Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
@@ -46,75 +45,75 @@ public class SmtpCorelogic {
 			if (ccrecep != null) {
 				ccrecepientAddress = new InternetAddress[ccrecep.length];
 			}
-			
+
 			int counter = 0;
 			try {
-			for (String recipient : ccrecep) {
-				
+				for (String recipient : ccrecep) {
+
 					ccrecepientAddress[counter] = new InternetAddress(
 							recipient.trim());
-				
-				counter++;
-			}
+
+					counter++;
+				}
 			} catch (AddressException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}catch (Exception e2){
+			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			
-			
+
 		}
-		if(recepientPacket.get("BCcRecepients") != null){
-		
-		String bccrecep[] = stringtoArray(recepientPacket
-				.get("BCcRecepients"));
-		if (bccrecep != null) {
-			bccrecepientAddress = new InternetAddress[bccrecep.length];
-			int counterbcc = 0;
-			try {
-			for (String recipient : bccrecep) {
-				
-					bccrecepientAddress[counterbcc] = new InternetAddress(
-							recipient.trim());
-				counterbcc++;
+		if (recepientPacket.get("BCcRecepients") != null) {
+
+			String bccrecep[] = stringtoArray(recepientPacket
+					.get("BCcRecepients"));
+			if (bccrecep != null) {
+				bccrecepientAddress = new InternetAddress[bccrecep.length];
+				int counterbcc = 0;
+				try {
+					for (String recipient : bccrecep) {
+
+						bccrecepientAddress[counterbcc] = new InternetAddress(
+								recipient.trim());
+						counterbcc++;
+					}
+				} catch (AddressException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
-			}catch (AddressException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch(Exception e1){
-				e1.printStackTrace();
-			}
-		}
 		}
 
 		// compose message
 		try {
 			MimeMessage message = new MimeMessage(session);
-			System.out.println("Sender email Walkin g dead  " + senderData.get("email"));
 			message.setFrom(new InternetAddress(senderData.get("email")));
 			// accordingly
 			try {
-				if(recepientPacket.get("recepientEmail")!= null){
-					System.out.println("DODODODODODOD");
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress(
-						recepientPacket.get("recepientEmail")));
+				if (recepientPacket.get("recepientEmail") != null) {
+
+					message.addRecipient(
+							Message.RecipientType.TO,
+							new InternetAddress(recepientPacket
+									.get("recepientEmail")));
 				}
-				if(recepientPacket.get("CcRecepients") != null){
-					System.out.println("DOTODOTODTO");
-					message.setRecipients(Message.RecipientType.CC, ccrecepientAddress);
+				if (recepientPacket.get("CcRecepients") != null) {
+
+					message.setRecipients(Message.RecipientType.CC,
+							ccrecepientAddress);
 				}
-				if(recepientPacket.get("BCcRecepients") != null){
-					System.out.println("DSDEEWWE");
+				if (recepientPacket.get("BCcRecepients") != null) {
+
 					message.setRecipients(Message.RecipientType.BCC,
-							bccrecepientAddress);	
+							bccrecepientAddress);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
+
 			message.setSubject(data.get(0)); // Get 0 means we are getting the
 												// // subject
 			message.setText(data.get(1)); // Get 1 means we are getting the

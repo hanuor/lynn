@@ -94,7 +94,6 @@ public class FaceView {
 			JPanel panel = new JPanel();
 			panel.setLayout(new GridBagLayout());
 			_arrStr = DatabasePing.getEmailandPassword(GetMac.getMac());
-			System.out.println("Heya");
 			GridBagConstraints gbc = new GridBagConstraints();
 			gbc.gridx = 0;
 			gbc.gridy = 0;

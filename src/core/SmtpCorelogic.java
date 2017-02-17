@@ -119,9 +119,6 @@ public class SmtpCorelogic {
 			message.setText(data.get(1)); // Get 1 means we are getting the
 											// email
 			Transport.send(message);
-
-			System.out.println("Message sent successfully through Lynn");
-
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}

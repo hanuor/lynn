@@ -41,12 +41,7 @@ public class DatabasePing {
 
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-			// optional default is GET
 			con.setRequestMethod("GET");
-
-			// add request header
-			// con.setRequestProperty("User-Agent", USER_AGENT);
-
 			int responseCode = con.getResponseCode();
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
@@ -85,7 +80,7 @@ public class DatabasePing {
 					@Override
 					public void handleFault(BackendlessFault bFault) {
 						// TODO Auto-generated method stub
-						System.out.println("Error " + bFault.getMessage());
+
 						bFault.getMessage();
 
 					}
@@ -169,7 +164,6 @@ public class DatabasePing {
 					@Override
 					public void handleFault(BackendlessFault arg0) {
 						// TODO Auto-generated method stub
-
 						System.out.println(arg0);
 
 					}

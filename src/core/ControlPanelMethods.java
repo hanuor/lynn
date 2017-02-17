@@ -37,9 +37,6 @@ public class ControlPanelMethods {
 			// con.setRequestProperty("User-Agent", USER_AGENT);
 
 			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + apiCall);
-			System.out.println("Response Code : " + responseCode);
-
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
 			String inputLine;
@@ -53,8 +50,6 @@ public class ControlPanelMethods {
 			automationDynalitic(jsonString);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-
-			System.out.println("Here");
 			e.printStackTrace();
 			return null;
 
@@ -67,26 +62,27 @@ public class ControlPanelMethods {
 			return null;
 		}
 	}
-	public static void automationDynalitic(String jsonData){
+
+	public static void automationDynalitic(String jsonData) {
 		try {
 			ArrayList<String> _addNodes = new ArrayList<String>();
 			JSONObject jObj = new JSONObject(jsonData);
-			
+
 			Iterator<?> keys = jObj.keys();
-			
-			while( keys.hasNext() ) {
-			    String key = (String)keys.next();
-			    _addNodes.add(key);
-			   
+
+			while (keys.hasNext()) {
+				String key = (String) keys.next();
+				_addNodes.add(key);
+
 			}
 			String macId = GetMac.getMac();
-			   Hub.initializeNodes(_addNodes, macId, "" +  macId + "/data/nodes",0);
-			
+			Hub.initializeNodes(_addNodes, macId, "" + macId + "/data/nodes", 0);
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public static ArrayList<String> jsonToList(String t) throws JSONException {
@@ -125,9 +121,6 @@ public class ControlPanelMethods {
 			// con.setRequestProperty("User-Agent", USER_AGENT);
 
 			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + path);
-			System.out.println("Response Code : " + responseCode);
-
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
 			String inputLine;
@@ -141,14 +134,12 @@ public class ControlPanelMethods {
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-
-			System.out.println("Here");
 			e.printStackTrace();
 			return null;
 
 		}
 		try {
-			System.out.println("Hey I know its you : " + jsonString);
+
 			return jsonToMap(jsonString);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -172,14 +163,13 @@ public class ControlPanelMethods {
 			map.put(key, value);
 
 		}
-		System.out.println("We will rock you" + map.toString());
+
 		return map;
 	}
 
 	public static int getCount(String subject) {
 		int count = 0;
 		try {
-			System.out.println("Clementine  " + subject);
 			int index = subject.indexOf("#*#");
 			if (index != -1) {
 				try {
@@ -205,9 +195,7 @@ public class ControlPanelMethods {
 	}
 
 	public static String separatorToFields(String _string) {
-		System.out.println("String is    " + _string);
 		String newS = _string.replace("#*#", "#Field#");
-		System.out.println("Whateee  " + newS);
 		return newS;
 
 	}
